@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import { Box, Container } from '@chakra-ui/react'
+import Navigation from '../components/navigation'
 
 const Main = ({ children, router }) => {
   return (
@@ -24,6 +25,7 @@ const Main = ({ children, router }) => {
         <meta property="og:image" content="" />
         <title>Launch Academy P4 - Skill Exchange</title>
       </Head>
+      <Navigation/>
       <Container maxWidth={'full'} mb={20}>
         {children}
       </Container>
