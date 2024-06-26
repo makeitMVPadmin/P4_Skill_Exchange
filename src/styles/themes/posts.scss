@@ -1,0 +1,60 @@
+.post-theme {
+  margin-bottom: 5rem;
+  h2 {
+    font-weight: 700;
+    padding-block: 1rem;
+    @extend %title-48;
+  }
+
+  h3 {
+    @extend %title-35;
+    padding-block: 1rem;
+    font-weight: 700;
+  }
+
+  p {
+    @extend %description-12;
+    overflow: hidden;
+
+    img {
+      padding-block: 1rem;
+    }
+  }
+
+  ul,
+  ol {
+    padding-block: 1rem;
+    li {
+      list-style-type: disc;
+    }
+  }
+
+  pre {
+    margin-block: 1rem;
+    background-color: rgb(42, 42, 51);
+    backdrop-filter: 'blur(10px)';
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    overflow-x: scroll;
+
+    > code {
+      color: rgb(228, 228, 228);
+      font-size: 14px;
+    }
+  }
+
+  code {
+    // background-color: rgb(42, 42, 51);
+    backdrop-filter: 'blur(10px)';
+    // padding: 0.1rem 0.5rem;
+    border-radius: 0.3rem;
+    font-size: 14px;
+    font-family: 'Fira Mono';
+    color: rgb(189, 188, 188);
+    font-size: 14px;
+  }
+
+  a {
+    @extend %link;
+  }
+}

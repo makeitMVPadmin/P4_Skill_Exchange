@@ -1,0 +1,23 @@
+html {
+	overflow-x: hidden;
+	scroll-behavior: initial;
+	overscroll-behavior: none;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	
+	line-height: 1;
+}
+
+body {
+	width: 100%;
+	min-height: 100%;
+	font-family: 'Inter';
+	background-color: $col-white;
+	color: $col-black;
+}
+
+a {
+	color: inherit;
+	outline: none;
+	text-decoration: none;
+}
