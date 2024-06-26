@@ -22,7 +22,7 @@ const Main = ({ children, router }) => {
         <meta name="og:title" content="" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="" />
-        <title>Launch Academy</title>
+        <title>Launch Academy P4 - Skill Exchange</title>
       </Head>
       <Container maxWidth={'full'} mb={20}>
         {children}
