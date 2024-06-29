@@ -22,7 +22,7 @@ const Main = ({ children, router }: any) => {
         <meta name="og:title" content="" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="" />
-        <title>Launch Academy P4 - Skill Exchange</title>
+        <title>Skill Exchange Platform - Launch Academy</title>
       </Head>
       <div className={`${fontCorben.variable}`}>
         <Navigation/>

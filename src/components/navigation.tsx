@@ -3,9 +3,9 @@ import { fontGilroy } from "@/layout/fonts"
 
 function Navigation() {
   return (
-    <div className={"navigation bg-blue-500 px-10 flex-row justify-between items-center" + `, ${fontGilroy.variable}`}>
+    <div className={"navigation " + `${fontGilroy.variable}`}>
       <Link href={"/"} className="navigation__title">
-       <p className="link-item">Launch Academy</p>
+       <p className="link-item">Skill Exchange</p>
       </Link>
       <div className="navigation__links">
         <ul className="navigation__links-list">
