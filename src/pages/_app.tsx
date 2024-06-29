@@ -1,8 +1,8 @@
 import type { AppProps } from "next/app";
 import { AnimatePresence } from 'framer-motion';
 
-import Main from '../layout'
-import '@/styles/index.scss'
+import Main from '../layout';
+import '@/styles/index.scss';
 
 function App({ Component, pageProps, router }: AppProps) {
   return (

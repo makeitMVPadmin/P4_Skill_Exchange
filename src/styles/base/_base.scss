@@ -5,13 +5,22 @@ html {
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
 	
+	font-size: calc(100vw / 1368 * 10);
 	line-height: 1;
+
+	@include respondMax('tablet') {
+		font-size: calc(100vw / 768 * 10);
+	}
+
+	@include respondMax('mobile2x') {
+		font-size: calc(100vw / 675 * 10);
+	}
 }
 
 body {
 	width: 100%;
 	min-height: 100%;
-	font-family: 'Inter';
+	font-family: 'Work Sans', 'sans-serif';
 	background-color: $col-white;
 	color: $col-black;
 }

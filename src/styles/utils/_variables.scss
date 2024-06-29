@@ -1,8 +1,9 @@
 $col-white: #ffffff;
 $col-black: #000000;
 
-$shadow-blue: -10px 35px 54px rgba(144, 175, 236, 0.1);
-$shadow-green: -10px 35px 54px rgba(63, 195, 128, 0.15);
+$font-corben: "Corben";
+$font-gilroy: "Gilroy";
+
 
 $z-indexes: (
   'noscript',
@@ -23,36 +24,4 @@ $ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 ::-webkit-scrollbar {
   width: 0;
   height: 0;
-}
-
-.grid-item {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-  text-decoration: none;
-  &:hover {
-    a,
-    p {
-      text-decoration: none;
-    }
-  }
-}
-.grid-image {
-  position: relative;
-  overflow: hidden;
-  border-radius: 0.6rem;
-  display: flex;
-}
-
-.footer-wrapper {
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  @media screen and (max-width: 350px) {
-    overflow-x: scroll;
-  }
 }

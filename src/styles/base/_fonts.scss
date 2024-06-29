@@ -1,26 +1,35 @@
 @font-face {
-  font-family: 'Inter';
+  src: url('/public/fonts/corben/corben-regular.woff2') format ('woff2');
+  font-family: $font-corben;
   font-weight: 500;
   font-display: block;
   font-style: normal;
   font-named-instance: 'Regular';
-  src: url('/public/fonts/Inter-Regular.woff2') format ('woff2');
 }
 
 @font-face {
-  font-family: 'Inter';
+  src: url('/public/fonts/corben/corben-bold.woff2') format ('woff2');
+  font-family: $font-corben;
   font-weight: 700;
   font-display: block;
   font-style: normal;
-  font-named-instance: 'Regular';
-  src: url('/public/fonts/Inter-Medium.woff2') format ('woff2');
+  font-named-instance: 'Bold';
 }
 
 @font-face {
-  font-family: 'Inter';
+  src: url('/public/fonts/gilroy/gilroy-extrabold.woff2') format ('woff2');
+  font-family: $font-gilroy;
   font-weight: 900;
   font-display: block;
   font-style: normal;
-  font-named-instance: 'Regular';
-  src: url('/public/fonts/Inter-Bold.woff2') format ('woff2');
+  font-named-instance: 'Extra Bold';
+}
+
+@font-face {
+  src: url('/public/fonts/gilroy/gilroy-light.woff2') format ('woff2');
+  font-family: $font-gilroy;
+  font-weight: 900;
+  font-display: block;
+  font-style: normal;
+  font-named-instance: 'Light';
 }
