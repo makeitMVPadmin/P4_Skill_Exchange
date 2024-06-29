@@ -1,16 +1,12 @@
 import Head from 'next/head'
-import { Box, Container } from '@chakra-ui/react'
 import Navigation from '../components/navigation'
 
-const Main = ({ children, router }) => {
+const Main = ({ children, router }: any) => {
   return (
-    <Box as="main">
+    <main >
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta
-          name="description"
-          content=""
-        />
+        <meta name="description" content="" />
         <meta name="author" content="" />
         <link rel="apple-touch-icon" href="apple-touch-icon.png" />
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
@@ -26,10 +22,10 @@ const Main = ({ children, router }) => {
         <title>Launch Academy P4 - Skill Exchange</title>
       </Head>
       <Navigation/>
-      <Container maxWidth={'full'} mb={20}>
+      <div>
         {children}
-      </Container>
-    </Box>
+      </div>
+    </main>
   )
 }
 
