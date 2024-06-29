@@ -1,5 +1,8 @@
 import Head from 'next/head'
+
 import Navigation from '../components/navigation'
+
+import { fontCorben, fontGilroy } from "@/layout/fonts";
 
 const Main = ({ children, router }: any) => {
   return (
@@ -21,10 +24,12 @@ const Main = ({ children, router }: any) => {
         <meta property="og:image" content="" />
         <title>Launch Academy P4 - Skill Exchange</title>
       </Head>
-      <Navigation/>
-      <div>
-        {children}
-      </div>
+      <body  className={`${fontCorben.className}, ${fontGilroy.className}`}>
+        <Navigation/>
+        <div>
+          {children}
+        </div>
+      </body>
     </main>
   )
 }
