@@ -2,7 +2,7 @@ import Head from 'next/head'
 
 import Navigation from '../components/navigation'
 
-import { fontCorben, fontGilroy } from "@/layout/fonts";
+import { fontCorben } from "@/layout/fonts";
 
 const Main = ({ children, router }: any) => {
   return (
@@ -11,7 +11,7 @@ const Main = ({ children, router }: any) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+        <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
         <meta name="twitter:title" content="" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -24,12 +24,12 @@ const Main = ({ children, router }: any) => {
         <meta property="og:image" content="" />
         <title>Launch Academy P4 - Skill Exchange</title>
       </Head>
-      <body  className={`${fontCorben.className}, ${fontGilroy.className}`}>
+      <div className={`${fontCorben.variable}`}>
         <Navigation/>
         <div>
           {children}
         </div>
-      </body>
+      </div>
     </main>
   )
 }
