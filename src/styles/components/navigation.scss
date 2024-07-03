@@ -1,0 +1,51 @@
+.navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  padding: 1rem;
+  background-color: $col-cream;
+
+  &__title p{
+    font-size: 24px;
+    color: $col-dark-blue;
+    transition: all 200ms $ease-in-out;
+
+    &:hover {
+      color: $col-light-blue;
+    }
+  }
+
+  &__links-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+
+    &__item {
+      font-family: var(--font-gilroy);
+      @extend %link--hidden;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+  }
+
+  &__button button {
+    font-family: var(--font-corben);
+    @extend %description-12;
+    text-transform: capitalize;
+    background-color: $col-light-blue;
+    color: $col-white;
+    padding: 0.5rem 0.7rem;
+    border: 1px solid $col-dark-blue;
+    border-radius: 1rem;
+    transition: all 200ms ease-in-out;
+    cursor: pointer;
+      &:hover {
+        background-color: transparent;
+        color: $col-dark-blue;
+      }
+  }
+}
