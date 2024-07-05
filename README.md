@@ -33,14 +33,18 @@ To begin working on your project, follow these steps:
    ```bash
    npm install
    ```
+4. Build the project
+    ```bash
+   npm run build
+   ```
 
-4. Start the development server:
+5. Start the development server:
 
    ```bash
    npm start
    ```
 
-5. Open your web browser and navigate to `http://localhost:3000` to see your project running.
+6. Open your web browser and navigate to `http://localhost:3000` to see your project running.
 
 Now you're ready to start building your project using the provided structure!
 
