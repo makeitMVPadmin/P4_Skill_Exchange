@@ -4,7 +4,7 @@ import Navigation from '../components/navigation'
 
 import { fontCorben } from "@/layout/fonts";
 
-const Main = ({ children, router }: any) => {
+const Main = ({ children }: any) => {
   return (
     <main >
       <Head>
