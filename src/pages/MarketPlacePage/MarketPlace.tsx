@@ -10,7 +10,7 @@ const MarketPlace = () => {
         </div>
         <div className="bg-white p-6 col-span-3">
           <h2 className="text-xl font-bold mb-2">Market Place</h2>
-          <div className="flex flex-wrap gap-2">
+          <div className="w-full flex sm:items-center flex-wrap gap-5">
             <JobCard job="" />
             <JobCard job="" />
             <JobCard job="" />

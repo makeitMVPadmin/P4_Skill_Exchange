@@ -8,9 +8,11 @@ function Header() {
   return (
     <header className="bg-white shadow-md">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-gray-800 font-corben">
-          Communiti
-        </h1>
+        <a href={'/'}>
+          <h1 className="text-2xl font-bold text-gray-800 font-corben">
+              Communiti
+          </h1>
+        </a>
         <nav>
           <div className="md:hidden">
             <button
@@ -50,14 +52,8 @@ function Header() {
               </Link>
             </li>
             <li>
-              <Link to="#" className="text-gray-600 hover:text-gray-900 font-gilroy">
-                Skill Seeker
-              </Link>
-            </li>
-
-            <li>
-              <Link to="#" className="text-gray-600 hover:text-gray-900 font-gilroy">
-                Skill Provider
+              <Link to="/marketplace" className="text-gray-600 hover:text-gray-900 font-gilroy">
+                Marketplace
               </Link>
             </li>
             <li>
