@@ -1,8 +1,22 @@
-import HomePage from "./pages/HomePage/HomePage";
+import { Routes, Route } from "react-router-dom";
+import "./index.css";
+import Header from "./components/Header/Header.tsx";
+import Footer from "./components/Footer/Footer.tsx";
+import HomePage from "./pages/HomePage/HomePage.tsx";
+import ProfilePage from "./pages/ProfilePage/ProfilePage.tsx";
 
 function App() {
   return (
-    <HomePage/>
+    <>
+      <Header />
+
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/profile" element={<ProfilePage />} />
+      </Routes>
+
+      <Footer />
+    </>
   );
 }
 
