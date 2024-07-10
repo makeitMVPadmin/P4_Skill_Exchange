@@ -1,11 +1,13 @@
-import "./HomePage.scss";
+import "@/src/styles/index.scss";
 
-const Home = () => {
+function HomePage() {
   return (
-    <div className="home">
-      <h1 className="font-mono text-red-400"> Welcome !</h1>
+    <div className="flex items-center justify-center h-screen bg-gray-100">
+      <h1 className="text-4xl font-bold text-gray-800">
+        Welcome to Communiti - Skill Exchange
+      </h1>
     </div>
   );
-};
+}
 
-export default Home;
+export default HomePage;
