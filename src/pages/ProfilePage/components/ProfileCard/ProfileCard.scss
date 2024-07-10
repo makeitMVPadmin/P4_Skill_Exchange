@@ -1,0 +1,40 @@
+.profile-card {
+  background-color: #ffffff;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  margin-bottom: 1rem;
+
+  &__content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  &__picture {
+    width: 6rem;
+    height: 6rem;
+    background-color: #e5e7eb;
+    border-radius: 9999px;
+  }
+
+  &__name {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+
+  &__title,
+  &__email {
+    color: #4b5563;
+  }
+
+  &__social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+
+    &__social-link {
+      cursor: pointer;
+    }
+  }
+}

@@ -1,46 +1,44 @@
+# MakeItMVP Launch Academy (Skill Exchange) Starter Repository
 
-# MakeItMVP Launch Academy Starter Repository
-
-Welcome to the MakeItMVP Launch Academy Starter Repository! This repository is designed to provide new junior developers with a structured starting point for their assigned projects. It's built using React and Sass to help you get up and running quickly.
+Welcome to the MakeItMVP Launch Academy Starter Repository! This repository is designed to provide new junior developers with a structured starting point for their assigned projects. Built using React and Sass, this setup will help you get up and running quickly.
 
 ## Table of Contents
 
-- [Getting Started](#getting-started)
-- [Project Structure](#project-structure)
-- [Technologies](#technologies)
-- [Contributing](#contributing)
-- [License](#license)
+1. [Getting Started](#getting-started)
+2. [Project Structure](#project-structure)
+3. [Technologies](#technologies)
+4. [Contributing](#contributing)
+5. [License](#license)
 
 ## Getting Started
 
-To begin working on your project, follow these steps:
+To begin working on the project, follow these steps:
 
-1. Clone this repository to your local machine:
+1. **Clone this repository to your local machine:**
 
-   ```bash
-   git clone https://github.com/MakeItMVP/LaunchAcademyStarter.git
-   ```
-````
+    ```bash
+    git clone https://github.com/MakeItMVP/P4_Skill_Exchange.git
+    ```
 
-2. Change your working directory to the cloned repository:
+2. **Change your working directory to the cloned repository:**
 
-   ```bash
-   cd LaunchAcademyStarter
-   ```
+    ```bash
+    cd P4_Skill_Exchange
+    ```
 
-3. Install the project dependencies:
+3. **Install the project dependencies:**
 
-   ```bash
-   npm install
-   ```
+    ```bash
+    npm install
+    ```
 
-4. Start the development server:
+4. **Start the development server:**
 
-   ```bash
-   npm start
-   ```
+    ```bash
+    npm run dev
+    ```
 
-5. Open your web browser and navigate to `http://localhost:3000` to see your project running.
+5. **Open your web browser and navigate to** `http://localhost:3000` **to see your project running.**
 
 Now you're ready to start building your project using the provided structure!
 
@@ -51,33 +49,42 @@ The project structure is organized as follows:
 ```
 ├── src/
 │   ├── components/
-│   │   ├── App.js
+│   │   ├── Example.tsx
 │   │   ├── ...
 │   ├── styles/
-│   │   ├── main.scss
+│   │   ├── index.scss
 │   │   ├── ...
-│   ├── index.js
+│   ├── index.tsxs
 ├── public/
-│   ├── index.html
-│   ├── ...
+│   ├── images/
+|   ├── svg/  
+│   ├── favicon.ico
+|   ├── ...
+├── index.html
 ├── package.json
 ├── README.md
+├── tailwind.config.js
+├── tsconfig.json
+├── vite.config.ts
 ```
 
-- `src/`: Contains the main source code for your project, including React components and styles.
-- `public/`: Contains static assets and your project's HTML template.
-- `package.json`: Defines project dependencies and scripts.
+- **`src/`**: Contains the main source code for your project, including React components and styles.
+- **`public/`**: Contains static assets but the project's HTML template is in the root directory since this project uses vite.
+- **`package.json`**: Defines project dependencies and scripts.
+- **`tailwind.config.js`**: Defines the configuration for global tailwind styles
+- **`vite.config.ts`**: Defines the configuration for the vite app.
 
-Feel free to customize the project structure to fit your specific project requirements.
+
 
 ## Technologies
 
 This starter repository uses the following technologies:
 
-- React: A JavaScript library for building user interfaces.
-- Sass: A CSS extension language that adds features like variables, nesting, and more.
+- **React**: A JavaScript library for building user interfaces.
+- **Sass**: A CSS extension language that adds features like variables, nesting, and more.
+- **Vite**: A Next Generation Frontend Tooling with lighning fast HMR.
+- **Tailwind**: A UI library for applying css styles and animations
 
-You can expand upon these technologies as needed for your project.
 
 ## Contributing
 
@@ -86,7 +93,3 @@ We welcome contributions from the community. If you have suggestions or improvem
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
-
-```
-
-```
