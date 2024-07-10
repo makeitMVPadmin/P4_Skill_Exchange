@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import "@/src/styles/index.scss";
+import "@/styles/index.scss";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -8,9 +8,9 @@ function Header() {
   return (
     <header className="bg-white shadow-md">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <a href={'/'}>
+        <a href={"/"}>
           <h1 className="text-2xl font-bold text-gray-800 font-corben">
-              Communiti
+            Communiti
           </h1>
         </a>
         <nav>
@@ -42,22 +42,34 @@ function Header() {
             } md:flex space-x-6 mt-4 md:mt-0 `}
           >
             <li>
-              <Link to="/" className="text-gray-600 hover:text-gray-900 font-gilroy">
+              <Link
+                to="/"
+                className="text-gray-600 hover:text-gray-900 font-gilroy"
+              >
                 Home
               </Link>
             </li>
             <li>
-              <Link to="#" className="text-gray-600 hover:text-gray-900 font-gilroy">
+              <Link
+                to="#"
+                className="text-gray-600 hover:text-gray-900 font-gilroy"
+              >
                 About Us
               </Link>
             </li>
             <li>
-              <Link to="/marketplace" className="text-gray-600 hover:text-gray-900 font-gilroy">
+              <Link
+                to="/marketplace"
+                className="text-gray-600 hover:text-gray-900 font-gilroy"
+              >
                 Marketplace
               </Link>
             </li>
             <li>
-              <Link to="/profile" className="text-gray-600 hover:text-gray-900 font-gilroy">
+              <Link
+                to="/profile"
+                className="text-gray-600 hover:text-gray-900 font-gilroy"
+              >
                 Profile
               </Link>
             </li>
