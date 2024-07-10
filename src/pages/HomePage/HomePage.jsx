@@ -1,11 +1,14 @@
-// import "./HomePage.scss";
+import { Link } from "react-router-dom";
+import "../../index.css";
 
-const Home = () => {
+function HomePage() {
   return (
-    <div className="home">
-      <h1 className="home__title"> Welcome !</h1>
+    <div className="flex items-center justify-center h-screen bg-gray-100">
+      <h1 className="text-4xl font-bold text-gray-800">
+        Welcome to Communiti - Skill Exchange
+      </h1>
     </div>
   );
-};
+}
 
-export default Home;
+export default HomePage;
