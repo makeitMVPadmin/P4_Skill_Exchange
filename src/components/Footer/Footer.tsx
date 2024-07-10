@@ -1,4 +1,4 @@
-import "../../index.css";
+import "@/src/styles/index.scss";
 
 function Footer() {
   return (
