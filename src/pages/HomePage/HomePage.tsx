@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom";
-import "../../index.css";
+import "@/src/styles/index.scss";
 
 function HomePage() {
   return (
