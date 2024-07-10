@@ -1,9 +1,9 @@
-@use "./typography" as *;
+@use './typography' as *;
 
 * {
   margin: 0;
   padding: 0;
-  font-family: "Gilroy", Helvetica, sans-serif;
+  font-family: 'Gilroy', Helvetica, sans-serif;
 }
 
 a {
@@ -13,5 +13,5 @@ a {
 html,
 body {
   height: 100vh;
-  font-family: "Gilroy", sans-serif;
+  font-family: 'Gilroy', sans-serif;
 }
