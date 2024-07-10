@@ -12,7 +12,7 @@ Welcome to the MakeItMVP Launch Academy Starter Repository! This repository is d
 
 ## Getting Started
 
-To begin working on your project, follow these steps:
+To begin working on the project, follow these steps:
 
 1. **Clone this repository to your local machine:**
 
@@ -23,7 +23,7 @@ To begin working on your project, follow these steps:
 2. **Change your working directory to the cloned repository:**
 
     ```bash
-    cd LaunchAcademyStarter
+    cd P4_Skill_Exchange
     ```
 
 3. **Install the project dependencies:**
@@ -35,7 +35,7 @@ To begin working on your project, follow these steps:
 4. **Start the development server:**
 
     ```bash
-    npm start
+    npm run dev
     ```
 
 5. **Open your web browser and navigate to** `http://localhost:3000` **to see your project running.**
@@ -74,7 +74,7 @@ The project structure is organized as follows:
 - **`tailwind.config.js`**: Defines the configuration for global tailwind styles
 - **`vite.config.ts`**: Defines the configuration for the vite app.
 
-Feel free to customize the project structure to fit your specific project requirements.
+
 
 ## Technologies
 
@@ -82,10 +82,9 @@ This starter repository uses the following technologies:
 
 - **React**: A JavaScript library for building user interfaces.
 - **Sass**: A CSS extension language that adds features like variables, nesting, and more.
-- **Vite**: Next Generation Frontend Tooling with lighning fast HMR.
+- **Vite**: A Next Generation Frontend Tooling with lighning fast HMR.
 - **Tailwind**: A UI library for applying css styles and animations
 
-You can expand upon these technologies as needed for your project.
 
 ## Contributing
 
