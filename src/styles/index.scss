@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import "./utils/variables";
+
+@import "./partials/global";
+@import "./partials/mixins";
+@import "./partials/typography";
+
+@import "./base/fonts";

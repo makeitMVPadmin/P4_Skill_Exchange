@@ -8,8 +8,8 @@ function Header() {
   return (
     <header className="bg-white shadow-md">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-gray-800">
-          Communiti - Skill Exchange
+        <h1 className="text-2xl font-bold text-gray-800 font-corben">
+          Communiti
         </h1>
         <nav>
           <div className="md:hidden">
@@ -40,28 +40,28 @@ function Header() {
             } md:flex space-x-6 mt-4 md:mt-0 `}
           >
             <li>
-              <Link to="/" className="text-gray-600 hover:text-gray-900">
+              <Link to="/" className="text-gray-600 hover:text-gray-900 font-gilroy">
                 Home
               </Link>
             </li>
             <li>
-              <Link to="#" className="text-gray-600 hover:text-gray-900">
+              <Link to="#" className="text-gray-600 hover:text-gray-900 font-gilroy">
                 About Us
               </Link>
             </li>
             <li>
-              <Link to="#" className="text-gray-600 hover:text-gray-900">
+              <Link to="#" className="text-gray-600 hover:text-gray-900 font-gilroy">
                 Skill Seeker
               </Link>
             </li>
 
             <li>
-              <Link to="#" className="text-gray-600 hover:text-gray-900">
+              <Link to="#" className="text-gray-600 hover:text-gray-900 font-gilroy">
                 Skill Provider
               </Link>
             </li>
             <li>
-              <Link to="/profile" className="text-gray-600 hover:text-gray-900">
+              <Link to="/profile" className="text-gray-600 hover:text-gray-900 font-gilroy">
                 Profile
               </Link>
             </li>
