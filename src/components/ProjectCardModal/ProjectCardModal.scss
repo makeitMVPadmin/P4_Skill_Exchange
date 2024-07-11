@@ -1,0 +1,30 @@
+// @use "../../styles/partials/global" as *;
+// @use "../../styles/partials/mixins" as *;
+// @use "../../styles/partials/typography" as *;
+// @use "../../styles/utils/variables" as *;
+
+.pcmodal {
+    &__maintitle {
+        padding: 1rem;
+        font-size: 1.5rem;
+    }
+    &__title {
+        padding-left: 1rem;
+    }
+    &__form {
+        display: flex;
+        flex-direction: column;
+        &--label {
+            padding-left: 1rem;
+            padding-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        &--input {
+            border: solid 1px black;
+            margin-left: 1rem;
+            padding-left: 0.5rem;
+            border-radius: 2px;
+            width: 30vw;
+        }
+    }
+  }
