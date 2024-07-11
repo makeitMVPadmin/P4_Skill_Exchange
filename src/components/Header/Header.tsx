@@ -72,6 +72,12 @@ function Header() {
               >
                 Profile
               </Link>
+              <Link
+                to="/modal"
+                className="text-gray-600 hover:text-gray-900 font-gilroy"
+              >
+                Modal-temp
+              </Link>
             </li>
           </ul>
         </nav>
