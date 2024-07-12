@@ -13,6 +13,7 @@ export default function ProjectCardModal(){
             placeholder="Enter your years of experience"
             type="text" 
             name="yearsofexperience" />
+            <button className="pcmodal__form--button">Apply Now</button>
         </form>
         </>
     )
