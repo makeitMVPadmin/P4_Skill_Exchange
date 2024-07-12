@@ -11,8 +11,8 @@ We are excited that you want to contribute to our project! Here are a few guidel
 2. **Clone your forked repository:**
 
     ```bash
-    git clone https://github.com/your-username/LaunchAcademyStarter.git
-    cd LaunchAcademyStarter
+    git clone https://github.com/your-username/P4_Skill_Exchanage.git
+    cd P4_Skill_Exchange
     ```
 
 3. **Create a new branch for your feature or bug fix:**
