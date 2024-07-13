@@ -31,13 +31,19 @@
     gap: 1rem;
   }
 
+  &__first-innerwrap {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
   &__secondwrap {
     display: flex;
     flex-direction: column;
     // border: 0.2rem solid blue;
   }
 
-  &___profile-card {
+  &__profile-card {
     display: flex;
     flex-direction: column;
     // border: 0.2rem solid green;
