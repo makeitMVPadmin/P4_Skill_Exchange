@@ -181,6 +181,7 @@
     {
       "project_id": 1,
       "project_name": "Portfolio Website",
+      "project_image": "https://images.unsplash.com/photo-1517292987719-0369a794ec0f?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YXBwfGVufDB8fDB8fHww",
       "project_url": "https://via.placeholder.com/150",
       "project_description": "A personal portfolio website to showcase projects.",
       "user_id": 1
@@ -188,6 +189,7 @@
     {
       "project_id": 2,
       "project_name": "E-commerce App",
+      "project_image": "https://images.unsplash.com/photo-1617777938240-9a1d8e51a47d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGFwcHxlbnwwfHwwfHx8MA%3D%3D",
       "project_url": "https://via.placeholder.com/150",
       "project_description": "A mobile application for e-commerce.",
       "user_id": 2
@@ -195,6 +197,7 @@
     {
       "project_id": 3,
       "project_name": "Social Media Platform",
+      "project_image": "https://images.unsplash.com/photo-1613288092085-eb081fde1509?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjR8fGFwcHxlbnwwfHwwfHx8MA%3D%3D",
       "project_url": "https://via.placeholder.com/150",
       "project_description": "A platform to connect people with similar interests.",
       "user_id": 3
@@ -203,12 +206,14 @@
       "project_id": 4,
       "project_name": "Task Management Tool",
       "project_url": "https://via.placeholder.com/150",
+      "project_image": "https://images.unsplash.com/photo-1585282263872-36fa5ae76e60?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDl8fGFwcHxlbnwwfHwwfHx8MA%3D%3D",
       "project_description": "A tool to manage and track tasks.",
       "user_id": 4
     },
     {
       "project_id": 5,
       "project_name": "Blog Website",
+      "project_image": "https://images.unsplash.com/photo-1581287053822-fd7bf4f4bfec?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTV8fGFwcHxlbnwwfHwwfHx8MA%3D%3D",
       "project_url": "https://via.placeholder.com/150",
       "project_description": "A website to share and publish blogs.",
       "user_id": 5
