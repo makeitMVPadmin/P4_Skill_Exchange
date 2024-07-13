@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./ProfileCard.scss";
 import EditButton from "../EditButton/EditButton";
-import projectData from "/data/dummy_data_extended.json?url";
+import projectData from "public/data/dummy_data_extended.json";
 
 interface UserBio {
   first_name: string;

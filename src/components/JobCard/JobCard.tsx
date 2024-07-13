@@ -1,8 +1,11 @@
+import { slugify } from "@/src/utils/string-utils";
 
 
 const JobCard = ({ name }: any) => {
+  const slug = slugify(name);
+
   return (
-   <a href={`/marketplace/${name}`} className="max-w-sm rounded overflow-hidden shadow-lg bg-white">
+   <a href={`/marketplace/${slug}`} className="max-w-sm rounded overflow-hidden shadow-lg bg-white">
     <img className="w-full" src="https://via.placeholder.com/400x200" alt="Sunset in the mountains"/>
     <div className="px-6 py-4">
       <div className="font-bold text-xl mb-2">{ name }</div>
