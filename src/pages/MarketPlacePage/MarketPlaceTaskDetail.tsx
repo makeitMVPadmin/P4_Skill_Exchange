@@ -27,7 +27,7 @@ function MarketplaceTaskDetail() {
 
   return (
     <div>
-      <h1>{jobDetail.name}</h1>
+      <h1>{jobDetail?.name}</h1>
     </div>
   )
 }
