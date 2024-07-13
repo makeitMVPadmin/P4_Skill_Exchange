@@ -1,8 +1,15 @@
-import React from "react";
 import "./EditButton.scss";
 
-const EditButton: React.FC = () => {
-  return <button className="edit-button">Edit Profile</button>;
+type EditButtonProps = {
+  onClick: () => void;
 };
+
+function EditButton(props: EditButtonProps) {
+  return (
+    <button className="edit-button" onClick={props.onClick}>
+      Edit Profile
+    </button>
+  );
+}
 
 export default EditButton;

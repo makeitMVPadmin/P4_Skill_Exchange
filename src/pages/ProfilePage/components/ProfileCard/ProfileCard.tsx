@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./ProfileCard.scss";
-import EditButton from "../EditButton/EditButton";
 import projectData from "../../../../data/dummy_data_extended.json";
 
 interface UserBio {
@@ -61,9 +60,6 @@ const ProfileCard: React.FC = () => {
       ) : (
         <p>Loading...</p>
       )}
-      <div className="profile-card__edit-button">
-        <EditButton />
-      </div>
     </div>
   );
 };
