@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./ProjectsCard.scss";
-import projectData from "public/data/dummy_data_extended.json";
+import projectData from "src/data/dummy_data_extended.json";
 
 interface ProjectProps {
   name: string;

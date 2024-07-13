@@ -1,6 +1,5 @@
 import { slugify } from "@/src/utils/string-utils";
 
-
 const JobCard = ({ name }: any) => {
   const slug = slugify(name);
 

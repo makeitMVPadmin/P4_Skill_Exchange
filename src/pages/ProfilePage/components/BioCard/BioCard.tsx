@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./BioCard.scss";
-import projectData from "public/data/dummy_data_extended.json";
+import projectData from "src/data/dummy_data_extended.json";
 
 interface UserBio {
   bio: string;

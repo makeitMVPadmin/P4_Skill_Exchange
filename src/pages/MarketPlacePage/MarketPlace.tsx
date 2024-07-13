@@ -1,5 +1,5 @@
 import JobCard from "../../components/JobCard/JobCard";
-import projectData from "public/data/dummy_data_extended.json";
+import projectData from "src/data/dummy_data_extended.json";
 
 const MarketPlace = () => {
   const jobs = projectData.jobs;
