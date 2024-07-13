@@ -1,0 +1,62 @@
+@use "./variables" as *;
+
+// Breakpoints
+
+@mixin tablet-breakpoint {
+  @media (min-width: $tablet-breakpoint) {
+    @content;
+  }
+}
+
+@mixin desktop-breakpoint {
+  @media (min-width: $desktop-breakpoint) {
+    @content;
+  }
+}
+
+@mixin max-desktop-breakpoint {
+  @media (min-width: $max-desktop-screen) {
+    @content;
+  }
+}
+
+// Backgrounds
+
+@mixin background-cover {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+@mixin logo-cover {
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+// Flexbox  Mixins
+
+@mixin flex-direction($flex-direction) {
+  display: flex;
+  flex-direction: $flex-direction;
+}
+
+@mixin flex($flex-direction, $align-items, $justify-content) {
+  display: flex;
+  flex-direction: $flex-direction;
+  align-items: $align-items;
+  justify-content: $justify-content;
+}
+
+@mixin flex-default($align-items, $justify-content) {
+  display: flex;
+  align-items: $align-items;
+  justify-content: $justify-content;
+}
+
+// Box Model Mixins
+
+@mixin box($width, $height) {
+  width: $width;
+  height: $height;
+}
