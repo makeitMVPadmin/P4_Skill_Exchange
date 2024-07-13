@@ -26,8 +26,6 @@ interface UserData {
   interested_skills: string[];
   own_skills: string[];
   projects: Project[];
-  tagline: string;
-  experience: string;
 }
 
 function ProfilePage() {
