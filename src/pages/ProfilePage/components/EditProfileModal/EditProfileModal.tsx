@@ -1,12 +1,38 @@
 import "./EditProfileModal.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+interface Project {
+  project_name: string;
+  project_description: string;
+  project_url: string;
+}
+
+interface UserData {
+  profilephoto_link: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  user_profile: string;
+  title: string;
+  bio: string;
+  interested_skills: string[];
+  own_skills: string[];
+  projects: Project[];
+}
 
 interface EditProfileModalProps {
   isOpen: boolean;
   onClose: () => void;
+  userData: UserData;
+  onSave: (updatedData: UserData) => void;
 }
 
-function EditProfileModal({ isOpen, onClose }: EditProfileModalProps) {
+function EditProfileModal({
+  isOpen,
+  onClose,
+  userData,
+  onSave,
+}: EditProfileModalProps) {
   if (!isOpen) return null;
 
   const [firstName, setFirstName] = useState("");
@@ -14,37 +40,46 @@ function EditProfileModal({ isOpen, onClose }: EditProfileModalProps) {
   const [title, setTitle] = useState("");
   //   const [email, setEmail] = useState("");
   //   const [profilePhoto, setProfilePhoto] = useState("");
+  const [userProfile, setUserProfile] = useState(userData.user_profile);
   const [bio, setBio] = useState("");
-  const [tagline, setTagline] = useState("");
-  const [skills, setSkills] = useState<string[]>([]);
+  const [ownSkills, setOwnSkills] = useState<string[]>(userData.own_skills);
   const [newSkill, setNewSkill] = useState("");
-  const [experience, setExperience] = useState<string[]>([]);
-  const [newExperience, setNewExperience] = useState("");
+
+  useEffect(() => {
+    setFirstName(userData.first_name);
+    setLastName(userData.last_name);
+    setTitle(userData.title);
+    setBio(userData.bio);
+    setUserProfile(userData.user_profile);
+    setOwnSkills(userData.own_skills);
+  }, [userData]);
 
   const handleAddSkill = () => {
-    if (newSkill) {
-      setSkills([...skills, newSkill]);
+    if (newSkill && !ownSkills.includes(newSkill)) {
+      setOwnSkills([...ownSkills, newSkill]);
       setNewSkill("");
     }
   };
 
   const handleDeleteSkill = (index: number) => {
-    setSkills(skills.filter((_, i) => i !== index));
-  };
-
-  const handleAddExperience = () => {
-    if (newExperience) {
-      setExperience([...experience, newExperience]);
-      setNewExperience("");
-    }
-  };
-
-  const handleDeleteExperience = (index: number) => {
-    setExperience(experience.filter((_, i) => i !== index));
+    setOwnSkills(ownSkills.filter((_, i) => i !== index));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const updatedData: UserData = {
+      profilephoto_link: userData.profilephoto_link,
+      first_name: firstName,
+      last_name: lastName,
+      email: userData.email,
+      user_profile: userProfile,
+      title,
+      bio,
+      interested_skills: userData.interested_skills,
+      own_skills: ownSkills,
+      projects: userData.projects,
+    };
+    onSave(updatedData);
   };
 
   return (
@@ -78,8 +113,8 @@ function EditProfileModal({ isOpen, onClose }: EditProfileModalProps) {
             <label className="edit-modal__label">Tagline</label>
             <textarea
               className="edit-modal__textarea"
-              value={tagline}
-              onChange={(e) => setTagline(e.target.value)}
+              value={userProfile}
+              onChange={(e) => setUserProfile(e.target.value)}
             />
           </div>
           <div className="edit-modal__form-group">
@@ -102,7 +137,7 @@ function EditProfileModal({ isOpen, onClose }: EditProfileModalProps) {
           <div className="edit-modal__form-group">
             <label className="edit-modal__label">Skills</label>
             <div className="edit-modal__skills">
-              {skills.map((skill, index) => (
+              {ownSkills.map((skill, index) => (
                 <div key={index} className="edit-modal__skill-item">
                   <span className="edit-modal__skill">{skill}</span>
                   <button
@@ -110,7 +145,7 @@ function EditProfileModal({ isOpen, onClose }: EditProfileModalProps) {
                     className="edit-modal__delete-button"
                     onClick={() => handleDeleteSkill(index)}
                   >
-                    Delete
+                    ❌
                   </button>
                 </div>
               ))}
@@ -129,36 +164,7 @@ function EditProfileModal({ isOpen, onClose }: EditProfileModalProps) {
               </button>
             </div>
           </div>
-          <div className="edit-modal__form-group">
-            <label className="edit-modal__label">Experience</label>
-            <div className="edit-modal__experience">
-              {experience.map((exp, index) => (
-                <div key={index} className="edit-modal__experience-item">
-                  <span className="edit-modal__experience">{exp}</span>
-                  <button
-                    type="button"
-                    className="edit-modal__delete-button"
-                    onClick={() => handleDeleteExperience(index)}
-                  >
-                    Delete
-                  </button>
-                </div>
-              ))}
-              <input
-                type="text"
-                className="edit-modal__input"
-                value={newExperience}
-                onChange={(e) => setNewExperience(e.target.value)}
-              />
-              <button
-                type="button"
-                className="edit-modal__add-button"
-                onClick={handleAddExperience}
-              >
-                Add Experience
-              </button>
-            </div>
-          </div>
+
           <button type="submit" className="edit-modal__submit-button">
             Save Changes
           </button>
