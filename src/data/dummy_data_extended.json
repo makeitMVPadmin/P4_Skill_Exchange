@@ -1,0 +1,217 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "michellelo.dev@gmail.com",
+      "own_skills": [
+        "React",
+        "Node.js",
+        "MongoDB",
+        "Express.js",
+        "React Native",
+        "Firebase"
+      ],
+      "interested_skills": ["Developer"],
+      "user_profile": "Full stack developer with a passion for building web applications.",
+      "first_name": "Michelle",
+      "last_name": "Lo",
+      "bio": "As a recent graduate from BrainStation with a passion for software engineering, I currently work as a TA at BrainStation for the software engineering program, and also work as a developer at MakeitMVP. I am eager to learn and grow in the tech industry.",
+      "title": "Software Developer",
+      "profilephoto_link": "https://randomuser.me/api/portraits/lego/1.jpg"
+    },
+    {
+      "id": 2,
+      "email": "jane.smith@example.com",
+      "own_skills": ["UI/UX Design", "Photoshop"],
+      "interested_skills": ["React", "Node.js"],
+      "user_profile": "Jane is a creative designer with 3 years of experience.",
+      "first_name": "Jane",
+      "last_name": "Smith",
+      "bio": "Loves creating intuitive user interfaces.",
+      "title": "UI/UX Designer",
+      "profilephoto_link": "https://randomuser.me/api/portraits/lego/1.jpg"
+    },
+    {
+      "id": 3,
+      "email": "michael.jordan@example.com",
+      "own_skills": ["Python", "Django"],
+      "interested_skills": ["React Native", "Figma"],
+      "user_profile": "Michael is a backend developer with a knack for efficient algorithms.",
+      "first_name": "Michael",
+      "last_name": "Jordan",
+      "bio": "Enjoys solving complex backend problems.",
+      "title": "Backend Developer",
+      "profilephoto_link": "https://randomuser.me/api/portraits/lego/1.jpg"
+    },
+    {
+      "id": 4,
+      "email": "sara.lee@example.com",
+      "own_skills": ["React", "Redux"],
+      "interested_skills": ["Sketch", "Adobe XD"],
+      "user_profile": "Sara is a frontend developer who loves creating smooth user experiences.",
+      "first_name": "Sara",
+      "last_name": "Lee",
+      "bio": "Frontend enthusiast with a passion for design.",
+      "title": "Frontend Developer",
+      "profilephoto_link": "https://randomuser.me/api/portraits/lego/1.jpg"
+    },
+    {
+      "id": 5,
+      "email": "david.williams@example.com",
+      "own_skills": ["Vue.js", "Laravel"],
+      "interested_skills": ["UX Research", "Prototyping"],
+      "user_profile": "David is a full stack developer who enjoys working with modern frameworks.",
+      "first_name": "David",
+      "last_name": "Williams",
+      "bio": "Always eager to learn and adapt to new technologies.",
+      "title": "Full Stack Developer",
+      "profilephoto_link": "https://randomuser.me/api/portraits/lego/1.jpg"
+    }
+  ],
+  "jobs": [
+    {
+      "id": 1,
+      "name": "Design a landing page",
+      "created_date": "2024-07-01T10:00:00Z",
+      "assigned_date": "2024-07-02T10:00:00Z",
+      "closed_date": null,
+      "category": "Design",
+      "points_value": "50",
+      "job_owner": 1,
+      "assign_user": 2,
+      "job_tags": ["UI Design", "Landing Page"],
+      "job_description": "Create a responsive landing page for a new product.",
+      "interested_users": [2],
+      "job_status": "Assigned"
+    },
+    {
+      "id": 2,
+      "name": "Develop API endpoints",
+      "created_date": "2024-07-03T10:00:00Z",
+      "assigned_date": null,
+      "closed_date": null,
+      "category": "Development",
+      "points_value": "100",
+      "job_owner": 2,
+      "assign_user": null,
+      "job_tags": ["API", "Backend"],
+      "job_description": "Develop RESTful API endpoints for the application.",
+      "interested_users": [1],
+      "job_status": "Open"
+    },
+    {
+      "id": 3,
+      "name": "Create a mobile app prototype",
+      "created_date": "2024-07-04T10:00:00Z",
+      "assigned_date": "2024-07-05T10:00:00Z",
+      "closed_date": null,
+      "category": "Development",
+      "points_value": "150",
+      "job_owner": 3,
+      "assign_user": 4,
+      "job_tags": ["React Native", "Prototype"],
+      "job_description": "Develop a prototype for a new mobile application.",
+      "interested_users": [4],
+      "job_status": "Assigned"
+    },
+    {
+      "id": 4,
+      "name": "Conduct UX research",
+      "created_date": "2024-07-05T10:00:00Z",
+      "assigned_date": null,
+      "closed_date": null,
+      "category": "Research",
+      "points_value": "75",
+      "job_owner": 4,
+      "assign_user": null,
+      "job_tags": ["UX Research", "User Interviews"],
+      "job_description": "Conduct UX research and user interviews for the new feature.",
+      "interested_users": [5],
+      "job_status": "Open"
+    },
+    {
+      "id": 5,
+      "name": "Develop a Vue.js dashboard",
+      "created_date": "2024-07-06T10:00:00Z",
+      "assigned_date": null,
+      "closed_date": null,
+      "category": "Development",
+      "points_value": "120",
+      "job_owner": 5,
+      "assign_user": null,
+      "job_tags": ["Vue.js", "Dashboard"],
+      "job_description": "Create a dashboard using Vue.js for analytics.",
+      "interested_users": [3],
+      "job_status": "Open"
+    }
+  ],
+  "user_jobs": [
+    {
+      "user_id": 2,
+      "job_id": 1,
+      "is_posted": 1,
+      "is_completed": 0
+    },
+    {
+      "user_id": 1,
+      "job_id": 2,
+      "is_posted": 0,
+      "is_completed": 0
+    },
+    {
+      "user_id": 4,
+      "job_id": 3,
+      "is_posted": 1,
+      "is_completed": 0
+    },
+    {
+      "user_id": 5,
+      "job_id": 4,
+      "is_posted": 0,
+      "is_completed": 0
+    },
+    {
+      "user_id": 3,
+      "job_id": 5,
+      "is_posted": 0,
+      "is_completed": 0
+    }
+  ],
+  "user_projects": [
+    {
+      "project_id": 1,
+      "project_name": "Portfolio Website",
+      "project_url": "https://via.placeholder.com/150",
+      "project_description": "A personal portfolio website to showcase projects.",
+      "user_id": 1
+    },
+    {
+      "project_id": 2,
+      "project_name": "E-commerce App",
+      "project_url": "https://via.placeholder.com/150",
+      "project_description": "A mobile application for e-commerce.",
+      "user_id": 2
+    },
+    {
+      "project_id": 3,
+      "project_name": "Social Media Platform",
+      "project_url": "https://via.placeholder.com/150",
+      "project_description": "A platform to connect people with similar interests.",
+      "user_id": 3
+    },
+    {
+      "project_id": 4,
+      "project_name": "Task Management Tool",
+      "project_url": "https://via.placeholder.com/150",
+      "project_description": "A tool to manage and track tasks.",
+      "user_id": 4
+    },
+    {
+      "project_id": 5,
+      "project_name": "Blog Website",
+      "project_url": "https://via.placeholder.com/150",
+      "project_description": "A website to share and publish blogs.",
+      "user_id": 5
+    }
+  ]
+}
