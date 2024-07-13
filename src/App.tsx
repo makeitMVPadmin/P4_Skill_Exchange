@@ -1,4 +1,3 @@
-import HomePage from "./pages/HomePage/HomePage";
 import { Routes, Route } from "react-router-dom";
 import MarketPlace from "./pages/MarketPlacePage/MarketPlace";
 
@@ -11,8 +10,7 @@ function App() {
     <>
       <Header />
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/marketplace" element={<MarketPlace />} />
+        <Route path="/" element={<MarketPlace />} />
         <Route path="/profile" element={<ProfilePage />} />
       </Routes>
       <Footer />
