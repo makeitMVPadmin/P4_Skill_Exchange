@@ -1,4 +1,6 @@
 .profile-card {
+  display: flex;
+  justify-content: space-between;
   background-color: #ffffff;
   padding: 1rem;
   border-radius: 0.5rem;
@@ -14,8 +16,8 @@
   &__picture {
     width: 6rem;
     height: 6rem;
-    background-color: #e5e7eb;
-    border-radius: 9999px;
+    background-color: grey;
+    border-radius: 50%;
   }
 
   &__name {
@@ -25,6 +27,12 @@
 
   &__title,
   &__email {
+    color: #4b5563;
+  }
+  &__tagline {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 700;
     color: #4b5563;
   }
 
