@@ -1,3 +1,4 @@
+import "@/src/styles/index.scss";
 import "./HomePage.scss";
 
 function HomePage() {
