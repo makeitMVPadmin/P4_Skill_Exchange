@@ -1,6 +1,4 @@
 import "./ProfileCard.scss";
-import EditButton from "../EditButton/EditButton";
-import projectData from "src/data/dummy_data_extended.json";
 
 interface ProfileCardProps {
   firstName: string;
