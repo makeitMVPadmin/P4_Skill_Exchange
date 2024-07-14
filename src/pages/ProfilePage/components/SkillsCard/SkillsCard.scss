@@ -10,27 +10,7 @@
     margin-bottom: 0.5rem;
   }
 
-  &__input-area {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 0.5rem;
-  }
-
-  &__input {
-    border: 1px solid;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
-    flex-grow: 1;
-  }
-
-  &__button {
-    background-color: #007bff;
-    color: white;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
-  }
-
-  &__skills-list {
+  &__list {
     display: flex;
     justify-content: center;
     align-items: center;

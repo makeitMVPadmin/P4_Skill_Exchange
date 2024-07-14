@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+html,
+body {
+  height: 100vh;
+}
+
+.font-gilroy {
+  font-family: "Gilroy";
+}
+
+.font-corben {
+  font-family: "Corben";
+}
+
+@font-face {
+  font-family: "Corben";
+  src: url("/src/fonts/corben/corben-regular.woff2") format("woff2");
+  font-style: normal;
+  font-size: 500;
+}
+@font-face {
+  font-family: "Corben";
+  src: url("/src/fonts/corben/corben-bold.woff2") format("woff2");
+  font-style: normal;
+  font-size: 700;
+}
+@font-face {
+  font-family: "Gilroy";
+  src: url("/src/fonts/gilroy/gilroy-light.woff2") format("woff2");
+  font-style: normal;
+  font-size: 400;
+}
+@font-face {
+  font-family: "Gilroy";
+  src: url("/src/fonts/gilroy/gilroy-extrabold.woff2") format("woff2");
+  font-style: normal;
+  font-size: 800;
+}/*# sourceMappingURL=index.css.map */

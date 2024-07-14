@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
 import "./ProjectsCard.scss";
-import projectData from "src/data/dummy_data_extended.json";
 
 interface ProjectProps {
   name: string;
@@ -29,13 +27,11 @@ interface ProjectData {
   project_url: string;
 }
 
-const ProjectsCard: React.FC = () => {
-  const [projects, setProjects] = useState<ProjectData[]>([]);
+interface ProjectsCardProps {
+  projects: ProjectData[];
+}
 
-  useEffect(() => {
-    setProjects(projectData.user_projects);
-  }, []);
-
+const ProjectsCard: React.FC<ProjectsCardProps> = ({ projects }) => {
   return (
     <div className="projects">
       <h2 className="projects__title">Projects</h2>
