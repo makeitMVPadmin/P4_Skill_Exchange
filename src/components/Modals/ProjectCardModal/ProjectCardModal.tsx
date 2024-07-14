@@ -18,6 +18,25 @@ const ProjectCardModal: React.FC<propTypes> = ({open, onClose, children}) => {
                     >
                     X
                     </button>
+                    <article className="space-y-4">
+                        <h2 className="text-xl font-semibold">Apply to "task name"</h2>
+                        <section className="text-gray-700">Your skills and your project information from your profile will be included with your application.</section>
+                        <h3 className="text-lg font-medium">Additional Questions</h3>
+                        <form className="space-y-4">
+                            <div>
+                                <label className="block text-gray-700" htmlFor="">Question 1</label>
+                                <input className="w-full px-3 py-2 border border-gray-300 rounded" type="text" />
+                            </div>
+                            <div>
+                                <label className="block text-gray-700" htmlFor="">Question 2</label>
+                                <input className="w-full px-3 py-2 border border-gray-300 rounded" type="text" />
+                            </div>
+                            <div className="flex justify-end space-x-4">
+                                <button className="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300" type="button">Back</button>
+                                <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" type="submit">Review</button>
+                            </div>
+                        </form>
+                    </article>
                 </div>
         </div>
     )
