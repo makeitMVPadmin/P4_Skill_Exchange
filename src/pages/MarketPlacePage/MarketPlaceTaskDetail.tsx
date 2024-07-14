@@ -7,6 +7,7 @@ import { slugify } from "@/src/utils/string-utils";
 
 import Tag from "@/src/components/Tag/Tag";
 import "./MarketPlaceTaskDetail.scss";
+import TaskPosterCard from "./components/TaskPosterCard/TaskPosterCard";
 
 function MarketplaceTaskDetail() {
   const { id } = useParams();
@@ -47,7 +48,24 @@ function MarketplaceTaskDetail() {
         </div>
       </div>
       <div className="task__detail-bottom">
-        
+        <article className="task__content">
+          <div className="task__content-top">
+            <h3 className="task__content-title">About the Task</h3>
+            <p className="task__content">
+              About the person or project: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+            </p>
+          </div>
+          <div className="task__content-bottom">
+            <h5>Responsibilities of the task</h5>
+            <ul className="task__content-list">
+              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
+              <li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+              <li>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</li>
+              <li>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</li>
+            </ul>
+          </div>
+        </article>
+        <TaskPosterCard/>
       </div>
     </div>
   )
