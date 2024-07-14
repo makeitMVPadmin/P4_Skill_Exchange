@@ -1,20 +1,26 @@
-import "./ProjectCardModal.scss";
+type propTypes = {
+    open: boolean;
+    onClose: ()=> void;
+    children: React.ReactNode;
+}
 
-export default function ProjectCardModal(){
+const ProjectCardModal: React.FC<propTypes> = ({open, onClose, children}) => {
 
     return(
-        <>
-        <h1 className="pcmodal__maintitle">Application for Cool Project #1</h1>
-        <h2 className="pcmodal__title">Questions</h2>
-        <form className="pcmodal__form">
-            <label className="pcmodal__form--label" htmlFor="yearsofexperience">How many years of coding experience do you have?</label>
-            <input 
-            className="pcmodal__form--input" 
-            placeholder="Enter your years of experience"
-            type="text" 
-            name="yearsofexperience" />
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Apply Now</button>
-        </form>
-        </>
+        <div className={`fixed inset-0 flex justify-center items-center transition-colors ${open ? "visible bg-black/20" : "invisible"}`}
+            onClick={onClose}
+        >
+            <div className={`bg-white rounded-lg shadow p-6 transition-all max-w-md
+                ${open ? "scale-100 opacity-100" : "scale-110 opacity-0"}`}
+                onClick={(e)=> e.stopPropagation()}>
+                    <button className="absolute top-2 right-2 py-1 px-2 border border-neutral-200 rounded-md text-gray-400 bg-white hover:text-grey-600"
+                    onClick={onClose}
+                    >
+                    X
+                    </button>
+                </div>
+        </div>
     )
 }
+
+export default ProjectCardModal;
