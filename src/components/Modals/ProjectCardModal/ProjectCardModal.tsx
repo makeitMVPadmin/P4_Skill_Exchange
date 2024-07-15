@@ -19,6 +19,7 @@ const ProjectCardModal: React.FC<PropTypes> = ({ isProjectCardModalOpen, onClose
     e.preventDefault();
     if (!answerOne || !answerTwo) {
       alert("Please answer all the questions.");
+      // TODO: replace the alert in the future
       return;
     }
     setIsReviewMode(true);
@@ -30,15 +31,22 @@ const ProjectCardModal: React.FC<PropTypes> = ({ isProjectCardModalOpen, onClose
       answerOne,
       answerTwo,
     };
-    setAnswers((oldList) => {
-      const answers = [...oldList, item];
-      localStorage.setItem("answers", JSON.stringify(answers));
-      return answers;
-    });
-    setAnswerOne("");
-    setAnswerTwo("");
-    setIsReviewMode(false);
-    setSubmissionComplete(true);
+    
+    try {
+      setAnswers((oldList) => {
+        const answers = [...oldList, item];
+        // TODO: saving to the localStorage will be replaced with saving to the backend.
+        localStorage.setItem("answers", JSON.stringify(answers));
+        return answers;
+      });
+      setAnswerOne("");
+      setAnswerTwo("");
+      setIsReviewMode(false);
+      setSubmissionComplete(true);
+    } catch (error) {
+      console.error("Error saving to localStorage:", error);
+      // TODO: Add error handling logic (e.g., display an error message to the user)
+    }
   };
 
   useEffect(() => {
