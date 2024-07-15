@@ -2,7 +2,13 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "@/src/styles/index.scss";
 
-function CategoryDropdown() {
+interface CategoryDropdownProps {
+  onSelectCategory: (category: string) => void;
+}
+
+const CategoryDropdown: React.FC<CategoryDropdownProps> = ({
+  onSelectCategory,
+}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -12,7 +18,10 @@ function CategoryDropdown() {
   const closeMenu = () => {
     setIsMenuOpen(false);
   };
-
+  const handleCategoryClick = (category: string) => {
+    onSelectCategory(category);
+    closeMenu();
+  };
   return (
     <div className="relative">
       <button onClick={toggleMenu} className="flex items-center ">
@@ -38,42 +47,42 @@ function CategoryDropdown() {
           <Link
             to="#"
             className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-            onClick={closeMenu}
+            onClick={() => handleCategoryClick("Development")}
           >
-            Category 1
+            Development
           </Link>
           <Link
             to="#"
             className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-            onClick={closeMenu}
+            onClick={() => handleCategoryClick("Design")}
           >
-            Category 2
+            Design
           </Link>
           <Link
             to="#"
             className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-            onClick={closeMenu}
+            onClick={() => handleCategoryClick("Research")}
           >
-            Category 3
+            Research{" "}
           </Link>
           <Link
             to="#"
             className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-            onClick={closeMenu}
+            onClick={() => handleCategoryClick("Mobile Development")}
           >
-            Category 4
+            Mobile Development
           </Link>
           <Link
             to="#"
             className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-            onClick={closeMenu}
+            onClick={() => handleCategoryClick("Tutoring")}
           >
-            Category 5
+            Tutoring
           </Link>
         </div>
       )}
     </div>
   );
-}
+};
 
 export default CategoryDropdown;
