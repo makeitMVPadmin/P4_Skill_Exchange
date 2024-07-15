@@ -31,7 +31,7 @@ const ProjectCardModal: React.FC<PropTypes> = ({ isProjectCardModalOpen, onClose
       answerOne,
       answerTwo,
     };
-    
+
     try {
       setAnswers((oldList) => {
         const answers = [...oldList, item];
@@ -72,7 +72,10 @@ const ProjectCardModal: React.FC<PropTypes> = ({ isProjectCardModalOpen, onClose
       >
         <button
           className="absolute top-2 right-2 py-1 px-2 border border-neutral-200 rounded-md text-gray-400 bg-white hover:text-grey-600"
-          onClick={onClose}
+          onClick={(e) => {
+            e.stopPropagation();
+            onClose();
+          }}
         >
           X
         </button>
