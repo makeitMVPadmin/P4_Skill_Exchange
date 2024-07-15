@@ -134,6 +134,45 @@ const ProjectCardModal: React.FC<PropTypes> = ({ isProjectCardModalOpen, onClose
     </div>
   );
 
+  const renderSubmissionComplete = () => (
+    <div className="text-center">
+      <h2 className="text-xl font-semibold">Application submitted</h2>
+      <div className="flex justify-center items-center my-4">
+        <svg
+          className="w-12 h-12 text-green-500"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M5 13l4 4L19 7"
+          ></path>
+        </svg>
+      </div>
+      <p className="mb-4">Your application to "task name" has been submitted</p>
+      <div className="flex justify-center space-x-4">
+        <button
+          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          type="button"
+          onClick={onViewMoreProjects}
+        >
+          View more projects
+        </button>
+        <button
+          className="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300"
+          type="button"
+          onClick={onClose}
+        >
+          Go to profile
+        </button>
+      </div>
+    </div>
+  );
+
   return (
     <div
       className={`fixed inset-0 flex justify-center items-center transition-colors ${
@@ -157,52 +196,17 @@ const ProjectCardModal: React.FC<PropTypes> = ({ isProjectCardModalOpen, onClose
           X
         </button>
         <article className="space-y-4">
-          {!submissionComplete ? (
+          {submissionComplete ? (
+            renderSubmissionComplete()
+          ) : (
             <>
               <h2 className="text-xl font-semibold">Apply to "task name"</h2>
               <section className="text-gray-700">
                 Your skills and your project information from your profile will be included with your application.
               </section>
               <h3 className="text-lg font-medium">Additional Questions</h3>
-              {!isReviewMode ? renderForm() : renderReview()}
+              {isReviewMode ? renderReview() : renderForm()}
             </>
-          ) : (
-            <div className="text-center">
-              <h2 className="text-xl font-semibold">Application submitted</h2>
-              <div className="flex justify-center items-center my-4">
-                <svg
-                  className="w-12 h-12 text-green-500"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M5 13l4 4L19 7"
-                  ></path>
-                </svg>
-              </div>
-              <p className="mb-4">Your application to "task name" has been submitted</p>
-              <div className="flex justify-center space-x-4">
-                <button
-                  className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                  type="button"
-                  onClick={onViewMoreProjects}
-                >
-                  View more projects
-                </button>
-                <button
-                  className="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300"
-                  type="button"
-                  onClick={onClose}
-                >
-                  Go to profile
-                </button>
-              </div>
-            </div>
           )}
         </article>
       </div>
