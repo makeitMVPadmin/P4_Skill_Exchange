@@ -78,7 +78,7 @@ function Header() {
               {isMenuOpen && (
                 <ul className="absolute right-0 mt-2 py-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg">
                   <li>
-                    <a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                    <a href="/profile" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
                       View Profile
                     </a>
                   </li>
