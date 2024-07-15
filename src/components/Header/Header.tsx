@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import classNames from "classnames";
 import "../../styles/index.scss";
 
 function Header() {
@@ -24,6 +25,24 @@ function Header() {
       // Add navigation for "seeker" if needed
     }
   };
+
+  const providerButtonClass = classNames(
+    "py-2 px-4",
+    {
+      "bg-gray-300": activeTab === "provider",
+      "text-gray-600 hover:text-gray-900": activeTab !== "provider",
+    },
+    "focus:outline-none focus:ring-2 focus:ring-gray-800 rounded-md"
+  );
+
+  const seekerButtonClass = classNames(
+    "py-2 px-4",
+    {
+      "bg-gray-300": activeTab === "seeker",
+      "text-gray-600 hover:text-gray-900": activeTab !== "seeker",
+    },
+    "focus:outline-none focus:ring-2 focus:ring-gray-800 rounded-md"
+  );
 
   return (
     <header className="bg-white shadow-md">
@@ -92,6 +111,7 @@ function Header() {
                   <li>
                     <a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
                       Sign Out
+                      {/* // TODO: Add functionality to this when ready */}
                     </a>
                   </li>
                 </ul>
@@ -103,13 +123,13 @@ function Header() {
       <div className="container mx-auto px-4 py-2 flex justify-center items-center space-x-4">
         <button
           onClick={() => handleTabClick("provider")}
-          className={`py-2 px-4 ${activeTab === "provider" ? "bg-gray-300" : "text-gray-600 hover:text-gray-900"} focus:outline-none focus:ring-2 focus:ring-gray-800 rounded-md`}
+          className={providerButtonClass}
         >
           As a Skill Provider
         </button>
         <button
           onClick={() => handleTabClick("seeker")}
-          className={`py-2 px-4 ${activeTab === "seeker" ? "bg-gray-300" : "text-gray-600 hover:text-gray-900"} focus:outline-none focus:ring-2 focus:ring-gray-800 rounded-md`}
+          className={seekerButtonClass}
         >
           As a Talent Seeker
         </button>
