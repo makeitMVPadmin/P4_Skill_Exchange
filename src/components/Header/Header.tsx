@@ -21,6 +21,7 @@ function Header() {
     if (tab === "provider") {
       navigate("/");
     } else if (tab === "seeker") {
+      // Add navigation for "seeker" if needed
     }
   };
 
@@ -99,7 +100,7 @@ function Header() {
           </ul>
         </nav>
       </div>
-      <div className="container mx-auto px-4 py-2 flex justify-center items-center space-x-4 border-t border-gray-200">
+      <div className="container mx-auto px-4 py-2 flex justify-center items-center space-x-4">
         <button
           onClick={() => handleTabClick("provider")}
           className={`py-2 px-4 ${activeTab === "provider" ? "bg-gray-300" : "text-gray-600 hover:text-gray-900"} focus:outline-none focus:ring-2 focus:ring-gray-800 rounded-md`}
