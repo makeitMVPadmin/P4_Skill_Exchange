@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../../styles/index.scss";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState("provider");
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -13,13 +16,19 @@ function Header() {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
+  const handleTabClick = (tab) => {
+    setActiveTab(tab);
+    if (tab === "provider") {
+      navigate("/");
+    } else if (tab === "seeker") {
+    }
+  };
+
   return (
     <header className="bg-white shadow-md">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <a href="/">
-          <h1 className="text-2xl font-bold text-gray-800 font-corben">
-            Communiti
-          </h1>
+          <h1 className="text-2xl font-bold text-gray-800 font-corben">Communiti</h1>
         </a>
         <nav className="flex items-center space-x-6">
           <div className="md:hidden">
@@ -46,24 +55,16 @@ function Header() {
           </div>
           <ul className={`${isMenuOpen ? "block" : "hidden"} md:flex space-x-6 mt-4 md:mt-0`}>
             <li>
-              <a href="/" className="text-gray-600 hover:text-gray-900 font-gilroy">
-                Home
-              </a>
+              <a href="/" className="text-gray-600 hover:text-gray-900 font-gilroy">Home</a>
             </li>
             <li>
-              <a href="#" className="text-gray-600 hover:text-gray-900 font-gilroy">
-                Communities
-              </a>
+              <a href="#" className="text-gray-600 hover:text-gray-900 font-gilroy">Communities</a>
             </li>
             <li>
-              <a href="#" className="text-gray-600 hover:text-gray-900 font-gilroy">
-                Events
-              </a>
+              <a href="#" className="text-gray-600 hover:text-gray-900 font-gilroy">Events</a>
             </li>
             <li>
-              <a href="/" className="text-gray-600 hover:text-gray-900 font-gilroy">
-                Skill Share
-              </a>
+              <a href="/" className="text-gray-600 hover:text-gray-900 font-gilroy">Skill Share</a>
             </li>
             <li className="relative">
               <div onClick={toggleDropdown} className="flex items-center cursor-pointer">
@@ -99,10 +100,16 @@ function Header() {
         </nav>
       </div>
       <div className="container mx-auto px-4 py-2 flex justify-center items-center space-x-4 border-t border-gray-200">
-        <button className="py-2 px-4 text-gray-600 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-800 rounded-md">
+        <button
+          onClick={() => handleTabClick("provider")}
+          className={`py-2 px-4 ${activeTab === "provider" ? "bg-gray-300" : "text-gray-600 hover:text-gray-900"} focus:outline-none focus:ring-2 focus:ring-gray-800 rounded-md`}
+        >
           As a Skill Provider
         </button>
-        <button className="py-2 px-4 text-gray-600 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-800 rounded-md">
+        <button
+          onClick={() => handleTabClick("seeker")}
+          className={`py-2 px-4 ${activeTab === "seeker" ? "bg-gray-300" : "text-gray-600 hover:text-gray-900"} focus:outline-none focus:ring-2 focus:ring-gray-800 rounded-md`}
+        >
           As a Talent Seeker
         </button>
       </div>
