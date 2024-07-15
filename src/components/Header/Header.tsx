@@ -3,15 +3,20 @@ import "../../styles/index.scss";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
   return (
     <header className="bg-white shadow-md">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <a href={"/"}>
+        <a href="/">
           <h1 className="text-2xl font-bold text-gray-800 font-corben">
             Communiti
           </h1>
@@ -61,7 +66,7 @@ function Header() {
               </a>
             </li>
             <li className="relative">
-              <div onClick={toggleMenu} className="flex items-center cursor-pointer">
+              <div onClick={toggleDropdown} className="flex items-center cursor-pointer">
                 <div className="h-10 w-10 bg-gray-300 rounded-full"></div>
                 <svg
                   className="h-4 w-4 ml-2 text-gray-600 hover:text-gray-900"
@@ -75,7 +80,7 @@ function Header() {
                   <path d="M9 5l7 7-7 7"></path>
                 </svg>
               </div>
-              {isMenuOpen && (
+              {isDropdownOpen && (
                 <ul className="absolute right-0 mt-2 py-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg">
                   <li>
                     <a href="/profile" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
@@ -92,6 +97,14 @@ function Header() {
             </li>
           </ul>
         </nav>
+      </div>
+      <div className="container mx-auto px-4 py-2 flex justify-center items-center space-x-4 border-t border-gray-200">
+        <button className="py-2 px-4 text-gray-600 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-800 rounded-md">
+          As a Skill Provider
+        </button>
+        <button className="py-2 px-4 text-gray-600 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-800 rounded-md">
+          As a Talent Seeker
+        </button>
       </div>
     </header>
   );
