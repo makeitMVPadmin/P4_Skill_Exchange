@@ -43,10 +43,10 @@ function Header() {
           >
             <li>
               <Link
-                to="/"
+                to="#"
                 className="text-gray-600 hover:text-gray-900 font-gilroy"
               >
-                Home
+                Events
               </Link>
             </li>
             <li>
@@ -54,15 +54,7 @@ function Header() {
                 to="#"
                 className="text-gray-600 hover:text-gray-900 font-gilroy"
               >
-                About Us
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/marketplace"
-                className="text-gray-600 hover:text-gray-900 font-gilroy"
-              >
-                Marketplace
+                Community
               </Link>
             </li>
             <li>

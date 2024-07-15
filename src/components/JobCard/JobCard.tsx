@@ -1,6 +1,16 @@
 import React, { useState } from "react";
 import ProjectCardModal from "../Modals/ProjectCardModal/ProjectCardModal";
 
+type Job = {
+  title: string;
+  description: string;
+  imageUrl: string;
+};
+
+type JobCardProps = {
+  job: Job;
+};
+
 const JobCard = ({ job }) => {
   const [open, setOpen] = useState<boolean>(false);
 
