@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
 interface PropTypes {
-  open: boolean;
+  isProjectCardModalOpen: boolean;
   onClose: () => void;
   onViewMoreProjects: () => void;
 }
 
-const ProjectCardModal: React.FC<PropTypes> = ({ open, onClose, onViewMoreProjects }) => {
+const ProjectCardModal: React.FC<PropTypes> = ({ isProjectCardModalOpen, onClose, onViewMoreProjects }) => {
   const [answers, setAnswers] = useState<any[]>([
     { id: 1, answerOne: "Sample answer one", answerTwo: "Sample answer two" }
   ]);
@@ -52,13 +52,13 @@ const ProjectCardModal: React.FC<PropTypes> = ({ open, onClose, onViewMoreProjec
   return (
     <div
       className={`fixed inset-0 flex justify-center items-center transition-colors ${
-        open ? 'visible bg-black/20' : 'invisible'
+        isProjectCardModalOpen ? 'visible bg-black/20' : 'invisible'
       }`}
       onClick={onClose}
     >
       <div
         className={`bg-white rounded-lg shadow p-6 transition-all max-w-md ${
-          open ? 'scale-100 opacity-100' : 'scale-110 opacity-0'
+          isProjectCardModalOpen ? 'scale-100 opacity-100' : 'scale-110 opacity-0'
         }`}
         onClick={(e) => e.stopPropagation()}
       >
