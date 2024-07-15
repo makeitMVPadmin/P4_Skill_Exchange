@@ -57,6 +57,83 @@ const ProjectCardModal: React.FC<PropTypes> = ({ isProjectCardModalOpen, onClose
     }
   }, []);
 
+  const renderForm = () => (
+    <form className="space-y-4" onSubmit={handleSubmit}>
+      <div>
+        <label className="block text-gray-700" htmlFor="question1">
+          Question 1
+        </label>
+        <input
+          className="w-full px-3 py-2 border border-gray-300 rounded"
+          type="text"
+          name="question1"
+          value={answerOne}
+          onChange={(e) => setAnswerOne(e.target.value)}
+        />
+      </div>
+      <div>
+        <label className="block text-gray-700" htmlFor="question2">
+          Question 2
+        </label>
+        <input
+          className="w-full px-3 py-2 border border-gray-300 rounded"
+          type="text"
+          name="question2"
+          value={answerTwo}
+          onChange={(e) => setAnswerTwo(e.target.value)}
+        />
+      </div>
+      <div className="flex justify-end space-x-4">
+        <button
+          className="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300"
+          type="button"
+          onClick={onClose}
+        >
+          Back
+        </button>
+        <button
+          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          type="submit"
+        >
+          Review
+        </button>
+      </div>
+    </form>
+  );
+
+  const renderReview = () => (
+    <div>
+      <div className="mb-4">
+        <label className="block text-gray-700" htmlFor="question1">
+          Question 1
+        </label>
+        <p className="w-full px-3 py-2 border border-transparent rounded bg-white">{answerOne}</p>
+      </div>
+      <div className="mb-4">
+        <label className="block text-gray-700" htmlFor="question2">
+          Question 2
+        </label>
+        <p className="w-full px-3 py-2 border border-transparent rounded bg-white">{answerTwo}</p>
+      </div>
+      <div className="flex justify-end space-x-4">
+        <button
+          className="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300"
+          type="button"
+          onClick={() => setIsReviewMode(false)}
+        >
+          Back
+        </button>
+        <button
+          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          type="button"
+          onClick={handleFinalSubmit}
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  );
+
   return (
     <div
       className={`fixed inset-0 flex justify-center items-center transition-colors ${
@@ -87,80 +164,7 @@ const ProjectCardModal: React.FC<PropTypes> = ({ isProjectCardModalOpen, onClose
                 Your skills and your project information from your profile will be included with your application.
               </section>
               <h3 className="text-lg font-medium">Additional Questions</h3>
-              {!isReviewMode ? (
-                <form className="space-y-4" onSubmit={handleSubmit}>
-                  <div>
-                    <label className="block text-gray-700" htmlFor="question1">
-                      Question 1
-                    </label>
-                    <input
-                      className="w-full px-3 py-2 border border-gray-300 rounded"
-                      type="text"
-                      name="question1"
-                      value={answerOne}
-                      onChange={(e) => setAnswerOne(e.target.value)}
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-gray-700" htmlFor="question2">
-                      Question 2
-                    </label>
-                    <input
-                      className="w-full px-3 py-2 border border-gray-300 rounded"
-                      type="text"
-                      name="question2"
-                      value={answerTwo}
-                      onChange={(e) => setAnswerTwo(e.target.value)}
-                    />
-                  </div>
-                  <div className="flex justify-end space-x-4">
-                    <button
-                      className="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300"
-                      type="button"
-                      onClick={onClose}
-                    >
-                      Back
-                    </button>
-                    <button
-                      className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                      type="submit"
-                    >
-                      Review
-                    </button>
-                  </div>
-                </form>
-              ) : (
-                <div>
-                  <div className="mb-4">
-                    <label className="block text-gray-700" htmlFor="question1">
-                      Question 1
-                    </label>
-                    <p className="w-full px-3 py-2 border border-transparent rounded bg-white">{answerOne}</p>
-                  </div>
-                  <div className="mb-4">
-                    <label className="block text-gray-700" htmlFor="question2">
-                      Question 2
-                    </label>
-                    <p className="w-full px-3 py-2 border border-transparent rounded bg-white">{answerTwo}</p>
-                  </div>
-                  <div className="flex justify-end space-x-4">
-                    <button
-                      className="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300"
-                      type="button"
-                      onClick={() => setIsReviewMode(false)}
-                    >
-                      Back
-                    </button>
-                    <button
-                      className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                      type="button"
-                      onClick={handleFinalSubmit}
-                    >
-                      Submit
-                    </button>
-                  </div>
-                </div>
-              )}
+              {!isReviewMode ? renderForm() : renderReview()}
             </>
           ) : (
             <div className="text-center">
