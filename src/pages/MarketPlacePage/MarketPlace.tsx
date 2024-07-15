@@ -1,5 +1,16 @@
 import JobCard from "../../components/JobCard/JobCard";
 import CategoryDropdown from "../../components/CategoryDropdown/CategoryDropdown";
+import projectData from "../../data/dummy_data_extended.json";
+
+interface Job {
+  id: number;
+  name: string;
+  category: string;
+  job_tags: string[];
+  job_description: string;
+}
+
+let jobs = projectData.jobs;
 
 const MarketPlace = () => {
   return (
@@ -12,11 +23,9 @@ const MarketPlace = () => {
         <div className="bg-white p-6 col-span-3">
           <h2 className="text-xl font-bold mb-2">Market Place</h2>
           <div className="w-full flex sm:items-center flex-wrap gap-5">
-            <JobCard job="" />
-            <JobCard job="" />
-            <JobCard job="" />
-            <JobCard job="" />
-            <JobCard job="" />
+            {jobs.map((job: Job) => {
+              return <JobCard key={job.id} jobDetails={job} />;
+            })}
           </div>
         </div>
       </div>
