@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import "../../styles/index.scss";
 
@@ -39,31 +38,46 @@ function Header() {
           <ul
             className={`${
               isMenuOpen ? "block" : "hidden"
-            } md:flex space-x-6 mt-4 md:mt-0 `}
+            } md:flex space-x-6 mt-4 md:mt-0`}
           >
             <li>
-              <Link
-                to="#"
+              <a
+                href="/"
+                className="text-gray-600 hover:text-gray-900 font-gilroy"
+              >
+                Home
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                className="text-gray-600 hover:text-gray-900 font-gilroy"
+              >
+                Communities
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
                 className="text-gray-600 hover:text-gray-900 font-gilroy"
               >
                 Events
-              </Link>
+              </a>
             </li>
             <li>
-              <Link
-                to="#"
+              <a
+                href="/"
                 className="text-gray-600 hover:text-gray-900 font-gilroy"
               >
-                Community
-              </Link>
+                Skill share
+              </a>
             </li>
             <li>
-              <Link
-                to="/profile"
-                className="text-gray-600 hover:text-gray-900 font-gilroy"
-              >
-                Profile
-              </Link>
+              <div className="flex items-center">
+                <div className="h-10 w-10 bg-gray-300 rounded-full"></div>
+                <span className="ml-2 text-gray-600 hover:text-gray-900 font-gilroy">
+                </span>
+              </div>
             </li>
           </ul>
         </nav>
