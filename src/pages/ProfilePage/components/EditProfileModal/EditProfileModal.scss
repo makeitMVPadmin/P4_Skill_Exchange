@@ -47,6 +47,29 @@
     margin-bottom: 1rem;
   }
 
+  &__tabs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+  }
+
+  &__tab {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-bottom: 0.5rem solid transparent;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      border-bottom: 0.5rem solid #3b82f6;
+    }
+    &.active {
+      border-bottom: 0.5rem solid #3b82f6;
+    }
+  }
+
   &__form {
     display: flex;
     flex-direction: column;

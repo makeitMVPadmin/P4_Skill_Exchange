@@ -27,14 +27,15 @@ interface EditProfileModalProps {
   onSave: (updatedData: UserData) => void;
 }
 
-function EditProfileModal({
+const EditProfileModal: React.FC<EditProfileModalProps> = ({
   isOpen,
   onClose,
   userData,
   onSave,
-}: EditProfileModalProps) {
+}) => {
   if (!isOpen) return null;
 
+  const [activeTab, setActiveTab] = useState("basicInfo");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [title, setTitle] = useState("");
@@ -82,6 +83,89 @@ function EditProfileModal({
     onSave(updatedData);
   };
 
+  const showBasicInfo = () => (
+    <>
+      <div className="edit-modal__form-group">
+        <label className="edit-modal__label">First Name</label>
+        <input
+          type="text"
+          className="edit-modal__input"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+        />
+      </div>
+      <div className="edit-modal__form-group">
+        <label className="edit-modal__label">Last Name</label>
+        <input
+          type="text"
+          className="edit-modal__input"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+        />
+      </div>
+      <div className="edit-modal__form-group">
+        <label className="edit-modal__label">Tagline</label>
+        <textarea
+          className="edit-modal__textarea"
+          value={userProfile}
+          onChange={(e) => setUserProfile(e.target.value)}
+        />
+      </div>
+      <div className="edit-modal__form-group">
+        <label className="edit-modal__label">Title</label>
+        <input
+          type="text"
+          className="edit-modal__input"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+      </div>
+      <div className="edit-modal__form-group">
+        <label className="edit-modal__label">Bio</label>
+        <textarea
+          className="edit-modal__textarea"
+          value={bio}
+          onChange={(e) => setBio(e.target.value)}
+        />
+      </div>
+    </>
+  );
+
+  const showSkills = () => (
+    <>
+      <div className="edit-modal__form-group">
+        <label className="edit-modal__label">Skills</label>
+        <div className="edit-modal__skills">
+          {ownSkills.map((skill, index) => (
+            <div key={index} className="edit-modal__skill-item">
+              <span className="edit-modal__skill">{skill}</span>
+              <button
+                type="button"
+                className="edit-modal__delete-button"
+                onClick={() => handleDeleteSkill(index)}
+              >
+                ❌
+              </button>
+            </div>
+          ))}
+          <input
+            type="text"
+            className="edit-modal__input"
+            value={newSkill}
+            onChange={(e) => setNewSkill(e.target.value)}
+          />
+          <button
+            type="button"
+            className="edit-modal__add-button"
+            onClick={handleAddSkill}
+          >
+            Add Skill
+          </button>
+        </div>
+      </div>
+    </>
+  );
+
   return (
     <div className="edit-modal">
       <div className="edit-modal__overlay" onClick={onClose}></div>
@@ -89,81 +173,29 @@ function EditProfileModal({
         <button className="edit-modal__close-button" onClick={onClose}>
           Close
         </button>
-        <h2 className="edit-modal__title">Edit Profile</h2>
+        <h2 className="edit-modal__title">Update Your Profile Details</h2>
+        <div className="edit-modal__tabs">
+          <button
+            className={`edit-modal__tab ${
+              activeTab === "basicInfo" ? "active" : ""
+            }`}
+            onClick={() => setActiveTab("basicInfo")}
+          >
+            Basic Info
+          </button>
+          <button
+            className={`edit-modal__tab ${
+              activeTab === "skills" ? "active" : ""
+            }`}
+            onClick={() => setActiveTab("skills")}
+          >
+            Skills
+          </button>
+        </div>
+
         <form className="edit-modal__form" onSubmit={handleSubmit}>
-          <div className="edit-modal__form-group">
-            <label className="edit-modal__label">First Name</label>
-            <input
-              type="text"
-              className="edit-modal__input"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-            />
-          </div>
-          <div className="edit-modal__form-group">
-            <label className="edit-modal__label">Last Name</label>
-            <input
-              type="text"
-              className="edit-modal__input"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-            />
-          </div>
-          <div className="edit-modal__form-group">
-            <label className="edit-modal__label">Tagline</label>
-            <textarea
-              className="edit-modal__textarea"
-              value={userProfile}
-              onChange={(e) => setUserProfile(e.target.value)}
-            />
-          </div>
-          <div className="edit-modal__form-group">
-            <label className="edit-modal__label">Title</label>
-            <input
-              type="text"
-              className="edit-modal__input"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-          </div>
-          <div className="edit-modal__form-group">
-            <label className="edit-modal__label">Bio</label>
-            <textarea
-              className="edit-modal__textarea"
-              value={bio}
-              onChange={(e) => setBio(e.target.value)}
-            />
-          </div>
-          <div className="edit-modal__form-group">
-            <label className="edit-modal__label">Skills</label>
-            <div className="edit-modal__skills">
-              {ownSkills.map((skill, index) => (
-                <div key={index} className="edit-modal__skill-item">
-                  <span className="edit-modal__skill">{skill}</span>
-                  <button
-                    type="button"
-                    className="edit-modal__delete-button"
-                    onClick={() => handleDeleteSkill(index)}
-                  >
-                    ❌
-                  </button>
-                </div>
-              ))}
-              <input
-                type="text"
-                className="edit-modal__input"
-                value={newSkill}
-                onChange={(e) => setNewSkill(e.target.value)}
-              />
-              <button
-                type="button"
-                className="edit-modal__add-button"
-                onClick={handleAddSkill}
-              >
-                Add Skill
-              </button>
-            </div>
-          </div>
+          {activeTab === "basicInfo" && showBasicInfo()}
+          {activeTab === "skills" && showSkills()}
 
           <button type="submit" className="edit-modal__submit-button">
             Save Changes
@@ -172,6 +204,6 @@ function EditProfileModal({
       </div>
     </div>
   );
-}
+};
 
 export default EditProfileModal;
