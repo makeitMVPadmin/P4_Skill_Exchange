@@ -6,18 +6,22 @@
 .profile-card {
   display: flex;
   justify-content: space-between;
-  // background-color: #ffffff;
+
   padding: 1rem;
   border-radius: 0.5rem;
-  @include box-shadow($MVP-dark-blue);
-  margin-bottom: 1rem;
+  background-color: $MVP-white;
+  @include box-shadow($MVP-black);
+  // margin-bottom: 1rem;
   width: 100%;
   height: 100%;
 
   &__content {
     display: flex;
     align-items: center;
+    // justify-content: center;
     gap: 1rem;
+    flex-wrap: wrap;
+    flex-direction: column;
   }
   &__picture {
     width: 6rem;
@@ -25,7 +29,13 @@
     background-color: grey;
     border-radius: 50%;
   }
-
+  // &__details {
+  //   width: 100%;
+  //   display: flex;
+  //   flex-direction: column;
+  //   justify-content: center;
+  //   gap: 1rem;
+  // }
   &__name {
     font-size: 1.25rem;
     font-weight: $bold-txt;
@@ -37,6 +47,7 @@
     color: $MVP-black;
   }
   &__tagline {
+    text-align: center;
     font-size: 1rem;
     line-height: 1.5rem;
     color: $MVP-black;

@@ -4,8 +4,7 @@ import ProfileCard from "./components/ProfileCard/ProfileCard";
 import BioCard from "./components/BioCard/BioCard";
 import SkillsCard from "./components/SkillsCard/SkillsCard";
 import ProjectsCard from "./components/ProjectsCard/ProjectsCard";
-import EditButton from "./components/EditButton/EditButton";
-import EditProfileModal from "./components/EditProfileModal/EditProfileModal";
+
 import projectData from "../../data/dummy_data_extended.json";
 
 interface Project {
@@ -29,15 +28,10 @@ interface UserData {
 }
 
 function ProfilePage() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [userData, setUserData] = useState<UserData>(projectData.users[0]);
-
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
 
   const handleSaveChanges = (updatedData: UserData) => {
     setUserData(updatedData);
-    closeModal();
   };
 
   return (
@@ -54,19 +48,21 @@ function ProfilePage() {
                 tagline={userData.user_profile}
                 title={userData.title}
                 email={userData.email}
+                userData={userData}
+                onSaveChanges={handleSaveChanges}
               />
             </div>
-            <div className="profile__edit-button">
-              <EditButton onClick={openModal} />
-            </div>
+
             {/* </div> */}
           </div>
           <div className="profile__secondwrap">
-            <div className="profile__bio-card">
-              <BioCard bio={userData.bio} />
-            </div>
-            <div className="profile__skills-card">
-              <SkillsCard skills={userData.own_skills} />
+            <div className="profile__second-inner">
+              <div className="profile__bio-card">
+                <BioCard bio={userData.bio} />
+              </div>
+              <div className="profile__skills-card">
+                <SkillsCard skills={userData.own_skills} />
+              </div>
             </div>
             <div className="profile__projects">
               <ProjectsCard projects={userData.projects} />
@@ -74,12 +70,6 @@ function ProfilePage() {
           </div>
         </div>
       </div>
-      <EditProfileModal
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        userData={userData}
-        onSave={handleSaveChanges}
-      />
     </div>
   );
 }

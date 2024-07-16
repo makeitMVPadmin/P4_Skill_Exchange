@@ -11,11 +11,11 @@ interface ProjectProps {
 const Project: React.FC<ProjectProps> = ({ name, description, image, url }) => {
   return (
     <a href={url} target="_blank" className="projects__project">
-      <div className="projects__project-thumbnail">
-        <img src={image} alt={name} />
+      <div className="projects__project--thumbnail">
+        <img className="projects__project--img" src={image} alt={name} />
       </div>
-      <div className="projects__project-name">{name}</div>
-      <div className="projects__project-description">{description}</div>
+      <div className="projects__project--name">{name}</div>
+      <div className="projects__project--description">{description}</div>
     </a>
   );
 };
