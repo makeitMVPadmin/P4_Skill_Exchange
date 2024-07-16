@@ -1,7 +1,9 @@
+@use "./typography" as *;
+
 * {
   margin: 0;
   padding: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Gilroy", Helvetica, sans-serif;
 }
 
 a {
@@ -11,12 +13,5 @@ a {
 html,
 body {
   height: 100vh;
-}
-
-.font-gilroy {
-  font-family: $font-gilroy;
-}
-
-.font-corben {
-  font-family: $font-corben;
+  font-family: "Gilroy", sans-serif;
 }

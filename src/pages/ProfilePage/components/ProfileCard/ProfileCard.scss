@@ -1,12 +1,18 @@
+@use "../../../../styles/partials/global" as *;
+@use "../../../../styles/partials/variables" as *;
+@use "../../../../styles/partials/typography" as *;
+@use "../../../../styles/partials/mixins" as *;
+
 .profile-card {
   display: flex;
   justify-content: space-between;
-  background-color: #ffffff;
+  // background-color: #ffffff;
   padding: 1rem;
   border-radius: 0.5rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  @include box-shadow($MVP-dark-blue);
   margin-bottom: 1rem;
+  width: 100%;
+  height: 100%;
 
   &__content {
     display: flex;
@@ -22,18 +28,18 @@
 
   &__name {
     font-size: 1.25rem;
-    font-weight: bold;
+    font-weight: $bold-txt;
+    color: $MVP-black;
   }
 
   &__title,
   &__email {
-    color: #4b5563;
+    color: $MVP-black;
   }
   &__tagline {
     font-size: 1rem;
     line-height: 1.5rem;
-    font-weight: 700;
-    color: #4b5563;
+    color: $MVP-black;
   }
 
   &__social-links {

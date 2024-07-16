@@ -45,27 +45,26 @@ function ProfilePage() {
       <div className="profile__main">
         <div className="profile__content">
           <div className="profile__firstwrap">
-            <div className="profile__first-innerwrap">
-              <div className="profile__profile-card">
-                <ProfileCard
-                  profilePhotoLink={userData.profilephoto_link}
-                  firstName={userData.first_name}
-                  lastName={userData.last_name}
-                  tagline={userData.user_profile}
-                  title={userData.title}
-                  email={userData.email}
-                />
-              </div>
-              <div className="profile__edit-button">
-                <EditButton onClick={openModal} />
-              </div>
+            {/* <div className="profile__first-innerwrap"> */}
+            <div className="profile__profile-card">
+              <ProfileCard
+                profilePhotoLink={userData.profilephoto_link}
+                firstName={userData.first_name}
+                lastName={userData.last_name}
+                tagline={userData.user_profile}
+                title={userData.title}
+                email={userData.email}
+              />
             </div>
-
+            <div className="profile__edit-button">
+              <EditButton onClick={openModal} />
+            </div>
+            {/* </div> */}
+          </div>
+          <div className="profile__secondwrap">
             <div className="profile__bio-card">
               <BioCard bio={userData.bio} />
             </div>
-          </div>
-          <div className="profile__secondwrap">
             <div className="profile__skills-card">
               <SkillsCard skills={userData.own_skills} />
             </div>

@@ -1,3 +1,4 @@
+import "./styles/index.scss";
 import { Routes, Route } from "react-router-dom";
 import MarketPlace from "./pages/MarketPlacePage/MarketPlace";
 import ProjectPage from "./pages/ProjectPage/ProjectPage.tsx";

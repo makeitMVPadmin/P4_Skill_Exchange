@@ -1,11 +1,23 @@
+@use "./partials/global" as *;
+@use "./partials/mixins" as *;
+@use "./partials/typography" as *;
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import "./utils/variables";
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Gilroy", Helvetica, sans-serif;
+}
 
-@import "./partials/global";
-@import "./partials/mixins";
-@import "./partials/typography";
+a {
+  text-decoration: none;
+}
 
-@import "./base/fonts";
+html,
+body {
+  height: 100vh;
+  font-family: "Gilroy", sans-serif;
+}

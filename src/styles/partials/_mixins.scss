@@ -60,3 +60,8 @@
   width: $width;
   height: $height;
 }
+
+// Box Shadow Mixin
+@mixin box-shadow($color) {
+  box-shadow: 0 4px 6px rgba($color, 0.1), 0 1px 7px rgba($color, 0.08);
+}

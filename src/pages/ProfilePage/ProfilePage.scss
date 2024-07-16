@@ -1,13 +1,19 @@
+@use "../../styles/partials/global" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/typography" as *;
+
 .profile {
+  font-family: "Gilroy", sans-serif;
+  background-color: $MVP-cream;
   display: flex;
   flex-direction: column;
   padding: 0 4rem;
-  background-color: #f3f4f6;
   min-height: 150vh;
   width: 100%;
   // border: 0.2rem solid black;
 
   &__main {
+    background-color: $MVP-cream;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -17,29 +23,32 @@
 
   &__content {
     display: flex;
-    flex-direction: column;
+    // flex-direction: column;
     // border: 0.2rem solid black;
     width: 100%;
     margin-top: 2rem;
+    gap: 2rem;
   }
 
   &__firstwrap {
     display: flex;
+    max-width: 30%;
     flex-direction: column;
-    justify-content: space-around;
+    // justify-content: space-around;
     // border: 0.2rem solid red;
     gap: 1rem;
   }
 
-  &__first-innerwrap {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-  }
+  // &__first-innerwrap {
+  //   display: flex;
+  //   justify-content: space-between;
+  //   gap: 1rem;
+  // }
 
   &__secondwrap {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    max-width: 70%;
     // border: 0.2rem solid blue;
   }
 
@@ -47,7 +56,7 @@
     display: flex;
     flex-direction: column;
     // border: 0.2rem solid green;
-    width: 50%;
+    // width: 50%;
   }
 
   &__bio-card {

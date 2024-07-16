@@ -1,3 +1,5 @@
+@use "./typography" as *;
+
 //SCREEN BREAKPOINTS
 
 $min-mobile-screen: 320px;
@@ -10,3 +12,30 @@ $max-desktop-screen: 1920px;
 $regular-txt: 400;
 $demi-txt: 500;
 $bold-txt: 600;
+
+// Primary Colors
+$MVP-black: #000000; // Borders and Text
+$MVP-light-blue: #0099ff; // Text and Interactive Elements
+$MVP-white: #ffffff; // Universal White for text and inputs
+$MVP-yellow: #ffd22f; // Backgrounds and Icons
+
+// Secondary Colors
+$MVP-dark-blue: #0954b0; // Borders and Text
+$MVP-red: #ff7070; // Important Text
+$MVP-cream: #fff9f4; // Backgrounds and Highlights
+
+// Font Face and Weight
+$font-family-primary: "Gilroy", sans-serif;
+$font-family-secondary: "Corben", sans-serif;
+
+// Font Sizes for Desktop and Tablet
+$desktop-h1-font-size: 58px;
+$desktop-h2-font-size: 30px;
+$desktop-body-font-size: 25px;
+$desktop-button-font-size: 27px;
+
+// Font Sizes for Mobile
+$mobile-h1-font-size: 48px;
+$mobile-h2-font-size: 27px;
+$mobile-body-font-size: 21px;
+$mobile-button-font-size: 20px;
