@@ -300,5 +300,58 @@
       "project_description": "A website to share and publish blogs.",
       "user_id": 5
     }
-  ]
+  ],
+
+  "skills": {
+    "development": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "TypeScript",
+      "React.js",
+      "Vue.js",
+      "Angular.js",
+      "Node.js",
+      "Express.js",
+      "Next.js",
+      "React Native",
+      "Expo Framework",
+      "GraphQL",
+      "REST APIs",
+      "Python",
+      "Django",
+      "Flask",
+      "Ruby on Rails",
+      "PHP",
+      "Laravel",
+      "Java",
+      "Spring Boot",
+      "C#",
+      ".NET Core",
+      "SQL",
+      "NoSQL (MongoDB, Firebase)"
+    ],
+    "design": [
+      "Adobe Photoshop",
+      "Adobe Illustrator",
+      "Sketch",
+      "Figma",
+      "Adobe XD",
+      "InVision",
+      "CorelDRAW",
+      "Affinity Designer",
+      "Prototyping",
+      "Wireframing",
+      "UI/UX Design",
+      "Responsive Design",
+      "Typography",
+      "Color Theory",
+      "User Research",
+      "Interaction Design",
+      "Information Architecture",
+      "Visual Design",
+      "Branding",
+      "Motion Graphics"
+    ]
+  }
 }
