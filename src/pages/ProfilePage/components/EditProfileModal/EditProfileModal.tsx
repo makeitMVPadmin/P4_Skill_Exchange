@@ -1,24 +1,6 @@
 import "./EditProfileModal.scss";
 import { useState, useEffect } from "react";
-
-interface Project {
-  project_name: string;
-  project_description: string;
-  project_url: string;
-}
-
-interface UserData {
-  profilephoto_link: string;
-  first_name: string;
-  last_name: string;
-  email: string;
-  user_profile: string;
-  title: string;
-  bio: string;
-  interested_skills: string[];
-  own_skills: string[];
-  projects: Project[];
-}
+import { UserData, ProjectDetails } from "@/src/interfaces/types";
 
 interface EditProfileModalProps {
   isOpen: boolean;

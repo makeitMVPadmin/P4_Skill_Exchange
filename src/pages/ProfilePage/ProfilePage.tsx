@@ -4,28 +4,8 @@ import ProfileCard from "./components/ProfileCard/ProfileCard";
 import BioCard from "./components/BioCard/BioCard";
 import SkillsCard from "./components/SkillsCard/SkillsCard";
 import ProjectsCard from "./components/ProjectsCard/ProjectsCard";
-
 import projectData from "../../data/dummy_data_extended.json";
-
-interface Project {
-  project_name: string;
-  project_image: string;
-  project_description: string;
-  project_url: string;
-}
-
-interface UserData {
-  profilephoto_link: string;
-  first_name: string;
-  last_name: string;
-  email: string;
-  user_profile: string;
-  title: string;
-  bio: string;
-  interested_skills: string[];
-  own_skills: string[];
-  projects: Project[];
-}
+import { UserData } from "@/src/interfaces/types";
 
 function ProfilePage() {
   const [userData, setUserData] = useState<UserData>(projectData.users[0]);
@@ -42,12 +22,6 @@ function ProfilePage() {
             {/* <div className="profile__first-innerwrap"> */}
             <div className="profile__profile-card">
               <ProfileCard
-                profilePhotoLink={userData.profilephoto_link}
-                firstName={userData.first_name}
-                lastName={userData.last_name}
-                tagline={userData.user_profile}
-                title={userData.title}
-                email={userData.email}
                 userData={userData}
                 onSaveChanges={handleSaveChanges}
               />

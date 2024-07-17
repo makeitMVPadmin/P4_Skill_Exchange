@@ -1,34 +1,32 @@
 import "./ProjectsCard.scss";
-
-interface ProjectProps {
-  name: string;
-  image: string;
-  description: string;
-  url: string;
-}
+import { ProjectDetails } from "@/src/interfaces/types";
 
 // A single Project component
-const Project: React.FC<ProjectProps> = ({ name, description, image, url }) => {
+const Project: React.FC<ProjectDetails> = ({
+  project_name,
+  project_description,
+  project_image,
+  project_url,
+}) => {
   return (
-    <a href={url} target="_blank" className="projects__project">
+    <a href={project_url} target="_blank" className="projects__project">
       <div className="projects__project--thumbnail">
-        <img className="projects__project--img" src={image} alt={name} />
+        <img
+          className="projects__project--img"
+          src={project_image}
+          alt={project_name}
+        />
       </div>
-      <div className="projects__project--name">{name}</div>
-      <div className="projects__project--description">{description}</div>
+      <div className="projects__project--name">{project_name}</div>
+      <div className="projects__project--description">
+        {project_description}
+      </div>
     </a>
   );
 };
 
-interface ProjectData {
-  project_name: string;
-  project_image: string;
-  project_description: string;
-  project_url: string;
-}
-
 interface ProjectsCardProps {
-  projects: ProjectData[];
+  projects: ProjectDetails[];
 }
 
 const ProjectsCard: React.FC<ProjectsCardProps> = ({ projects }) => {
@@ -39,10 +37,10 @@ const ProjectsCard: React.FC<ProjectsCardProps> = ({ projects }) => {
         {projects.map((project, index) => (
           <Project
             key={index}
-            name={project.project_name}
-            image={project.project_image}
-            description={project.project_description}
-            url={project.project_url}
+            project_name={project.project_name}
+            project_image={project.project_image}
+            project_description={project.project_description}
+            project_url={project.project_url}
           />
         ))}
       </div>

@@ -58,15 +58,15 @@
     font-size: 1rem;
     font-weight: bold;
     border: none;
-    border-bottom: 0.5rem solid transparent;
+    border-bottom: 0.1rem solid transparent;
     cursor: pointer;
     transition: background-color 0.3s;
 
     &:hover {
-      border-bottom: 0.5rem solid #3b82f6;
+      border-bottom: 0.2rem solid #3b82f6;
     }
     &.active {
-      border-bottom: 0.5rem solid #3b82f6;
+      border-bottom: 0.2rem solid #3b82f6;
     }
   }
 
