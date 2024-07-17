@@ -2,6 +2,7 @@ import "./EditProfileModal.scss";
 import { useState, useEffect } from "react";
 import { UserData, Skill } from "@/src/interfaces/types";
 import avaibleSkills from "@/src/data/availableSkills.json";
+import deleteIcon from "@/src/assets/icons/deleteIcon.png";
 
 interface EditProfileModalProps {
   isOpen: boolean;
@@ -29,7 +30,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
     skill_name: "",
     years_experience: 0,
   });
-  const [selectedSkill, setSelectedSkill] = useState<string>("");
+
   const [yearsExperience, setYearsExperience] = useState<number>(0);
 
   const yearsOptions = Array.from({ length: 31 }, (_, i) => i);
@@ -45,15 +46,11 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
 
   const handleAddSkill = () => {
     if (
-      selectedSkill &&
-      !ownSkills.some((skill) => skill.skill_name === selectedSkill)
+      newSkill.skill_name &&
+      !ownSkills.some((skill) => skill.skill_name === newSkill.skill_name)
     ) {
-      setOwnSkills([
-        ...ownSkills,
-        { skill_name: selectedSkill, years_experience: yearsExperience },
-      ]);
-      setSelectedSkill("");
-      setYearsExperience(0);
+      setOwnSkills([...ownSkills, newSkill]);
+      setNewSkill({ skill_name: "", years_experience: 0 });
     }
   };
 
@@ -129,7 +126,9 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
   const showSkills = () => (
     <>
       <div className="edit-modal__form-group">
-        {/* <label className="edit-modal__label">Skills</label> */}
+        <label className="edit-modal__label">
+          Enter your skills and years of experience
+        </label>
         <div className="edit-modal__skills">
           {ownSkills.map((skill, index) => (
             <div key={index} className="edit-modal__skill-item">
@@ -152,7 +151,11 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
                 className="edit-modal__delete-button"
                 onClick={() => handleDeleteSkill(index)}
               >
-                X
+                <img
+                  className="edit-modal__delete-icon"
+                  src={deleteIcon}
+                  alt="Delete"
+                />
               </button>
             </div>
           ))}
@@ -174,10 +177,15 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
               )}
             </select>
             <select
-              className="edit-modal__input-years"
+              className="edit-modal__select"
               name="years_experience"
               value={yearsExperience}
-              // onChange={handleSkillChange}
+              onChange={(e) =>
+                setNewSkill({
+                  ...newSkill,
+                  years_experience: Number(e.target.value),
+                })
+              }
             >
               <option value="">Years</option>
               {yearsOptions.map((year) => (
@@ -223,6 +231,14 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
             onClick={() => setActiveTab("skills")}
           >
             Skills
+          </button>
+          <button
+            className={`edit-modal__tab ${
+              activeTab === "portfolio" ? "active" : ""
+            }`}
+            onClick={() => setActiveTab("portfolio")}
+          >
+            Portfolio
           </button>
         </div>
 

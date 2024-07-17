@@ -45,6 +45,7 @@
   &__title {
     font-size: 1.5rem;
     margin-bottom: 1rem;
+    text-align: center;
   }
 
   &__tabs {
@@ -109,7 +110,7 @@
   &__skill-item {
     display: flex;
     align-items: center;
-    background: #e5e7eb;
+    gap: 1rem;
     padding: 0.25rem 0.5rem;
     border-radius: 0.25rem;
   }
@@ -125,6 +126,11 @@
     font-size: 1.5rem;
     color: #ef4444;
     cursor: pointer;
+  }
+
+  &__delete-icon {
+    width: 4rem;
+    height: 2rem;
   }
   &__add-button {
     padding: 0.5rem 1rem;
