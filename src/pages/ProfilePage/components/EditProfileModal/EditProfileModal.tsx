@@ -207,6 +207,49 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
     </>
   );
 
+  const showPortfolio = () => (
+    <div className="edit-modal__form-group">
+      <label className="edit-modal__label">Portfolio</label>
+      <div className="edit-modal__portfolio">
+        {userData.projects?.map((project, index) => (
+          <div key={index} className="edit-modal__portfolio-item">
+            <div className="edit-modal__portfolio-info">
+              <span>{project.project_name}</span>
+              <span>{project.project_description}</span>
+            </div>
+          </div>
+        ))}
+        <div className="edit-modal__add-portfolio">
+          <input
+            type="text"
+            name="project_name"
+            className="edit-modal__input-skill"
+            placeholder="Project Name"
+          />
+          <input
+            type="text"
+            name="project_description"
+            className="edit-modal__input-skill"
+            placeholder="Project Description"
+          />
+          <input
+            type="text"
+            name="project_url"
+            className="edit-modal__input-skill"
+            placeholder="Project URL"
+          />
+        </div>
+        <button
+          type="button"
+          className="edit-modal__add-button"
+          onClick={handleAddSkill}
+        >
+          Add Project
+        </button>
+      </div>
+    </div>
+  );
+
   return (
     <div className="edit-modal">
       <div className="edit-modal__overlay" onClick={onClose}></div>
@@ -245,6 +288,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
         <form className="edit-modal__form" onSubmit={handleSubmit}>
           {activeTab === "basicInfo" && showBasicInfo()}
           {activeTab === "skills" && showSkills()}
+          {activeTab === "portfolio" && showPortfolio()}
 
           <button type="submit" className="edit-modal__submit-button">
             Save Changes

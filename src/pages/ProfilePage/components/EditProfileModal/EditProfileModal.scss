@@ -132,6 +132,7 @@
     width: 4rem;
     height: 2rem;
   }
+
   &__add-button {
     padding: 0.5rem 1rem;
     font-size: 1rem;
@@ -155,6 +156,16 @@
     &:active {
       background-color: #1d4ed8;
     }
+  }
+  &__portfolio {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  &__portfolio-info {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #d1d5db;
   }
 
   &__submit-button {
