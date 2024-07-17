@@ -1,7 +1,11 @@
 import Tag from "@/src/components/Tag/Tag";
 import "./TaskPosterCard.scss";
 
-function TaskPosterCard() {
+import { TaskPosterProps } from "@/src/types";
+
+function TaskPosterCard({ createdDate, jobOwner } : TaskPosterProps) {
+  const date = new Date(createdDate).toLocaleDateString();
+
   return (
     <div className='task__poster'>
       <div className="task__poster-bio">
@@ -30,7 +34,7 @@ function TaskPosterCard() {
         <ul className="task__info-list">
           <li className="task__info-list__item">
             <span>Date Posted</span>
-            <span>07/12/2024</span>
+            <span>{ date }</span>
           </li>
           <li className="task__info-list__item">
             <span>Expertise Level</span>

@@ -7,7 +7,7 @@
   align-items: center;
   justify-content: flex-start;
 
-  &-top {
+  &-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -79,7 +79,7 @@
       gap: 2rem;
       max-width: 50vw;
 
-      &-top {
+      &-header {
         h3 {
           font-weight: 600;
           font-size: 1.3rem;
@@ -99,7 +99,7 @@
 
         ul > li {
           list-style-type: disc;
-          margin-top: 10px;
+          margin-header: 10px;
           margin-left: 1.5rem;
         }
       }
