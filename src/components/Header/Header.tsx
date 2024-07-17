@@ -56,6 +56,21 @@ function Header() {
               onClick={toggleMenu}
               className="text-gray-600 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-800 rounded-md"
             >
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                {isMenuOpen ? (
+                  <path d="M6 18L18 6M6 6l12 12"></path>
+                ) : (
+                  <path d="M4 6h16M4 12h16m-7 6h7"></path>
+                )}
+              </svg>
             </button>
           </div>
           <ul className={`${isMenuOpen ? "block" : "hidden"} md:flex space-x-6 mt-4 md:mt-0`}>
@@ -74,6 +89,17 @@ function Header() {
             <li className="relative">
               <div onClick={toggleDropdown} className="flex items-center cursor-pointer">
                 <div className="h-10 w-10 bg-gray-300 rounded-full"></div>
+                <svg
+                  className="h-4 w-4 ml-2 text-gray-600 hover:text-gray-900"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path d="M9 5l7 7-7 7"></path>
+                </svg>
               </div>
               {isDropdownOpen && (
                 <ul className="absolute right-0 mt-2 py-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg">

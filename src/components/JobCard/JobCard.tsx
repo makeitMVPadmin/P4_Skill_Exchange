@@ -1,8 +1,3 @@
-import { Link } from "react-router-dom";
-
-import React, { useState } from "react";
-import ProjectCardModal from "../Modals/ProjectCardModal/ProjectCardModal";
-
 interface JobDetails {
   id: number;
   name: string;
@@ -10,7 +5,6 @@ interface JobDetails {
   job_tags: string[];
   job_description: string;
 }
-
 interface JobCardProps {
   jobDetails: JobDetails;
 }
