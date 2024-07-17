@@ -39,7 +39,7 @@ function ProfilePage() {
               </div>
             </div>
             <div className="profile__projects">
-              <ProjectsCard projects={userData.projects} />
+              <ProjectsCard projects={userData.projects || []} />
             </div>
           </div>
         </div>

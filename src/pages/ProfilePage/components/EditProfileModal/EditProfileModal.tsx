@@ -1,6 +1,7 @@
 import "./EditProfileModal.scss";
 import { useState, useEffect } from "react";
-import { UserData, ProjectDetails } from "@/src/interfaces/types";
+import { UserData, Skill } from "@/src/interfaces/types";
+import avaibleSkills from "@/src/data/availableSkills.json";
 
 interface EditProfileModalProps {
   isOpen: boolean;
@@ -23,8 +24,15 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
   const [title, setTitle] = useState("");
   const [userProfile, setUserProfile] = useState(userData.user_profile);
   const [bio, setBio] = useState("");
-  const [ownSkills, setOwnSkills] = useState<string[]>(userData.own_skills);
-  const [newSkill, setNewSkill] = useState("");
+  const [ownSkills, setOwnSkills] = useState<Skill[]>(userData.own_skills);
+  const [newSkill, setNewSkill] = useState<Skill>({
+    skill_name: "",
+    years_experience: 0,
+  });
+  const [selectedSkill, setSelectedSkill] = useState<string>("");
+  const [yearsExperience, setYearsExperience] = useState<number>(0);
+
+  const yearsOptions = Array.from({ length: 31 }, (_, i) => i);
 
   useEffect(() => {
     setFirstName(userData.first_name);
@@ -36,9 +44,16 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
   }, [userData]);
 
   const handleAddSkill = () => {
-    if (newSkill && !ownSkills.includes(newSkill)) {
-      setOwnSkills([...ownSkills, newSkill]);
-      setNewSkill("");
+    if (
+      selectedSkill &&
+      !ownSkills.some((skill) => skill.skill_name === selectedSkill)
+    ) {
+      setOwnSkills([
+        ...ownSkills,
+        { skill_name: selectedSkill, years_experience: yearsExperience },
+      ]);
+      setSelectedSkill("");
+      setYearsExperience(0);
     }
   };
 
@@ -114,26 +129,64 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
   const showSkills = () => (
     <>
       <div className="edit-modal__form-group">
-        <label className="edit-modal__label">Skills</label>
+        {/* <label className="edit-modal__label">Skills</label> */}
         <div className="edit-modal__skills">
           {ownSkills.map((skill, index) => (
             <div key={index} className="edit-modal__skill-item">
-              <span className="edit-modal__skill">{skill}</span>
+              <input
+                type="text"
+                name="skill_name"
+                className="edit-modal__input-skill"
+                value={skill.skill_name}
+                readOnly
+              />
+              <input
+                type="text"
+                name="years_experience"
+                className="edit-modal__input-skill"
+                value={skill.years_experience}
+                readOnly
+              />
               <button
                 type="button"
                 className="edit-modal__delete-button"
                 onClick={() => handleDeleteSkill(index)}
               >
-                ❌
+                X
               </button>
             </div>
           ))}
-          <input
-            type="text"
-            className="edit-modal__input"
-            value={newSkill}
-            onChange={(e) => setNewSkill(e.target.value)}
-          />
+          <div className="edit-modal__add-skill">
+            <select
+              className="edit-modal__select"
+              value={newSkill.skill_name}
+              onChange={(e) =>
+                setNewSkill({ ...newSkill, skill_name: e.target.value })
+              }
+            >
+              <option value="">Select a skill</option>
+              {[...avaibleSkills.development, ...avaibleSkills.design].map(
+                (skill, index) => (
+                  <option key={index} value={skill}>
+                    {skill}
+                  </option>
+                )
+              )}
+            </select>
+            <select
+              className="edit-modal__input-years"
+              name="years_experience"
+              value={yearsExperience}
+              // onChange={handleSkillChange}
+            >
+              <option value="">Years</option>
+              {yearsOptions.map((year) => (
+                <option key={year} value={year}>
+                  {year}
+                </option>
+              ))}
+            </select>
+          </div>
           <button
             type="button"
             className="edit-modal__add-button"

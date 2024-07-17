@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./ProfileCard.scss";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import EditButton from "../EditButton/EditButton";
-import { UserData, ProjectDetails } from "@/src/interfaces/types";
+import { UserData } from "@/src/interfaces/types";
 
 interface ProfileCardProps {
   userData: UserData;

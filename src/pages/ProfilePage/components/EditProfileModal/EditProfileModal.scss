@@ -86,7 +86,9 @@
   }
 
   &__input,
-  &__textarea {
+  &__textarea,
+  &__input-skill,
+  &__input-years {
     width: 100%;
     padding: 0.5rem;
     border: 1px solid black;
@@ -99,29 +101,31 @@
     height: 100px;
   }
 
-  &__skills,
-  &__experience {
+  &__skills {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 0.5rem;
-
-    &-item {
-      display: flex;
-      align-items: center;
-      background: #e5e7eb;
-      padding: 0.25rem 0.5rem;
-      border-radius: 0.25rem;
-
-      .edit-modal__delete-button {
-        background: none;
-        border: none;
-        color: #ef4444;
-        cursor: pointer;
-        margin-left: 0.5rem;
-      }
-    }
+  }
+  &__skill-item {
+    display: flex;
+    align-items: center;
+    background: #e5e7eb;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
   }
 
+  &__add-skill {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  &__delete-button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #ef4444;
+    cursor: pointer;
+  }
   &__add-button {
     padding: 0.5rem 1rem;
     font-size: 1rem;
