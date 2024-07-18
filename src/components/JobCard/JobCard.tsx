@@ -14,7 +14,7 @@ interface JobCardProps {
 const JobCard: React.FC<JobCardProps> = ({ jobDetails }) => {
   const { id, name, job_tags, job_description } = jobDetails;
   return (
-    <Link to={`/project/${id}`}>
+    <Link to={`/marketplace/${id}`}>
       <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white">
         <img
           className="w-full"
