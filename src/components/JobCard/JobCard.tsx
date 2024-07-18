@@ -1,12 +1,15 @@
-import { Link } from "react-router-dom";
-
 import React, { useState } from "react";
 import ProjectCardModal from "../Modals/ProjectCardModal/ProjectCardModal";
 
-@@ -14,49 +16,25 @@ interface JobCardProps {
+interface JobCardProps {
+  id: number;
+  name: string;
+  category: string;
+  job_tags: string[];
+  job_description: string;
 }
 
-const JobCard: React.FC<JobCardProps> = ({ jobDetails }) => {
+const JobCard: React.FC<JobCardProps> = (jobDetails) => {
   const [isProjectCardModalOpen, setIsProjectCardModalOpen] = useState<boolean>(false);
 
   return (
@@ -15,7 +18,6 @@ const JobCard: React.FC<JobCardProps> = ({ jobDetails }) => {
         className="w-full"
         src="https://via.placeholder.com/400x200"
         alt={jobDetails.name}
-        alt="Sunset in the mountains"
       />
       <div className="px-6 py-4">
         <div className="font-bold text-xl mb-2">{jobDetails.name}</div>
@@ -27,7 +29,7 @@ const JobCard: React.FC<JobCardProps> = ({ jobDetails }) => {
       >
         Apply
       </button>
-      <ProjectCardModal isOpen={isProjectCardModalOpen} onClose={() => setIsProjectCardModalOpen(false)}>
+      <ProjectCardModal isProjectCardModalOpen={isProjectCardModalOpen} onClose={() => setIsProjectCardModalOpen(false)} onViewMoreProjects={()=>{}}>
         <h1 className="pcmodal__maintitle">Application for {jobDetails.name}</h1>
         <h2 className="pcmodal__title">Questions</h2>
         <form className="pcmodal__form">
@@ -46,18 +48,13 @@ const JobCard: React.FC<JobCardProps> = ({ jobDetails }) => {
         </form>
       </ProjectCardModal>
       <div className="px-6 pt-4 pb-2">
-        {jobDetails.job_tags.map((job_tag: string) => (
+        {jobDetails.job_tags?.map((job_tag: string) => (
           <span key={job_tag} className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
             {job_tag}
           </span>
         ))}
-        {jobDetails.job_tags.map((job_tag: string) => {
-          return (
-            <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-              {job_tag}
-            </span>
-          );
-        })}
       </div>
     </div>
-  );
+  );}
+
+  export default JobCard;

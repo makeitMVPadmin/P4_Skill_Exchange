@@ -4,6 +4,7 @@ interface PropTypes {
   isProjectCardModalOpen: boolean;
   onClose: () => void;
   onViewMoreProjects: () => void;
+  children?: React.ReactNode
 }
 
 const ProjectCardModal: React.FC<PropTypes> = ({ isProjectCardModalOpen, onClose, onViewMoreProjects }) => {
