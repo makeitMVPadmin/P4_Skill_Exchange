@@ -40,7 +40,7 @@ const MarketPlace = () => {
           </div>
         </div>
       </div>
-    </div>
+      </div>
   );
 };
 
