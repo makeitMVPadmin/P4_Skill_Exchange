@@ -9,6 +9,7 @@ interface Job {
   category: string;
   job_tags: string[];
   job_description: string;
+  jobSkills: string[];
 }
 
 const MarketPlace = () => {
@@ -34,7 +35,7 @@ const MarketPlace = () => {
           <h2 className="text-xl font-bold mb-2">Market Place</h2>
           <div className="w-full flex sm:items-center flex-wrap gap-5">
             {filteredJobs.map((job: Job) => (
-              <JobCard key={job.id} jobDetails={job} />
+              <JobCard key={job.id} jobDetails={job} flag={false} />
             ))}
           </div>
         </div>
