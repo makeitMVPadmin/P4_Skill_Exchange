@@ -1,5 +1,5 @@
 
-function Tag({ text }:any) {
+function Tag(text : string) {
   return (
     <div>
      <span 
