@@ -1,15 +1,16 @@
 import { useState } from "react";
 import PlusIcon from "/icons/plus-icon.svg";
 
-import "./CreateProjectCard.scss";
-import Button from "@/src/components/Button/Button";
+import Button from "@/src/components/SeButton/SeButton";
 import CreateProjectForm from "../CreateProjectForm/CreateProjectForm";
 
-function CreateProjectCard({ handleButtonClick }: any ) {
-  const [onFormOpen, setFormOpen] = useState(false);
+import "./CreateProjectCard.scss";
+
+function CreateProjectCard() {
+  const [isFormOpen, setFormOpen] = useState(false);
   
   const handleFormChange = () => {
-    setFormOpen(!onFormOpen)
+    setFormOpen(!isFormOpen)
   }
 
   return (
@@ -26,7 +27,7 @@ function CreateProjectCard({ handleButtonClick }: any ) {
         onClick={handleFormChange}
       />
 
-      { onFormOpen && <CreateProjectForm /> }
+      { isFormOpen && <CreateProjectForm /> }
     </div>
   )
 }

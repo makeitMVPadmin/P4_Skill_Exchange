@@ -20,7 +20,7 @@ export type TaskPosterProps = {
 }
 
 export type ButtonProps = {
-  text: string;
+  text?: string;
   variant?: string;
-  onClick?: () => void;
+  onClick: () => void;
 }

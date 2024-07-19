@@ -7,10 +7,6 @@ import CreateProjectCard from "./components/CreateProjectCard/CreateProjectCard"
 function SkillShare() {
   const [tabStatus, setTabStatus] = useState("seeker")
 
-  const onSearch = (event) => {
-    
-  }
-
   return (
     <div className="c_skillshare">
       <div className="c_skillshare-header">
@@ -31,7 +27,7 @@ function SkillShare() {
         </div>
       </div>
       <div className="c_skillshare-search">
-        <SearchCard name="search" handleSearchChange={onSearch} />
+        <SearchCard name="search" handleSearchChange={() => {}} />
       </div>
       <div className="c_skillshare-projects">
         <div className="c_skillshare-projects__title">

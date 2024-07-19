@@ -1,5 +1,5 @@
 import { ButtonProps } from "@/src/types";
-import "./Button.scss";
+import "./SeButton.scss";
 
 function Button({ text, variant, onClick } : ButtonProps) {
   return (
