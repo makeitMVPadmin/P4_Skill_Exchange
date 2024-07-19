@@ -28,7 +28,6 @@ const MarketPlace = () => {
     <div className="mx-auto p-4 w-full">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div className="bg-gray-100 p-6 col-span-1 ">
-          <h2 className="text-xl font-bold mb-2">Filter</h2>
           <CategoryDropdown onSelectCategory={onSelectCategory} />
         </div>
         <div className="bg-white p-6 col-span-3">
