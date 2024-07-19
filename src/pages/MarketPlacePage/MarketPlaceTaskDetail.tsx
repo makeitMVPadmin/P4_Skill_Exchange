@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 
@@ -14,11 +13,7 @@ import "./MarketPlaceTaskDetail.scss";
 function MarketplaceTaskDetail() {
   const { id } = useParams();
   const jobs = projectData.jobs || [];
-  const jobDetail : JobDetail = jobs.find((job) => job.id.toString() === id)
-  
-
-  console.log(jobDetail)
-
+  const jobDetail : JobDetail = jobs.find((job) => job.id.toString() === id);
 
   return (
     <div className="task__detail">
@@ -30,8 +25,8 @@ function MarketplaceTaskDetail() {
         <div className="task__tags">
           <Tag text={jobDetail.category} /> 
           {
-            jobDetail.job_tags.map((tag) => (
-              <Tag text={tag} />
+            jobDetail.job_tags.map((tag, index) => (
+              <Tag key={index} text={tag} />
             ))
           } 
         </div>
