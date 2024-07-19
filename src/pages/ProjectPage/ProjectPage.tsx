@@ -1,6 +1,6 @@
 import projectData from "../../data/dummy_data_extended.json";
 import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import ProjectCardModal from "@/src/components/Modals/ProjectCardModal/ProjectCardModal";
 
 function ProjectPage() {
   const { id } = useParams();
@@ -53,14 +53,30 @@ function ProjectPage() {
             </span>
           ))}
         </div>
-        <div>
-          <Link
-            to=""
-            className=" bg-gray-200 hover:bg-gray-400 font-semibold text-lg hover:text-white py-2 px-4 rounded-md shadow-md"
-          >
+        <button
+        className="border border-neutral-300 rounded-lg py-1.5 px-10 my-2 bg-blue-800 hover:bg-blue-600 text-white ml-6"
+        onClick={() => setOpen(true)}
+      >
+        Apply
+      </button>
+      <ProjectCardModal open={open} onClose={() => setOpen(false)}>
+        <h1 className="pcmodal__maintitle">Application for Cool Project #1</h1>
+        <h2 className="pcmodal__title">Questions</h2>
+        <form className="pcmodal__form">
+          <label className="pcmodal__form--label" htmlFor="yearsofexperience">
+            How many years of coding experience do you have?
+          </label>
+          <input
+            className="pcmodal__form--input"
+            placeholder="Enter your years of experience"
+            type="text"
+            name="yearsofexperience"
+          />
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             Apply Now
-          </Link>
-        </div>
+          </button>
+        </form>
+      </ProjectCardModal>
       </div>
       <hr className="my-8 border-t-2 border-gray-300 " />
       <div className="mt-8 bg-white p-4 flex">
