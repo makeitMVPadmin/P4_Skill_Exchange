@@ -84,7 +84,7 @@ function Header() {
               <a href="#" className="text-gray-600 hover:text-gray-900 font-gilroy">Events</a>
             </li>
             <li>
-              <a href="/" className="text-gray-600 hover:text-gray-900 font-gilroy">Skill Share</a>
+              <a href="/skillshare" className="text-gray-600 hover:text-gray-900 font-gilroy">Skill Share</a>
             </li>
             <li className="relative">
               <div onClick={toggleDropdown} className="flex items-center cursor-pointer">
