@@ -5,7 +5,8 @@ module.exports = {
     'eslint:recommended',
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
-    'plugin:prettier/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended', 
     'plugin:react-hooks/recommended',
     'prettier'
   ],
@@ -20,7 +21,12 @@ module.exports = {
     project: './tsconfig.json', 
   },
   settings: { react: { version: '18.2' } },
-  plugins: ['@typescript-eslint', 'react', 'prettier', 'react-refresh'],
+  plugins: [
+    '@typescript-eslint', 
+    'react', 
+    'prettier', 
+    'react-refresh'
+  ],
   rules: {
     "react/display-name": 0,
     "react/no-unescaped-entities": "off",
