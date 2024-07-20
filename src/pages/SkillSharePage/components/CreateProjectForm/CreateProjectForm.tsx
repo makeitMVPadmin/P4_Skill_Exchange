@@ -28,7 +28,7 @@ function CreateProjectForm({ handleFormChange }: CreateProjectProps) {
   };
 
   const getFormProgress = () => {
-    const percentage = (currentIndex / steps.length * 100).toFixed(2)
+    const percentage = ((currentIndex + 1) / steps.length * 100).toFixed(2)
     return Number(percentage);
   }
 
@@ -68,26 +68,28 @@ function CreateProjectForm({ handleFormChange }: CreateProjectProps) {
             <img src={closeIcon} alt="" />
           </button>
         </header>
+
         <div className="c_project-form__modal-body">
-          <div className="c_project-form__modal-body__content">
-            <div className="modal__content-steps">
-             {currentIndex} / {steps.length}
-            </div>
-            <div className="modal__content-title">
-              <h1>Let’s get started with making a new project</h1>
-            </div>
-            <div className="modal__content-description">
-              <p>This helps your post stand out to the right candidates. You want to get noticed right away!</p>
-            </div>
-          </div>
-          <div className="c_project-form__modal-body-form">
-            
-          </div>
+          <Formik
+            initialValues={initialValues}
+            validationSchema={getStepSchema(currentIndex, steps)}
+            onSubmit={handleSubmitForm}
+            validateOnMount
+          >
+            {(form) => { 
+              return (
+                <>
+                  {renderCurrentStep(form)}
+                </>
+              )
+            }}
+          </Formik>
         </div>
+
         <SeProgressBar value={getFormProgress()} colorScheme="#0954B0" />
         <footer className="c_project-form__modal-footer">
           <Button variant="outline" text="Go Back" onClick={goBack}/>
-          { currentIndex < steps.length ? 
+          { currentIndex < 2 ? 
             ( <Button variant="solid" text="Next Step" onClick={goNext}/> )
             :
             (
