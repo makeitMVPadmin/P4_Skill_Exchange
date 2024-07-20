@@ -11,6 +11,7 @@ const CategoryDropdown: React.FC<CategoryDropdownProps> = ({
   onSelectCategory,
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -21,6 +22,7 @@ const CategoryDropdown: React.FC<CategoryDropdownProps> = ({
   };
 
   const handleCategoryClick = (category: string) => {
+    setSelectedCategory(category);
     onSelectCategory(category);
     closeMenu();
   };
@@ -72,6 +74,14 @@ const CategoryDropdown: React.FC<CategoryDropdownProps> = ({
           >
             Tutoring
           </Link>
+        </div>
+      )}
+      {/* Display the selected category as a bubble tag */}
+      {selectedCategory && (
+        <div className="mt-2">
+          <span className="bg-gray-500 text-white px-3 py-1 rounded-full text-sm">
+            {selectedCategory}
+          </span>
         </div>
       )}
     </div>
