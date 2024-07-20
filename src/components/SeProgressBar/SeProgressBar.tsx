@@ -7,9 +7,31 @@ type ProgressBarProps = {
   height?: number;
   isIntermediate?: boolean;
 }
-function SeProgressBar({ value, size, colorScheme, height, isIntermediate }: ProgressBarProps) {
+
+function SeProgressBar({ 
+    value = 25, 
+    size = 'md', 
+    colorScheme = "black", 
+    height = 10, 
+    isIntermediate = false 
+  }: ProgressBarProps) {
+
   return (
-    <div>SeProgressBar</div>
+    <div 
+      className="progress__bar" 
+      style={{
+        height: height,
+      }}
+    >
+      <div 
+        className="progress__bar-inner"
+        style={{
+          width: value + '%',
+          backgroundColor: colorScheme
+        }}
+      >
+      </div>
+    </div>
   )
 }
 

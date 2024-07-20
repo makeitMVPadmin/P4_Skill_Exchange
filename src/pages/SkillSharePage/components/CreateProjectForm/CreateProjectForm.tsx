@@ -7,6 +7,7 @@ import { generateSteps, generateInitialValues, getStepSchema } from "../Steps";
 import "./CreateProjectForm.scss";
 import closeIcon from "/icons/close-icon.svg";
 import Button from "@/src/components/SeButton/SeButton";
+import SeProgressBar from "@/src/components/SeProgressBar/SeProgressBar";
 
 type CreateProjectProps = {
   handleFormChange: () => void;
@@ -25,6 +26,11 @@ function CreateProjectForm({ handleFormChange }: CreateProjectProps) {
   const goBack = () => {
     currentIndex > 0 && setCurrentIndex((oldIndex) => oldIndex - 1);
   };
+
+  const getFormProgress = () => {
+    const percentage = (currentIndex / steps.length * 100).toFixed(2)
+    return Number(percentage);
+  }
 
   const renderCurrentStep = (form: FormikProps<FormikValues>) => {
     const step = steps[currentIndex];
@@ -47,7 +53,8 @@ function CreateProjectForm({ handleFormChange }: CreateProjectProps) {
         resolve();
       }, 2000);
     }).then(() => {
-      navigate(`/questionnaire/results`, { values });
+      handleFormChange()
+      navigate(`/skillshare`);
     });
   };
 
@@ -77,10 +84,11 @@ function CreateProjectForm({ handleFormChange }: CreateProjectProps) {
             
           </div>
         </div>
+        <SeProgressBar value={getFormProgress()} colorScheme="#0954B0" />
         <footer className="c_project-form__modal-footer">
           <Button variant="outline" text="Go Back" onClick={goBack}/>
           { currentIndex < steps.length ? 
-            ( <Button variant="solid" text="Next: Description" onClick={goNext}/> )
+            ( <Button variant="solid" text="Next Step" onClick={goNext}/> )
             :
             (
               <Button variant="solid" text="Submit" onClick={handleSubmitForm} />
