@@ -1,8 +1,104 @@
 .c_project-form {
   top: 0;
   left: 0;
-  position: absolute;
-  background-color: #cacaca;
-  height: 100vh;
   width: 100vw;
+  height: 100vh;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__wrapper {
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    opacity: 0.5;
+    position: fixed;
+    z-index: 10;
+  }
+  
+  &__modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    height: 40rem;
+    width: 40rem;
+    opacity: 1;
+    border-radius: 1rem;
+    padding: 1rem;
+    z-index: 20;
+
+    header {
+      display: flex;
+      flex-direction: row;
+      justify-content: end;
+      align-items: flex-end;
+
+      width: 100%;
+    }
+
+    &-body{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+
+      &__content {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: flex-start;
+          gap: 1rem;
+          width: 17rem;
+          height: 100%;
+
+        .modal__content {
+
+          &-steps {
+            font-size: 1rem;
+            font-family: 'Gilroy';
+            font-weight: 500;
+            color: #858585;
+          }
+
+          &-title {
+            font-size: 2.2rem;
+            line-height: 1;
+          }
+
+          &-description {
+            p {
+              font-size: 1rem;
+              font-family: 'Gilroy';
+              font-weight: 400;
+              color: #858585;
+              line-height: 1.2;
+            }
+          }
+        }
+      }
+
+      &__form {
+        width: 20rem;
+      }
+    }
+
+    footer {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
+
+      width: 100%;
+
+    }
+  }
 }
+
