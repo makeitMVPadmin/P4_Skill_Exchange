@@ -69,7 +69,7 @@ function CreateProjectForm({ handleFormChange }: CreateProjectProps) {
           </button>
         </header>
 
-        <div className="c_project-form__modal-body">
+        
           <Formik
             initialValues={initialValues}
             validationSchema={getStepSchema(currentIndex, steps)}
@@ -78,13 +78,13 @@ function CreateProjectForm({ handleFormChange }: CreateProjectProps) {
           >
             {(form) => { 
               return (
-                <>
+                <div className="c_project-form__modal-body">
                   {renderCurrentStep(form)}
-                </>
+                </div>
               )
             }}
           </Formik>
-        </div>
+        
 
         <SeProgressBar value={getFormProgress()} colorScheme="#0954B0" />
         <footer className="c_project-form__modal-footer">

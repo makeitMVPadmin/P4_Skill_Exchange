@@ -2,18 +2,14 @@ import "./SeProgressBar.scss";
 
 type ProgressBarProps = {
   value: number;
-  size?: string;
   colorScheme?: string; 
   height?: number;
-  isIntermediate?: boolean;
 }
 
 function SeProgressBar({ 
-    value = 25, 
-    size = 'md', 
+    value = 25,
     colorScheme = "black", 
     height = 10, 
-    isIntermediate = false 
   }: ProgressBarProps) {
 
   return (
