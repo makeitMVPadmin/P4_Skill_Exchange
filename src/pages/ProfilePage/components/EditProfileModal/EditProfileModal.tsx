@@ -76,8 +76,8 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
   };
 
   const showBasicInfo = () => (
-    <>
-      <div className="edit-modal__form-group">
+    <div className="edit-modal__basic">
+      <div className="edit-modal__basic-info">
         <label className="edit-modal__label">First Name</label>
         <input
           type="text"
@@ -86,7 +86,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
           onChange={(e) => setFirstName(e.target.value)}
         />
       </div>
-      <div className="edit-modal__form-group">
+      <div className="edit-modal__basic-info">
         <label className="edit-modal__label">Last Name</label>
         <input
           type="text"
@@ -95,7 +95,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
           onChange={(e) => setLastName(e.target.value)}
         />
       </div>
-      <div className="edit-modal__form-group">
+      <div className="edit-modal__basic-info">
         <label className="edit-modal__label">Tagline</label>
         <textarea
           className="edit-modal__textarea"
@@ -103,7 +103,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
           onChange={(e) => setUserProfile(e.target.value)}
         />
       </div>
-      <div className="edit-modal__form-group">
+      <div className="edit-modal__basic-info">
         <label className="edit-modal__label">Title</label>
         <input
           type="text"
@@ -112,7 +112,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
           onChange={(e) => setTitle(e.target.value)}
         />
       </div>
-      <div className="edit-modal__form-group">
+      <div className="edit-modal__basic-info">
         <label className="edit-modal__label">Bio</label>
         <textarea
           className="edit-modal__textarea"
@@ -120,7 +120,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
           onChange={(e) => setBio(e.target.value)}
         />
       </div>
-    </>
+    </div>
   );
 
   const showSkills = () => (
