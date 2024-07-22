@@ -11,11 +11,11 @@
   background: #FAFAFA;
   border-radius: 12px;
   transition: all 200ms ease-in-out;
-  box-shadow: 1px 2px 3px #6B6B6B;
+  box-shadow: none;
 
   &:hover {
     transition: all 200ms ease-in-out;
-    box-shadow: none;
+    box-shadow: 1px 2px 3px #6B6B6B;
 
     > img {
       transform: rotate(90deg);

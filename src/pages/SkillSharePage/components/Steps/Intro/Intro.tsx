@@ -1,22 +1,17 @@
-import { useState } from "react";
 import { FormikProps, FormikValues } from "formik";
-
-// import { getInputProps } from "util/forms";
 
 type IntroStepProps = {
   form: FormikProps<FormikValues>;
-  name: "emailAddress";
+  name: "Intro";
 };
 
-function IntroStep({ currentIndex = 1, steps = 3 }) {
-  const [headline, setHeadline] = useState("");
-  const [category, setCategory] = useState("");
+function IntroStep({ form }: IntroStepProps ) {
 
   return (
     <>          
       <div className="c_project-form__modal-body__content">
         <div className="modal__content-steps">
-        {currentIndex} / { steps }
+        {"Step 1"} / { "3" }
         </div>
         <div className="modal__content-title">
           <h1>Let’s get started with making a new project</h1>
@@ -29,19 +24,35 @@ function IntroStep({ currentIndex = 1, steps = 3 }) {
         <form>
           <div className="form-item">
             <label htmlFor="headline">Write a strong headline for your task</label>
-            <input type="text" value={headline}/>
+            <input 
+              type="text" 
+              value={form.values.headline}
+              onChange={form.handleChange}
+              name="headline"
+            />
             <p>E.g: Build a mobile app with Flutter</p>
           </div>
 
           <div className="form-item">
-            <label htmlFor="categort">What category is your task?</label>
-            <input type="text" value={category}/>
+            <label htmlFor="category">What category is your task?</label>
+            <input 
+              type="text" 
+              value={form.values.category}
+              onChange={form.handleChange}
+              name='category'
+            />
             <p>E.g: UX Design</p>
           </div>
           
           <div className="form-item">
             <label htmlFor="description">Description</label>
-            <input type="text" />
+            <textarea 
+              typeof="text" 
+              aria-multiline
+              onChange={form.handleChange}
+              value={form.values.description}
+              name="description"
+              />
             <p>Enter a unique description for your task</p>
           </div>
         </form>

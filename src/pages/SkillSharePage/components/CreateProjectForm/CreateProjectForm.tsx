@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Formik, FormikProps, FormikValues } from "formik";
 
 import { generateSteps, generateInitialValues, getStepSchema } from "../Steps";
 
-import "./CreateProjectForm.scss";
 import closeIcon from "/icons/close-icon.svg";
 import Button from "@/src/components/SeButton/SeButton";
 import SeProgressBar from "@/src/components/SeProgressBar/SeProgressBar";
+
+import "./CreateProjectForm.scss";
 
 type CreateProjectProps = {
   handleFormChange: () => void;
@@ -17,7 +17,6 @@ function CreateProjectForm({ handleFormChange }: CreateProjectProps) {
   const [steps] = useState(generateSteps());
   const [initialValues] = useState(generateInitialValues(steps));
   const [currentIndex, setCurrentIndex] = useState(0);
-  const navigate = useNavigate()
 
   const goNext = () => {
     currentIndex < steps.length && setCurrentIndex((oldIndex) => oldIndex + 1);
@@ -46,15 +45,15 @@ function CreateProjectForm({ handleFormChange }: CreateProjectProps) {
     return <StepComponent {...commonProps} />;
   };
 
-  const handleSubmitForm = (values: FormikValues) => {
-    // Opportunity to perform API call here
-    return new Promise((resolve) => {
+  const handleSubmitForm = async ( form: FormikValues ) => {
+    // Perform API call here
+    return new Promise<void>((resolve) => {
       setTimeout(() => {
-        resolve();
+         resolve();
       }, 2000);
     }).then(() => {
+      console.log(form.values)
       handleFormChange()
-      navigate(`/skillshare`);
     });
   };
 
@@ -68,7 +67,6 @@ function CreateProjectForm({ handleFormChange }: CreateProjectProps) {
             <img src={closeIcon} alt="" />
           </button>
         </header>
-
         
           <Formik
             initialValues={initialValues}
@@ -78,25 +76,28 @@ function CreateProjectForm({ handleFormChange }: CreateProjectProps) {
           >
             {(form) => { 
               return (
-                <div className="c_project-form__modal-body">
-                  {renderCurrentStep(form)}
-                </div>
+                <>
+                  <div className="c_project-form__modal-body">
+                    {renderCurrentStep(form)}
+                  </div>
+                  <SeProgressBar value={getFormProgress()} colorScheme="#0954B0" />
+                  <footer className="c_project-form__modal-footer">
+                    <Button variant="outline" text="Go Back" onClick={goBack}/>
+                    { currentIndex < 2 ? 
+                      ( <Button variant="solid" text="Next Step" onClick={goNext}/> )
+                      :
+                      (
+                        <Button variant="solid" text="Submit" onClick={() => handleSubmitForm(form)} />
+                      )
+                    }
+                  </footer>
+                </>
               )
             }}
           </Formik>
         
 
-        <SeProgressBar value={getFormProgress()} colorScheme="#0954B0" />
-        <footer className="c_project-form__modal-footer">
-          <Button variant="outline" text="Go Back" onClick={goBack}/>
-          { currentIndex < 2 ? 
-            ( <Button variant="solid" text="Next Step" onClick={goNext}/> )
-            :
-            (
-              <Button variant="solid" text="Submit" onClick={handleSubmitForm} />
-            )
-          }
-        </footer>
+
       </section>
     </div>
   )

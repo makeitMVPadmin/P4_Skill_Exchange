@@ -110,6 +110,17 @@
               border-radius: 0.5rem;
               width: 100%;
               padding: 0.5rem;
+              font-size: 0.9rem;
+            }
+
+            textarea {
+              border: 1px solid #858585;
+              height: 3.5rem;
+              border-radius: 0.5rem;
+              width: 100%;
+              padding: 0.5rem;
+              resize: none;
+              font-size: 0.9rem;
             }
 
             p {
@@ -120,6 +131,7 @@
           }
         }
       }
+      
     }
 
     footer {

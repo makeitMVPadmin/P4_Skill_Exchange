@@ -15,17 +15,17 @@ export type Step = {
 /** Considered the maximum possible steps for a user -- optionally perform filtering logic in `generateSteps` if you need to */
 const baseSteps: Step[] = [
   {
-    name: "intro",
+    name: "Intro",
     component: IntroStep,
     validationSchema: IntroSchema,
   },
   {
-    name: "skills",
+    name: "Skills",
     component: SkillsStep,
     validationSchema: SkillsSchema,
   },
   {
-    name: "summary",
+    name: "Summary",
     component: FormSummary,
     validationSchema: FormSummarySchema,
   }
@@ -36,9 +36,11 @@ export const generateSteps = (): Step[] => {
 };
 
 export const generateInitialValues = (filteredSteps: Step[]) => {
-  const initialValues = filteredSteps.reduce((values, step) => {
-    return { ...values, [step.name]: null };
+  const initialValues = filteredSteps.reduce((values) => {
+
+    return { ...values };
   }, {});
+
 
   return initialValues;
 };
