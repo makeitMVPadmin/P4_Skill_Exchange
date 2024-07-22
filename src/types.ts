@@ -18,3 +18,9 @@ export type TaskPosterProps = {
   createdDate: string;
   jobOwner: number;
 }
+
+export type ButtonProps = {
+  text?: string;
+  variant?: string;
+  onClick: () => void;
+}
