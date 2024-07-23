@@ -1,7 +1,7 @@
 import "./TaskOwner.scss";
 import { TaskPosterProps } from "@/src/types";
-import Email from "../../../public/icons/email-icon.svg"
-import LinkedIn from "../../../public/icons/linkedin-icon.svg"
+import Email from "/icons/email-icon.svg"
+import LinkedIn from "/icons/linkedin-icon.svg"
 
 function TaskOwner({ createdDate, jobOwner } : TaskPosterProps) {
   const date = new Date(createdDate).toLocaleDateString();
