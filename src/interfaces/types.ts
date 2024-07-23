@@ -13,7 +13,7 @@ export interface Skill {
 }
 
 export interface UserData {
-  //   id: number;
+  // id: number;
   profilephoto_link: string;
   first_name: string;
   last_name: string;

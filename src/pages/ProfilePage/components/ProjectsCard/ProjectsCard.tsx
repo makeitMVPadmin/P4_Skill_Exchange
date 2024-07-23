@@ -32,7 +32,7 @@ interface ProjectsCardProps {
 const ProjectsCard: React.FC<ProjectsCardProps> = ({ projects }) => {
   return (
     <div className="projects">
-      <h2 className="projects__title">Projects</h2>
+      <h2 className="projects__title">Portfolio Projects</h2>
       <div className="projects__list">
         {projects.map((project, index) => (
           <Project

@@ -1,7 +1,11 @@
 import "./EditProfileModal.scss";
 import { useState, useEffect } from "react";
 import { UserData, Skill } from "@/src/interfaces/types";
-import { showBasicInfo, showPortfolio, showSkills } from "./EditModalShow";
+import {
+  showBasicInfo,
+  showPortfolio,
+  showSkills,
+} from "./EditProfileSections";
 
 interface EditProfileModalProps {
   isOpen: boolean;

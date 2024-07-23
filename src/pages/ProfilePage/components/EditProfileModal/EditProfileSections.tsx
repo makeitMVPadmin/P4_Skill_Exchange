@@ -1,7 +1,8 @@
 import avaibleSkills from "@/src/data/availableSkills.json";
 import deleteIcon from "@/src/assets/icons/deleteIcon.png";
 import { Skill } from "@/src/interfaces/types";
-import { useState } from "react";
+
+// Show basic info component
 
 export const showBasicInfo = (props: any) => {
   const {
@@ -65,16 +66,16 @@ export const showBasicInfo = (props: any) => {
   );
 };
 
+// Show skills component
+
 export const showSkills = (props: any) => {
   const {
     ownSkills,
-    setOwnSkills,
     newSkill,
     setNewSkill,
     handleAddSkill,
     handleDeleteSkill,
     yearsExperience,
-    setYearsExperience,
     yearsOptions,
   } = props;
   return (
@@ -161,6 +162,8 @@ export const showSkills = (props: any) => {
     </>
   );
 };
+
+// Show portfolio component
 
 export const showPortfolio = (props: any) => {
   const { project, handleAddSkill } = props;
