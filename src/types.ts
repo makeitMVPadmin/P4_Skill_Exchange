@@ -1,3 +1,5 @@
+import { CSSProperties, ReactNode } from "react";
+
 export type JobDetail = {
   id: number;
   name: string;
@@ -23,4 +25,8 @@ export type ButtonProps = {
   text?: string;
   variant?: string;
   onClick: () => void;
+  colorScheme?: string;
+  iconLeft?: ReactNode;
+  iconRight?: ReactNode;
+  style?: CSSProperties;
 }
