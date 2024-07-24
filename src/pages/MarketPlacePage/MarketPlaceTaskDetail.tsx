@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
-
-
 import projectData from "src/data/dummy_data_extended.json";
+import HeartIcon from "/icons/heart-icon.svg";
 
 import Tag from "@/src/components/Tag/Tag";
+import Button from "@/src/components/SeButton/SeButton";
 import TaskPosterCard from "./components/TaskPosterCard/TaskPosterCard";
 
 import { JobDetail } from "@/src/types";
@@ -19,20 +19,29 @@ function MarketplaceTaskDetail() {
     <div className="task__detail">
       <div className="task__detail-header">
         <div className="task__detail-header__info">
-          <h1 className="task__title">{ jobDetail.name }</h1>
-          <p className="task__description">{ jobDetail.job_description }</p>
+          <>
+            <h1 className="task__title">{ jobDetail.name }</h1>
+            <p className="task__description">{ jobDetail.job_description }</p>
+          </>
           
-        <div className="task__tags">
-          <Tag text={jobDetail.category} /> 
-          {
-            jobDetail.job_tags.map((tag, index) => (
-              <Tag key={index} text={tag} />
-            ))
-          } 
+          <div className="task__tags">
+            <Tag text={jobDetail.category} /> 
+            {
+              jobDetail.job_tags.map((tag, index) => (
+                <Tag key={index} text={tag} />
+              ))
+            } 
+          </div>
         </div>
-        </div>
-        <div className="task__detail-header__apply">
-          <button className="apply__button">apply</button>
+        <div className="task__detail-header__buttons">
+          <div className="task__detail-header__favorite">
+            <img src={HeartIcon} alt="header__favorite-icon" />
+          </div>
+          <Button 
+            text="apply now" 
+            onClick={() => {}}
+            colorScheme="#FFD22F"
+          />
         </div>
       </div>
       <div className="task__detail-bottom">

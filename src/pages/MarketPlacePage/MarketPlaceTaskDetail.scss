@@ -19,45 +19,48 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 1rem;
 
       .task__title {
         font-size: 2rem;
         font-family: "Gilroy";
-        font-weight: 900;
-        letter-spacing: -1px;
+        font-weight: 400;
         color: #4D4D4D;
       }
 
       .task__description {
-        font-size: 1.2rem;
+        font-size: 1rem;
+        font-weight: 600;
         max-width: 500px;
-        letter-spacing: -0.7px;
       }
 
       .task__tags {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        margin-top: 1rem;
       }
     }
-    &__apply {
-      .apply__button {
-        padding: 0.5rem 1.3rem;
-        font-family: "Gilroy";
-        font-weight: 500;
-        text-transform: uppercase;
-        background-color: #D9D9D9;
-        color: #4D4D4D;
-        border-radius: 1rem;
-        border: 1px solid #D9D9D9;
-        transition: all ease-in-out 200ms;
+    &__buttons {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1rem;
+    }
+    &__favorite {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 30px;
+      width: 30px;
+      border-radius: 50%;
+      background-color: #FF7070;
+      cursor: pointer;
+      transition: all 200ms ease-in-out;
 
-        &:hover {
-          border: 1px solid #4D4D4D;
-          color: #D9D9D9;
-          background-color: #4D4D4D;
-        }
+      &:hover {
+        transform: scale(1.2);
       }
     }
   }
@@ -81,25 +84,27 @@
 
       &-header {
         h3 {
-          font-weight: 600;
-          font-size: 1.3rem;
+          font-weight: 400;
+          font-size: 1.2rem;
           margin-bottom: 10px;
         }
 
         p {
           font-size: 1rem;
-          text-align: justify;
+          font-weight: 600;
         }
       }
 
       &-bottom {
         h5 {
-          font-weight: 600;
+          font-size: 1.2rem;
+          font-weight: 400;
         }
 
         ul > li {
           list-style-type: disc;
-          margin-header: 10px;
+          font-size: 1rem;
+          font-weight: 600;
           margin-left: 1.5rem;
         }
       }
