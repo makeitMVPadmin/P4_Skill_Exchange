@@ -80,11 +80,17 @@ function CreateProjectForm({ handleFormChange }: CreateProjectProps) {
                   <div className="c_project-form__modal-body">
                     {renderCurrentStep(form)}
                   </div>
+                    {console.log(form.errors)}
                   <SeProgressBar value={getFormProgress()} colorScheme="#0954B0" />
                   <footer className="c_project-form__modal-footer">
                     <Button variant="outline" text="Go Back" onClick={goBack}/>
                     { currentIndex < 2 ? 
-                      ( <Button variant="solid" text="Next Step" onClick={goNext}/> )
+                      ( <Button 
+                          variant="solid" 
+                          text="Next Step" 
+                          onClick={goNext}
+                        /> 
+                      )
                       :
                       (
                         <Button variant="solid" text="Submit" onClick={() => handleSubmitForm(form)} />

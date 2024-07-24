@@ -1,4 +1,7 @@
+import Button from "@/src/components/SeButton/SeButton";
+import Tag from "@/src/components/Tag/Tag";
 import { FormikProps, FormikValues } from "formik";
+import { useState } from "react";
 
 type SkillsStepProps = {
   form: FormikProps<FormikValues>;
@@ -6,8 +9,23 @@ type SkillsStepProps = {
 };
 
 function SkillsStep({ form }: SkillsStepProps) {
-  return (
-    
+  const [formSkills, setFormSkills] = useState<string[]>([])
+  const [skillItem, setSkillItem] = useState('');  
+
+  form.values.skills = formSkills
+
+  const addFormSkill = () => {
+    if (skillItem && !formSkills.includes(skillItem)) {
+      setFormSkills([...formSkills, skillItem]);
+      setSkillItem("");
+    }
+  }
+
+  const handleNewSkill = (event: any) => {
+    setSkillItem(event.target.value)
+  }
+
+  return (  
     <>          
       <div className="c_project-form__modal-body__content">
         <div className="modal__content-steps">
@@ -24,13 +42,25 @@ function SkillsStep({ form }: SkillsStepProps) {
         <form>
           <div className="form-item">
             <label htmlFor="headline">Search skills or add your own</label>
-            <input 
-              type="text" 
-              value={form.values.skills}
-              onChange={form.handleChange}
-              name="skills"
-            />
+            <div className="form-item__skills-input">
+              <input 
+                type="text" 
+                value={skillItem}
+                onChange={handleNewSkill}
+                name="skills"
+              />
+              <Button 
+                onClick={addFormSkill} 
+                text="+"
+                variant="solid"
+              />
+            </div>
             <p>Choose up to 2-3 skills for the project</p>
+              <div className="form-item__skills">
+                { form.values.skills?.map((skill: string, index: number) => (
+                    <Tag text={skill} />
+                ))}
+              </div>
           </div>
 
           <div className="form-item">

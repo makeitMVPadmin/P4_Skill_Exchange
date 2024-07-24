@@ -1,6 +1,7 @@
 import { FormikProps, FormikValues } from "formik";
 
 import "./Summary.scss";
+import Tag from "@/src/components/Tag/Tag";
 
 type SummaryStepProps = {
   form: FormikProps<FormikValues>;
@@ -44,7 +45,9 @@ function Summary ({ form }: SummaryStepProps ) {
             </li>
             <li className="form__summary-items__item">
               <h3>Skills</h3>
-              <p>{ skills }</p>
+              <p className="flex flex-wrap mt-2 w-full">{ skills.map((skill: string) => (
+                <Tag text={skill} />
+              )) }</p>
             </li>
             <li className="form__summary-items__item">
               <h3>Duration</h3>

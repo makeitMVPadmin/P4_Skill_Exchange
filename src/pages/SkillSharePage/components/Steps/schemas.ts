@@ -8,16 +8,16 @@ export const IntroSchema = Yup.object({
     .required("What category is your task?")
     .nullable(),
   description: Yup.string()
-    .required("Add a unique description of the task")
+    .required("Add a unique description of the task.")
     .nullable()
 });
 
 export const SkillsSchema = Yup.object({
-  skills: Yup.object()
-    .required("Please enter a strong headline")
+  skills: Yup.array()
+    .required("You need to add a skill to continue.")
     .nullable(),
   duration: Yup.string()
-    .required("How long will this project take?")
+    .required("Enter a suitable timeframe.")
     .nullable()
 });
 
@@ -31,7 +31,7 @@ export const FormSummarySchema = Yup.object({
   description: Yup.string()
     .required("Add a unique description of the task")
     .nullable(),
-  skills: Yup.object()
+  skills: Yup.array()
     .required("Please enter a strong headline")
     .nullable(),
   duration: Yup.string()
