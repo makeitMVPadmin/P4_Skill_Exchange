@@ -1,7 +1,7 @@
-@use "../../../../styles/partials/global" as *;
-@use "../../../../styles/partials/variables" as *;
-@use "../../../../styles/partials/typography" as *;
-@use "../../../../styles/partials/mixins" as *;
+@use '../../../../styles/partials/global' as *;
+@use '../../../../styles/partials/variables' as *;
+@use '../../../../styles/partials/typography' as *;
+@use '../../../../styles/partials/mixins' as *;
 
 .skills-card {
   padding: 1rem;
@@ -25,7 +25,7 @@
   }
 
   &__skill {
-    background-color: #e2e8f0;
+    background-color: $MVP-light-gray;
     padding: 0.5rem 1rem;
 
     border: 0.1rem solid black;

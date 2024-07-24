@@ -1,7 +1,7 @@
-@use "../../../../styles/partials/global" as *;
-@use "../../../../styles/partials/variables" as *;
-@use "../../../../styles/partials/typography" as *;
-@use "../../../../styles/partials/mixins" as *;
+@use '../../../../styles/partials/global' as *;
+@use '../../../../styles/partials/variables' as *;
+@use '../../../../styles/partials/typography' as *;
+@use '../../../../styles/partials/mixins' as *;
 
 .projects {
   padding: 20px;
@@ -43,7 +43,9 @@
       height: 100%;
       object-fit: cover;
       filter: grayscale(80%);
-      transition: filter 0.5s ease-in-out, transform 0.5s ease-in-out;
+      transition:
+        filter 0.5s ease-in-out,
+        transform 0.5s ease-in-out;
     }
 
     &:hover &--thumbnail &--img {

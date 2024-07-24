@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { ToastContainer } from 'react-toastify'
 import './ProfilePage.scss'
 import ProfileCard from './components/ProfileCard/ProfileCard'
 import BioCard from './components/BioCard/BioCard'
@@ -44,6 +45,7 @@ function ProfilePage() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   )
 }

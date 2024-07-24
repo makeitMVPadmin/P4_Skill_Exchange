@@ -1,4 +1,4 @@
-@use "./typography" as *;
+@use './typography' as *;
 
 //SCREEN BREAKPOINTS
 
@@ -24,9 +24,14 @@ $MVP-dark-blue: #0954b0; // Borders and Text
 $MVP-red: #ff7070; // Important Text
 $MVP-cream: #fff9f4; // Backgrounds and Highlights
 
+// Neutral Colors
+$MVP-dark-gray: #454545;
+$MVP-medium-gray: #8d8d8d;
+$MVP-light-gray: #c5c5c5;
+
 // Font Face and Weight
-$font-family-primary: "Gilroy", sans-serif;
-$font-family-secondary: "Corben", sans-serif;
+$font-family-primary: 'Gilroy', sans-serif;
+$font-family-secondary: 'Corben', sans-serif;
 
 // Font Sizes for Desktop and Tablet
 $desktop-h1-font-size: 58px;
