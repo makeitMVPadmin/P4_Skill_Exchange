@@ -1,18 +1,18 @@
-import { useState } from "react";
-import "./ProfilePage.scss";
-import ProfileCard from "./components/ProfileCard/ProfileCard";
-import BioCard from "./components/BioCard/BioCard";
-import SkillsCard from "./components/SkillsCard/SkillsCard";
-import ProjectsCard from "./components/ProjectsCard/ProjectsCard";
-import projectData from "../../data/dummy_data_extended.json";
-import { UserData } from "@/src/interfaces/types";
+import { useState } from 'react'
+import './ProfilePage.scss'
+import ProfileCard from './components/ProfileCard/ProfileCard'
+import BioCard from './components/BioCard/BioCard'
+import SkillsCard from './components/SkillsCard/SkillsCard'
+import ProjectsCard from './components/ProjectsCard/ProjectsCard'
+import projectData from '../../data/dummy_data_extended.json'
+import { UserData } from '@/src/interfaces/types'
 
 function ProfilePage() {
-  const [userData, setUserData] = useState<UserData>(projectData.users[0]);
+  const [userData, setUserData] = useState<UserData>(projectData.users[0])
 
   const handleSaveChanges = (updatedData: UserData) => {
-    setUserData(updatedData);
-  };
+    setUserData(updatedData)
+  }
 
   return (
     <div className="profile ">
@@ -45,7 +45,7 @@ function ProfilePage() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default ProfilePage;
+export default ProfilePage
