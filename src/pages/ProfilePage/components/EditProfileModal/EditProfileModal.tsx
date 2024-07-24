@@ -33,10 +33,11 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
     skill_name: "",
     years_experience: 0,
   });
+  const [editingProject, setEditingProject] = useState(null);
 
-  const [yearsExperience, setYearsExperience] = useState<number>(0);
+  const [yearsExperience, setYearsExperience] = useState<number>(1);
 
-  const yearsOptions = Array.from({ length: 31 }, (_, i) => i);
+  const yearsOptions = Array.from({ length: 31 }, (_, i) => i + 1);
 
   useEffect(() => {
     setFirstName(userData.first_name);
@@ -59,6 +60,10 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
 
   const handleDeleteSkill = (index: number) => {
     setOwnSkills(ownSkills.filter((_, i) => i !== index));
+  };
+
+  const handleEditProject = (project: any, index: number) => {
+    setEditingProject({ ...project, index });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -140,7 +145,12 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
               yearsOptions,
             })}
           {activeTab === "portfolio" &&
-            showPortfolio({ project: userData.projects, handleAddSkill })}
+            showPortfolio({
+              project: userData.projects,
+              handleAddSkill,
+              handleEditProject,
+              editingProject,
+            })}
 
           <button type="submit" className="edit-modal__submit-button">
             Save Changes
