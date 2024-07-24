@@ -3,9 +3,9 @@ import JobCard from "../../components/JobCard/JobCard";
 import CategoryDropdown from "../../components/CategoryDropdown/CategoryDropdown";
 import projectData from "../../data/dummy_data_extended.json";
 
-import { getAllTasks } from "../../utils/Firebase.tsx";
+import { getAllTasks, getUserDataForSpecificTask } from "../../utils/Firebase.tsx";
 getAllTasks();
-
+getUserDataForSpecificTask("iYRnDduQ9lCEUZY36sPQ");
 
 interface Job {
   id: number

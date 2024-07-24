@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { collection, getDocs, getFirestore } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, getFirestore } from "firebase/firestore";
 
 // Set up our config for Firebase
 // Define these in your env file, the values can be found in the project settings page on Firebase
@@ -28,4 +28,16 @@ export async function getAllTasks() {
         console.log(doc.id)
         console.log(doc.data())
     });
+}
+
+// Get user info for the user who created a job given the job ID
+export async function getUserDataForSpecificTask(jobID: string) {
+    const jobRef = doc(db, "Jobs", jobID);
+    const jobDoc = await getDoc(jobRef);
+
+    const userID = jobDoc.data().userId;
+    const userRef = doc(db, "Users", userID);
+    const userDoc = await getDoc(userRef);
+
+    console.log(userDoc.data());
 }
