@@ -19,11 +19,13 @@ const app = initializeApp(firebaseConfig);
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
 
-// Grab some data
-const data = await getDocs(collection(db, "Communities"));
+
 
 // Get all the jobs from the Jobs table
 export async function getAllTasks() {
     const data = await getDocs(collection(db, "Jobs"));
-    console.log(data);
+    data.docs.map((doc) => {
+        console.log(doc.id)
+        console.log(doc.data())
+    });
 }
