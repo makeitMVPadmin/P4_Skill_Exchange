@@ -50,11 +50,23 @@ export async function getUserData(userID: string) {
     console.log(userDoc.data());
 }
 
-// Get job info for a specific user
-export async function getJobData(jobID: string) {
-    const jobRef = doc(db, "Jobs", userId);
-    const jobDoc = await getDoc(jobRef);
+// Get job application info for a specific user
+export async function getJobsAppliedByUser(userID: string) {
+    const q = query(collection(db, "userJobsApplied"), where("userId", "==", userID));
+    const querySnapshot = await getDocs(q);
+    
+    const jobIDs = querySnapshot.docs.map(doc => doc.data().jobId);
 
-    console.log(jobDoc.data());
+    const jobs = [];
+    for (const jobID of jobIDs) {
+        const jobRef = doc(db, "Jobs", jobID);
+        const jobDoc = await getDoc(jobRef);
+        if (jobDoc.exists()) {
+            jobs.push({ id: jobID, ...jobDoc.data() });
+        }
+    }
+
+    console.log(jobs);
+    return jobs;
 }
 
