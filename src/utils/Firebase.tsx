@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { collection, doc, getDoc, getDocs, getFirestore } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, getFirestore, query, where } from "firebase/firestore";
 
 // Set up our config for Firebase
 // Define these in your env file, the values can be found in the project settings page on Firebase
@@ -51,22 +51,10 @@ export async function getUserData(userID: string) {
 }
 
 // Get job application info for a specific user
-export async function getJobsAppliedByUser(userID: string) {
-    const q = query(collection(db, "userJobsApplied"), where("userId", "==", userID));
-    const querySnapshot = await getDocs(q);
-    
-    const jobIDs = querySnapshot.docs.map(doc => doc.data().jobId);
+export async function getJobData(userID: string) {
+    const jobRef = doc(db, "Jobs", userID);
+    const q = query(jobRef, where("userId", "==", userID));
+    const jobDoc = await getDoc(q);
 
-    const jobs = [];
-    for (const jobID of jobIDs) {
-        const jobRef = doc(db, "Jobs", jobID);
-        const jobDoc = await getDoc(jobRef);
-        if (jobDoc.exists()) {
-            jobs.push({ id: jobID, ...jobDoc.data() });
-        }
-    }
-
-    console.log(jobs);
-    return jobs;
+    console.log(jobDoc.data());
 }
-
