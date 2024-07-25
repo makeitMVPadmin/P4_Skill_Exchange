@@ -48,19 +48,8 @@ export async function getUserDataForSpecificTask(jobID: string) {
 
 // Get user info for a specific user
 export async function getUserData(userID: string) {
-  try {
-    console.log(`Fetching data for user ID: ${userID}`)
-    const userRef = doc(db, 'Users', userID)
-    const userDoc = await getDoc(userRef)
-    if (userDoc.exists()) {
-      console.log('User data found:', userDoc.data())
-      return userDoc.data()
-    } else {
-      console.error('User not found')
-      throw new Error('User not found')
-    }
-  } catch (error) {
-    console.error('Error fetching user data:', error)
-    throw new Error('Failed to fetch user data')
-  }
+  const userRef = doc(db, 'Users', userID)
+  const userDoc = await getDoc(userRef)
+
+  console.log(userDoc.data())
 }
