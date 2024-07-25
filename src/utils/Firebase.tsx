@@ -52,8 +52,8 @@ export async function getUserData(userID: string) {
 
 // Get job info for a specific user
 export async function getJobData(jobID: string) {
-    const jobRef = doc(db, "Jobs", userID);
-    const jobDoc = await getDoc(userRef);
+    const jobRef = doc(db, "Jobs", userId);
+    const jobDoc = await getDoc(jobRef);
 
     console.log(jobDoc.data());
 }
