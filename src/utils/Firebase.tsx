@@ -49,3 +49,17 @@ export async function getUserData(userID: string) {
 
     console.log(userDoc.data());
 }
+
+
+
+
+// Edit user data
+export async function editUserData(userID: string, newData: Record<string, any>) {
+    const userRef = doc(db, "Users", userID);
+    try {
+        await updateDoc(userRef, newData);
+        console.log("User data updated successfully");
+    } catch (error) {
+        console.error("Error updating user data: ", error);
+    }
+}
