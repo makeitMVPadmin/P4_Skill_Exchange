@@ -1,17 +1,17 @@
-import { useState } from "react";
-import "./ProfileCard.scss";
-import EditProfileModal from "../EditProfileModal/EditProfileModal";
-import EditButton from "../EditButton/EditButton";
-import { UserData } from "@/src/interfaces/types";
+import { useState } from 'react'
+import './ProfileCard.scss'
+import EditProfileModal from '../EditProfileModal/EditProfileModal'
+import EditButton from '../EditButton/EditButton'
+import { UserData } from '@/src/interfaces/types'
 
 interface ProfileCardProps {
-  userData: UserData;
-  onSaveChanges: (updatedData: UserData) => void;
+  userData: UserData
+  onSaveChanges: (updatedData: UserData) => void
 }
 
 const ProfileCard: React.FC<ProfileCardProps> = ({
   userData,
-  onSaveChanges,
+  onSaveChanges
 }) => {
   const {
     profilephoto_link,
@@ -19,25 +19,25 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
     last_name,
     user_profile,
     title,
-    email,
-  } = userData;
+    email
+  } = userData
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const openModal = () => setIsModalOpen(true)
+  const closeModal = () => setIsModalOpen(false)
 
   const handleSaveChanges = (updatedData: UserData) => {
-    onSaveChanges(updatedData);
-    closeModal();
-  };
+    onSaveChanges(updatedData)
+    closeModal()
+  }
 
   return (
     <div className="profile-card">
       <div className="profile-card__content">
         {/* <div className="profile-card__details"> */}
         <img
-          src={profilephoto_link || "https://via.placeholder.com/150"}
+          src={profilephoto_link || 'https://via.placeholder.com/150'}
           alt={`${first_name} ${last_name}`}
           className="profile-card__picture"
         />
@@ -80,7 +80,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
         onSave={handleSaveChanges}
       />
     </div>
-  );
-};
+  )
+}
 
-export default ProfileCard;
+export default ProfileCard

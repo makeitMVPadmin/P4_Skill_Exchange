@@ -1,8 +1,8 @@
-import "./SkillsCard.scss";
-import { Skill } from "@/src/interfaces/types";
+import './SkillsCard.scss'
+import { Skill } from '@/src/interfaces/types'
 
 interface SkillsCardProps {
-  skills: Skill[];
+  skills: Skill[]
 }
 
 const SkillsCard: React.FC<SkillsCardProps> = ({ skills }) => {
@@ -17,7 +17,7 @@ const SkillsCard: React.FC<SkillsCardProps> = ({ skills }) => {
         ))}
       </ul>
     </div>
-  );
-};
+  )
+}
 
-export default SkillsCard;
+export default SkillsCard
