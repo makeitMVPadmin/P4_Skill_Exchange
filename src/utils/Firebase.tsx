@@ -41,3 +41,11 @@ export async function getUserDataForSpecificTask(jobID: string) {
 
     console.log(userDoc.data());
 }
+
+// Get user info for a specific user
+export async function getUserData(userID: string) {
+    const userRef = doc(db, "Users", userID);
+    const userDoc = await getDoc(userRef);
+
+    console.log(userDoc.data());
+}
