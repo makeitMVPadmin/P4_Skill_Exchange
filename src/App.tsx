@@ -4,10 +4,20 @@ import MarketPlace from "./pages/MarketPlacePage/MarketPlace.tsx";
 import MarketplaceTaskDetail from "./pages/MarketPlacePage/MarketPlaceTaskDetail.tsx";
 import ProfilePage from "./pages/ProfilePage/ProfilePage.tsx";
 import SkillShare from "./pages/SkillSharePage/index.tsx";
-        
+
 import Header from "./components/Header/Header.tsx";
 import Footer from "./components/Footer/Footer.tsx";
 
+// Test case
+/*
+import { editUserData } from "./utils/Firebase";
+const newUserData = {
+  firstName: "John",
+  email: "john.doe@example.com",
+};
+
+editUserData("TAvb0pv0Ca5AjK2hoTDF", newUserData)
+*/
 function App() {
   return (
     <>

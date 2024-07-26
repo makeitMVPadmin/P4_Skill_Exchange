@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { collection, doc, getDoc, getDocs, getFirestore } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, getFirestore, updateDoc } from "firebase/firestore";
 
 // Set up our config for Firebase
 // Define these in your env file, the values can be found in the project settings page on Firebase
@@ -49,9 +49,6 @@ export async function getUserData(userID: string) {
 
     console.log(userDoc.data());
 }
-
-
-
 
 // Edit user data
 export async function editUserData(userID: string, newData: Record<string, any>) {
