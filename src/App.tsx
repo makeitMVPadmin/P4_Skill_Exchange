@@ -17,7 +17,8 @@ const newUserData = {
 };
 
 editUserData("TAvb0pv0Ca5AjK2hoTDF", newUserData)
-*/
+// import { getUserJobs } from "../src/utils/Firebase";
+// console.log(getUserJobs("UID10035003"));
 function App() {
   return (
     <>
