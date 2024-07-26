@@ -12,15 +12,12 @@ dist
 dist-ssr
 *.local
 package-lock.json
-<<<<<<< HEAD
 .env
 
-=======
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
->>>>>>> develop
 
 # Editor directories and files
 .vscode/*

@@ -47,38 +47,30 @@ export async function getUserDataForSpecificTask(jobID: string) {
 }
 
 // Get user info for a specific user
+// export async function getUserData(userID: string) {
+//   const userRef = doc(db, 'Users', userID)
+//   const userDoc = await getDoc(userRef)
+
+//   console.log(userDoc.data())
+// }
+//^^ There is no return on this function, so it will always return undefined. You should return the data so you can use it in other parts of your application.
+//^^ You should also add error handling to this function to catch any errors that may occur when fetching the data.
+
+// Get user info for a specific user
 export async function getUserData(userID: string) {
   try {
     const userRef = doc(db, 'Users', userID)
     const userDoc = await getDoc(userRef)
 
     if (userDoc.exists()) {
-      console.log(userDoc.data())
+      console.log('User data:', userDoc.data())
       return userDoc.data()
     } else {
-      console.log('User not found')
+      console.log('No such user!')
       return null
     }
   } catch (error) {
     console.error('Error fetching user data:', error)
-  }
-}
-
-// Get all users
-
-export async function getAllUsers() {
-  try {
-    const usersCollection = collection(db, 'Users')
-    const usersSnapshot = await getDocs(usersCollection)
-    const usersList = usersSnapshot.docs.map(doc => ({
-      id: doc.id,
-      ...doc.data()
-    }))
-
-    console.log(usersList)
-    return usersList
-  } catch (error) {
-    console.error('Error fetching users:', error)
-    return []
+    throw error
   }
 }

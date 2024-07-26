@@ -13,14 +13,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
   userData,
   onSaveChanges
 }) => {
-  const {
-    profilephoto_link,
-    first_name,
-    last_name,
-    user_profile,
-    title,
-    email
-  } = userData
+  const { firstName, lastName, industry, expertise, email } = userData
 
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -36,18 +29,18 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
     <div className="profile-card">
       <div className="profile-card__content">
         {/* <div className="profile-card__details"> */}
-        <img
-          src={profilephoto_link || 'https://via.placeholder.com/150'}
-          alt={`${first_name} ${last_name}`}
+        {/* <img
+          src={profilePhoto || 'https://via.placeholder.com/150'}
+          alt={`${firstName} ${lastName}`}
           className="profile-card__picture"
-        />
+        /> */}
         <div className="profile__edit-button">
           <EditButton onClick={openModal} />
         </div>
 
-        <h2 className="profile-card__name">{`${first_name} ${last_name}`}</h2>
-        <h3 className="profile-card__tagline">{user_profile}</h3>
-        <p className="profile-card__title">{title}</p>
+        <h2 className="profile-card__name">{`${firstName} ${lastName}`}</h2>
+        <h3 className="profile-card__tagline">{industry}</h3>
+        <p className="profile-card__title">{expertise}</p>
         <p className="profile-card__email">{email}</p>
         <ul className="profile-card__social-links">
           <li>

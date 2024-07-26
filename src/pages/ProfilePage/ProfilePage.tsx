@@ -5,47 +5,39 @@ import ProfileCard from './components/ProfileCard/ProfileCard'
 import BioCard from './components/BioCard/BioCard'
 import SkillsCard from './components/SkillsCard/SkillsCard'
 import ProjectsCard from './components/ProjectsCard/ProjectsCard'
-import projectData from '../../data/dummy_data_extended.json'
-import { getUserData, getAllUsers, createUser } from '@/src/utils/Firebase'
+// import projectData from '../../data/dummy_data_extended.json'
+import { getUserData } from '@/src/utils/Firebase'
 import { UserData } from '@/src/interfaces/types'
 
 function ProfilePage() {
-  const [userData, setUserData] = useState<UserData>(projectData.users[0])
+  const [userData, setUserData] = useState<UserData>({})
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
 
-  getAllUsers()
-    .then(users => {
-      console.log('All users:', users)
-    })
-    .catch(error => {
-      console.error('Error:', error)
-    })
+  const userID = 'UID99993230'
 
-  // const userID = '3RP7QXm2MYibnSQhfpaF'
   // getUserData(userID).then(data => console.log('Fetched user data:', data))
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const data = await getUserData(userID)
-  //       if (data) {
-  //         console.log('Fetched user data:', data)
-  //         setUserData(data as UserData)
-  //       } else {
-  //         setError('User not found')
-  //         toast.error('User not found')
-  //       }
-  //     } catch (err) {
-  //       setError('Failed to fetch user data')
-  //       toast.error('Failed to fetch user data')
-  //     } finally {
-  //       setLoading(false)
-  //     }
-  //   }
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getUserData(userID)
+        if (data !== undefined && data !== null) {
+          console.log('Fetched user data:', data)
+          setUserData(data as UserData)
+        } else {
+          console.log('User not found')
+          toast.error('User not found')
+        }
+      } catch (err) {
+        console.log('Error fetching user data:', err)
+        toast.error(`Failed to fetch user data: ${err.message}`)
+      } finally {
+        setLoading(false)
+      }
+    }
 
-  //   fetchData()
-  // }, [])
+    fetchData()
+  }, [userID])
 
   const handleSaveChanges = (updatedData: UserData) => {
     setUserData(updatedData)
@@ -68,16 +60,16 @@ function ProfilePage() {
           </div>
           <div className="profile__secondwrap">
             <div className="profile__second-inner">
-              <div className="profile__bio-card">
-                <BioCard bio={userData.bio} />
-              </div>
+              {/* <div className="profile__bio-card">
+                {userData && <BioCard bio={userData.bio} />}
+              </div> */}
               <div className="profile__skills-card">
-                <SkillsCard skills={userData.own_skills} />
+                {userData && <SkillsCard skills={userData.interests ?? []} />}
               </div>
             </div>
-            <div className="profile__projects">
-              <ProjectsCard projects={userData.projects || []} />
-            </div>
+            {/* <div className="profile__projects">
+              <ProjectsCard projects={projects} />
+            </div> */}
           </div>
         </div>
       </div>

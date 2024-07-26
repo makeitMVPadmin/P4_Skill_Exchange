@@ -1,8 +1,7 @@
 import './SkillsCard.scss'
-import { Skill } from '@/src/interfaces/types'
 
 interface SkillsCardProps {
-  skills: Skill[]
+  skills: string[]
 }
 
 const SkillsCard: React.FC<SkillsCardProps> = ({ skills }) => {
@@ -12,7 +11,7 @@ const SkillsCard: React.FC<SkillsCardProps> = ({ skills }) => {
       <ul className="skills-card__list">
         {skills.map((skill, index) => (
           <li key={index} className="skills-card__skill">
-            {skill.skill_name} - {skill.years_experience} years
+            {skill}
           </li>
         ))}
       </ul>
