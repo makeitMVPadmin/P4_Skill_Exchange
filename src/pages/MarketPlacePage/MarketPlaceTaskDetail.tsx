@@ -1,10 +1,12 @@
 import { useParams } from "react-router-dom";
+import { useState } from 'react';
 import projectData from "src/data/dummy_data_extended.json";
 import HeartIcon from "/icons/heart-icon.svg";
+import ProjectCardModal from "@/src/components/Modals/ProjectCardModal/ProjectCardModal";
 
 import Tag from "@/src/components/Tag/Tag";
 import Button from "@/src/components/SeButton/SeButton";
-import TaskPosterCard from "./components/TaskPosterCard/TaskPosterCard";
+import TaskPosterCard from "@/src/pages/MarketPlacePage/components/TaskPosterCard/TaskPosterCard";
 
 import { JobDetail } from "@/src/types";
 
@@ -13,7 +15,13 @@ import "./MarketPlaceTaskDetail.scss";
 function MarketplaceTaskDetail() {
   const { id } = useParams();
   const jobs = projectData.jobs || [];
-  const jobDetail : JobDetail = jobs.find((job) => job.id.toString() === id);
+  const jobDetail: JobDetail | undefined = jobs.find((job) => job.id.toString() === id);
+
+  const [isProjectCardModalOpen, setIsProjectCardModalOpen] = useState<boolean>(false);
+
+  if (!jobDetail) {
+    return <div>Job not found</div>;
+  }
 
   return (
     <div className="task__detail">
@@ -39,9 +47,33 @@ function MarketplaceTaskDetail() {
           </div>
           <Button 
             text="apply now" 
-            onClick={() => {}}
+            onClick={() => setIsProjectCardModalOpen(true)}
             colorScheme="#FFD22F"
           />
+          <ProjectCardModal
+            isProjectCardModalOpen={isProjectCardModalOpen}
+            onClose={() => setIsProjectCardModalOpen(false)}
+            onViewMoreProjects={() => {}}
+          >
+            <h1 className="pcmodal__maintitle">Application for {jobDetail.name}</h1>
+            <h2 className="pcmodal__title">Questions</h2>
+            <form className="pcmodal__form">
+              <label className="pcmodal__form--label" htmlFor="yearsofexperience">
+                How many years of coding experience do you have?
+              </label>
+              <input
+                className="pcmodal__form--input"
+                placeholder="Enter your years of experience"
+                type="text"
+                name="yearsofexperience"
+              />
+              <Button 
+                text="apply now" 
+                onClick={() => {}}
+                colorScheme="#FFD22F"
+              />
+            </form>
+          </ProjectCardModal>
         </div>
       </div>
       <div className="task__detail-bottom">
@@ -68,7 +100,7 @@ function MarketplaceTaskDetail() {
         />
       </div>
     </div>
-  )
+  );
 }
 
 export default MarketplaceTaskDetail;

@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+// import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import ProjectCardModal from '../Modals/ProjectCardModal/ProjectCardModal'
+// import ProjectCardModal from '../Modals/ProjectCardModal/ProjectCardModal'
 
 type Job = {
   id: number,
@@ -15,8 +15,8 @@ type JobCardProps = {
 }
 
 const JobCard = ({ job }: JobCardProps) => {
-  const [isProjectCardModalOpen, setIsProjectCardModalOpen] =
-    useState<boolean>(false)
+  // const [isProjectCardModalOpen, setIsProjectCardModalOpen] =
+  //   useState<boolean>(false)
   return (
     <Link to={`/marketplace/${job.id}`}>
       <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white">
@@ -39,7 +39,7 @@ const JobCard = ({ job }: JobCardProps) => {
         >
           Apply
         </button>
-        <ProjectCardModal
+        {/* <ProjectCardModal
           isProjectCardModalOpen={isProjectCardModalOpen}
           onClose={() => setIsProjectCardModalOpen(false)}
           onViewMoreProjects={() => {}}
@@ -63,7 +63,7 @@ const JobCard = ({ job }: JobCardProps) => {
               Apply Now
             </button>
           </form>
-        </ProjectCardModal>
+        </ProjectCardModal> */}
         <div className="px-6 pt-4 pb-2">
           {job.job_tags?.map((job_tag: string) => (
             <span
