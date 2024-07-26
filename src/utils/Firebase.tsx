@@ -66,3 +66,10 @@ export async function createNewJob(userID: string, title: string, description: s
     }
 }
 
+// Get user info for a specific user
+export async function getUserData(userID: string) {
+    const userRef = doc(db, "Users", userID);
+    const userDoc = await getDoc(userRef);
+
+    console.log(userDoc.data());
+}
