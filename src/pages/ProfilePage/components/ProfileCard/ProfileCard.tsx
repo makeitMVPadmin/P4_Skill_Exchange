@@ -13,7 +13,8 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
   userData,
   onSaveChanges
 }) => {
-  const { firstName, lastName, industry, expertise, email } = userData
+  const { profilePhoto, firstName, lastName, industry, expertise, email } =
+    userData
 
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -29,11 +30,11 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
     <div className="profile-card">
       <div className="profile-card__content">
         {/* <div className="profile-card__details"> */}
-        {/* <img
+        <img
           src={profilePhoto || 'https://via.placeholder.com/150'}
           alt={`${firstName} ${lastName}`}
           className="profile-card__picture"
-        /> */}
+        />
         <div className="profile__edit-button">
           <EditButton onClick={openModal} />
         </div>
