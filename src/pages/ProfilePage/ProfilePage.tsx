@@ -1,15 +1,51 @@
-import { useState } from 'react'
-import { ToastContainer } from 'react-toastify'
+import { useState, useEffect } from 'react'
+import { ToastContainer, toast } from 'react-toastify'
 import './ProfilePage.scss'
 import ProfileCard from './components/ProfileCard/ProfileCard'
 import BioCard from './components/BioCard/BioCard'
 import SkillsCard from './components/SkillsCard/SkillsCard'
 import ProjectsCard from './components/ProjectsCard/ProjectsCard'
 import projectData from '../../data/dummy_data_extended.json'
+import { getUserData, getAllUsers, createUser } from '@/src/utils/Firebase'
 import { UserData } from '@/src/interfaces/types'
 
 function ProfilePage() {
   const [userData, setUserData] = useState<UserData>(projectData.users[0])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  getAllUsers()
+    .then(users => {
+      console.log('All users:', users)
+    })
+    .catch(error => {
+      console.error('Error:', error)
+    })
+
+  // const userID = '3RP7QXm2MYibnSQhfpaF'
+  // getUserData(userID).then(data => console.log('Fetched user data:', data))
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const data = await getUserData(userID)
+  //       if (data) {
+  //         console.log('Fetched user data:', data)
+  //         setUserData(data as UserData)
+  //       } else {
+  //         setError('User not found')
+  //         toast.error('User not found')
+  //       }
+  //     } catch (err) {
+  //       setError('Failed to fetch user data')
+  //       toast.error('Failed to fetch user data')
+  //     } finally {
+  //       setLoading(false)
+  //     }
+  //   }
+
+  //   fetchData()
+  // }, [])
 
   const handleSaveChanges = (updatedData: UserData) => {
     setUserData(updatedData)

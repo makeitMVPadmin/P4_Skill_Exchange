@@ -1,3 +1,23 @@
+import { Timestamp } from 'firebase/firestore'
+
+export interface UserData {
+  id: string
+  firstName: string
+  lastName: string
+  email: string
+  profilePhoto: string
+  location: string
+  discipline: string
+  dob: Timestamp
+  createdAt: Timestamp
+  updatedAt: Timestamp
+  lastLogin: Timestamp
+  industry: string
+  experience: number
+  expertise: string
+  interests: string[]
+}
+
 export interface ProjectDetails {
   project_id: number
   project_name: string
@@ -12,16 +32,16 @@ export interface Skill {
   years_experience: number
 }
 
-export interface UserData {
-  //   id: number;
-  profilephoto_link: string
-  first_name: string
-  last_name: string
-  email: string
-  user_profile: string
-  title: string
-  bio: string
-  interested_skills: string[]
-  own_skills: Skill[]
-  projects?: ProjectDetails[]
-}
+// export interface UserData {
+//   //   id: number;
+//   profilephoto_link: string
+//   first_name: string
+//   last_name: string
+//   email: string
+//   user_profile: string
+//   title: string
+//   bio: string
+//   interested_skills: string[]
+//   own_skills: Skill[]
+//   projects?: ProjectDetails[]
+// }

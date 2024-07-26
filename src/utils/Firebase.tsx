@@ -48,8 +48,37 @@ export async function getUserDataForSpecificTask(jobID: string) {
 
 // Get user info for a specific user
 export async function getUserData(userID: string) {
-  const userRef = doc(db, 'Users', userID)
-  const userDoc = await getDoc(userRef)
+  try {
+    const userRef = doc(db, 'Users', userID)
+    const userDoc = await getDoc(userRef)
 
-  console.log(userDoc.data())
+    if (userDoc.exists()) {
+      console.log(userDoc.data())
+      return userDoc.data()
+    } else {
+      console.log('User not found')
+      return null
+    }
+  } catch (error) {
+    console.error('Error fetching user data:', error)
+  }
+}
+
+// Get all users
+
+export async function getAllUsers() {
+  try {
+    const usersCollection = collection(db, 'Users')
+    const usersSnapshot = await getDocs(usersCollection)
+    const usersList = usersSnapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }))
+
+    console.log(usersList)
+    return usersList
+  } catch (error) {
+    console.error('Error fetching users:', error)
+    return []
+  }
 }
