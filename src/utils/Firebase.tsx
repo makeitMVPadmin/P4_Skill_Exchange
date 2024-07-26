@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { collection, doc, getDoc, getDocs, getFirestore } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, getFirestore, addDoc } from "firebase/firestore";
 
 // Set up our config for Firebase
 // Define these in your env file, the values can be found in the project settings page on Firebase
@@ -41,3 +41,28 @@ export async function getUserDataForSpecificTask(jobID: string) {
 
     console.log(userDoc.data());
 }
+
+export async function createNewJob(userID: string, title: string, description: string, jobSkills: string[]) {
+    try {
+        const newJob = {
+            userID: userID,
+            title: title,
+            description: description,
+            jobSkills: jobSkills,
+            createdAt: new Date()
+        };
+        
+        const docRef = await addDoc(collection(db, "Jobs"), newJob);
+        const returnedJob = await getDoc(docRef);
+
+        if (returnedJob.exists()) {
+            console.log("Job created with ID: ", docRef.id);
+            return { id: docRef.id, ...returnedJob.data() };
+        } else {
+            throw new Error("No such document!");
+        } } catch (e) {
+        console.error("Error adding document: ", e);
+        throw e;
+    }
+}
+
