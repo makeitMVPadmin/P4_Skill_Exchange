@@ -11,14 +11,14 @@ import Footer from "./components/Footer/Footer.tsx";
 // Test case
 /*
 import { editUserData } from "./utils/Firebase";
+import { getUserJobs } from "../src/utils/Firebase";
 const newUserData = {
-  firstName: "John",
-  email: "john.doe@example.com",
+  email: "johnDoe@example.com",
 };
 
 editUserData("TAvb0pv0Ca5AjK2hoTDF", newUserData)
-// import { getUserJobs } from "../src/utils/Firebase";
-// console.log(getUserJobs("UID10035003"));
+console.log(getUserJobs("UID10035003"));
+*/
 function App() {
   return (
     <>
