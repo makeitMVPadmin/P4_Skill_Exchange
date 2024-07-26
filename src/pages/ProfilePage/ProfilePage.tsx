@@ -30,7 +30,7 @@ function ProfilePage() {
         }
       } catch (err) {
         console.log('Error fetching user data:', err)
-        toast.error(`Failed to fetch user data: ${err.message}`)
+        toast.error(`Failed to fetch user data: ${(err as Error).message}`)
       } finally {
         setLoading(false)
       }
