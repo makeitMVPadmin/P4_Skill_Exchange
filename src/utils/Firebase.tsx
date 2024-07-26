@@ -50,11 +50,33 @@ export async function getUserData(userID: string) {
     console.log(userDoc.data());
 }
 
-// Get job application info for a specific user
-export async function getJobData(userID: string) {
-    const jobRef = doc(db, "Jobs", userID);
-    const q = query(jobRef, where("userId", "==", userID));
-    const jobDoc = await getDoc(q);
-
-    console.log(jobDoc.data());
-}
+// Get all jobs applied to by a specific user
+export async function getUserJobs(userId: string){
+    const userJobsRef = collection(db, "userJobsApplied");
+    const userJobsQuery = query(userJobsRef, where("userId", "==", userId));
+    const userJobsSnapshot = await getDocs(userJobsQuery);
+  
+    const jobTitlePromises: Promise<string | null>[] = [];
+    userJobsSnapshot.forEach((docSnap) => {
+      const jobId = docSnap.data().jobId;
+  
+      // Get the job title using the retrieved jobId
+      const jobRef = doc(db, "Jobs", jobId);
+      const jobTitlePromise = getDoc(jobRef).then((jobDoc) => {
+        if (jobDoc.exists()) {
+          return jobDoc.data().title;
+        } else {
+          console.error(`Job with ID ${jobId} not found`);
+          return null;
+        }
+      }).catch((error) => {
+        console.error("Error fetching job data:", error);
+        return null;
+      });
+  
+      jobTitlePromises.push(jobTitlePromise);
+    });
+  
+    const jobTitles = await Promise.all(jobTitlePromises);
+    console.log(`Job titles: ${jobTitles}`);
+  }
