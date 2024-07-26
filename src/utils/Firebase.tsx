@@ -51,32 +51,42 @@ export async function getUserData(userID: string) {
 }
 
 // Get all jobs applied to by a specific user
-export async function getUserJobs(userId: string){
-    const userJobsRef = collection(db, "userJobsApplied");
-    const userJobsQuery = query(userJobsRef, where("userId", "==", userId));
-    const userJobsSnapshot = await getDocs(userJobsQuery);
-  
-    const jobTitlePromises: Promise<string | null>[] = [];
-    userJobsSnapshot.forEach((docSnap) => {
-      const jobId = docSnap.data().jobId;
-  
-      // Get the job title using the retrieved jobId
-      const jobRef = doc(db, "Jobs", jobId);
-      const jobTitlePromise = getDoc(jobRef).then((jobDoc) => {
-        if (jobDoc.exists()) {
-          return jobDoc.data().title;
-        } else {
-          console.error(`Job with ID ${jobId} not found`);
-          return null;
-        }
-      }).catch((error) => {
-        console.error("Error fetching job data:", error);
-        return null;
-      });
-  
-      jobTitlePromises.push(jobTitlePromise);
-    });
-  
-    const jobTitles = await Promise.all(jobTitlePromises);
-    console.log(`Job titles: ${jobTitles}`);
-  }
+export async function getUserJobs(userId: string): Promise<string[]> {
+  const userJobsRef = collection(db, "userJobsApplied");
+  const userJobsQuery = query(userJobsRef, where("userId", "==", userId));
+  const userJobsSnapshot = await getDocs(userJobsQuery);
+
+  // Get the job title using the retrieved jobId
+  const jobTitlePromises = userJobsSnapshot.docs.map(async (docSnap) => {
+    const jobId = docSnap.data().jobId;
+    const jobRef = doc(db, "Jobs", jobId);
+    const jobDoc = await getDoc(jobRef);
+    if (jobDoc.exists()) {
+      return jobDoc.data().title;
+    } else {
+      console.error(`Job with ID ${jobId} not found`);
+      return null;
+    }
+  });
+
+  const jobTitles = await Promise.all(jobTitlePromises);
+  console.log(`Job titles: ${jobTitles}`); // Debug log
+  // return jobTitles.filter(title => title !== null) as string[];
+
+  // Get the job info using the retrieved jobId
+  const jobInfoPromises = userJobsSnapshot.docs.map(async (docSnap) => {
+    const jobId = docSnap.data().jobId;
+    const jobRef = doc(db, "Jobs", jobId);
+    const jobDoc = await getDoc(jobRef);
+    if (jobDoc.exists()) {
+      return { id: jobDoc.id, ...jobDoc.data() }; // Return the entire job data
+    } else {
+      console.error(`Job with ID ${jobId} not found`);
+      return null;
+    }
+  });
+
+  const jobInfos = await Promise.all(jobInfoPromises);
+  // console.log(`Job information: ${jobInfos}`); // Debug log
+  return jobInfos.filter(info => info !== null);
+}
