@@ -6,6 +6,11 @@ export interface UserData {
   lastName: string
   email: string
   profilePhoto: string
+  tagline: string
+  github: string
+  linkedin: string
+  portfolioLink: string
+  bio: string
   location: string
   discipline: string
   dob: Timestamp
@@ -16,6 +21,7 @@ export interface UserData {
   experience: number
   expertise: string
   interests: string[]
+  skills: string[]
 }
 
 export interface ProjectDetails {

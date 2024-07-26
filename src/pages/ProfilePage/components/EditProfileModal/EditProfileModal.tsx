@@ -9,6 +9,7 @@ import {
 } from './EditProfileModalComponents/EditProfileSections'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { setUserData } from '@/src/utils/Firebase'
 
 interface EditProfileModalProps {
   isOpen: boolean
@@ -29,8 +30,11 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [title, setTitle] = useState('')
-  const [userProfile, setUserProfile] = useState(userData.user_profile)
+  const [tagline, setTagline] = useState('')
   const [bio, setBio] = useState('')
+  const [github, setGithub] = useState('')
+  const [linkedin, setLinkedin] = useState('')
+  const [portfolioLink, setPortfolioLink] = useState('')
   const [ownSkills, setOwnSkills] = useState<Skill[]>(userData.own_skills)
   const [newSkill, setNewSkill] = useState<Skill>({
     skill_name: '',
@@ -46,13 +50,15 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
   const yearsOptions = Array.from({ length: 31 }, (_, i) => i + 1)
 
   useEffect(() => {
-    setFirstName(userData.first_name)
-    setLastName(userData.last_name)
+    setFirstName(userData.firstName)
+    setLastName(userData.lastName)
     setTitle(userData.title)
     setBio(userData.bio)
-    setUserProfile(userData.user_profile)
+    setGithub(userData.github)
+    setLinkedin(userData.linkedin)
+    setPortfolioLink(userData.portfolioLink)
     setOwnSkills(userData.own_skills)
-    setProjects(userData.projects)
+    // setProjects(userData.projects)
   }, [userData])
 
   // Add skill handler
@@ -106,23 +112,43 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
     setEditingProject(null)
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     const updatedData: UserData = {
       id: userData.id,
-      profilephoto_link: userData.profilephoto_link,
-      first_name: firstName,
-      last_name: lastName,
+      // profilephoto_link: userData.profilephoto_link,
+      firstName: firstName,
+      lastName: lastName,
       email: userData.email,
-      user_profile: userProfile,
-      title,
-      bio,
-      interested_skills: userData.interested_skills,
-      own_skills: ownSkills,
-      projects: projects
+      tagline: tagline,
+      discipline: userData.discipline,
+      bio: bio,
+      skills: ownSkills.map(skill => skill.skill_name),
+      profilePhoto: userData.profilePhoto,
+      github: github,
+      linkedin: linkedin,
+      portfolioLink: portfolioLink,
+      location: userData.location,
+      industry: userData.industry,
+      expertise: userData.expertise
     }
-    onSave(updatedData)
-    toast.success('Profile Updated.')
+    try {
+      await setUserData(userData.id, {
+        firstName,
+        lastName,
+        tagline,
+        title,
+        bio,
+        github,
+        linkedin,
+        portfolioLink,
+        skills: ownSkills.map(skill => skill.skill_name)
+      })
+      onSave(updatedData)
+      toast.success('Profile Updated.')
+    } catch (error) {
+      toast.error('Error updating profile.')
+    }
   }
 
   return (
@@ -167,12 +193,18 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
               setFirstName,
               lastName,
               setLastName,
-              userProfile,
-              setUserProfile,
+              tagline,
+              setTagline,
               title,
               setTitle,
               bio,
-              setBio
+              setBio,
+              github,
+              setGithub,
+              linkedin,
+              setLinkedin,
+              portfolioLink,
+              setPortfolioLink
             })}
           {activeTab === 'skills' &&
             showSkills({

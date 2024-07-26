@@ -4,7 +4,8 @@ import {
   doc,
   getDoc,
   getDocs,
-  getFirestore
+  getFirestore,
+  setDoc
 } from 'firebase/firestore'
 
 // Set up our config for Firebase
@@ -71,6 +72,32 @@ export async function getUserData(userID: string) {
     }
   } catch (error) {
     console.error('Error fetching user data:', error)
+    throw error
+  }
+}
+
+export async function setUserData(
+  userID: string,
+  userData: {
+    firstName: string
+    lastName: string
+    tagline: string
+    title: string
+    bio: string
+    github: string
+    linkedin: string
+    portfolioLink: string
+    skills: string[]
+  }
+) {
+  try {
+    const userRef = doc(db, 'Users', userID)
+    await setDoc(userRef, userData, { merge: true })
+
+    console.log('User data updated successfully')
+    return { message: 'User data updated successfully' }
+  } catch (error) {
+    console.error('Error updating user data:', error)
     throw error
   }
 }

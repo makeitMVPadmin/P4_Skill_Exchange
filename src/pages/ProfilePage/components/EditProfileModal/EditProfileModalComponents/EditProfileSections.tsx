@@ -11,12 +11,18 @@ export const showBasicInfo = (props: any) => {
     setFirstName,
     lastName,
     setLastName,
-    userProfile,
-    setUserProfile,
+    tagline,
+    setTagline,
     title,
     setTitle,
     bio,
-    setBio
+    setBio,
+    github,
+    setGithub,
+    linkedin,
+    setLinkedin,
+    portfolioLink,
+    setPortfolioLink
   } = props
   return (
     <div className="edit-modal__form-group">
@@ -42,8 +48,8 @@ export const showBasicInfo = (props: any) => {
         <label className="edit-modal__label">Tagline</label>
         <textarea
           className="edit-modal__textarea"
-          value={userProfile}
-          onChange={e => setUserProfile(e.target.value)}
+          value={tagline}
+          onChange={e => setTagline(e.target.value)}
         />
       </div>
       <div className="edit-modal__basic-info">
@@ -63,6 +69,33 @@ export const showBasicInfo = (props: any) => {
           onChange={e => setBio(e.target.value)}
         />
       </div>
+      <div className="edit-modal__basic-info">
+        <label className="edit-modal__label">GitHub</label>
+        <input
+          type="text"
+          className="edit-modal__input"
+          value={github}
+          onChange={e => setGithub(e.target.value)}
+        />
+      </div>
+      <div className="edit-modal__basic-info">
+        <label className="edit-modal__label">LinkedIn</label>
+        <input
+          type="text"
+          className="edit-modal__input"
+          value={linkedin}
+          onChange={e => setLinkedin(e.target.value)}
+        />
+      </div>
+      <div className="edit-modal__basic-info">
+        <label className="edit-modal__label">Portfolio Link</label>
+        <input
+          type="text"
+          className="edit-modal__input"
+          value={portfolioLink}
+          onChange={e => setPortfolioLink(e.target.value)}
+        />
+      </div>
     </div>
   )
 }
@@ -77,6 +110,7 @@ export const showSkills = (props: any) => {
     handleAddSkill,
     handleDeleteSkill,
     yearsExperience,
+    setYearsExperience,
     yearsOptions
   } = props
   return (
@@ -142,12 +176,7 @@ export const showSkills = (props: any) => {
               className="edit-modal__select"
               name="years_experience"
               value={yearsExperience}
-              onChange={e =>
-                setNewSkill({
-                  ...newSkill,
-                  years_experience: Number(e.target.value)
-                })
-              }
+              onChange={e => setYearsExperience(Number(e.target.value))}
             >
               {yearsOptions.map((year: number) => (
                 <option key={year} value={year}>
