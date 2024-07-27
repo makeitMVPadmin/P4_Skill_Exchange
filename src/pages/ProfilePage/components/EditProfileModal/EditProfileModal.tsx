@@ -10,6 +10,7 @@ import {
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { setUserData } from '@/src/utils/Firebase'
+import projectData from '@/src/data/dummy_data_extended.json'
 
 interface EditProfileModalProps {
   isOpen: boolean
@@ -40,8 +41,9 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
     skillName: '',
     yearsExperience: 0
   })
+
   const [projects, setProjects] = useState<ProjectDetails[]>(
-    userData.projects || []
+    projectData.users[0]?.projects ?? []
   )
   const [editingProject, setEditingProject] = useState<any>(null)
 

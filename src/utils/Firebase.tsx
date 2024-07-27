@@ -49,16 +49,6 @@ export async function getUserDataForSpecificTask(jobID: string) {
 }
 
 // Get user info for a specific user
-// export async function getUserData(userID: string) {
-//   const userRef = doc(db, 'Users', userID)
-//   const userDoc = await getDoc(userRef)
-
-//   console.log(userDoc.data())
-// }
-//^^ There is no return on this function, so it will always return undefined. You should return the data so you can use it in other parts of your application.
-//^^ You should also add error handling to this function to catch any errors that may occur when fetching the data.
-
-// Get user info for a specific user
 export async function getUserData(userID: string) {
   try {
     const userRef = doc(db, 'Users', userID)

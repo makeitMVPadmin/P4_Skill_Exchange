@@ -38,7 +38,6 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
   return (
     <div className="profile-card">
       <div className="profile-card__content">
-        {/* <div className="profile-card__details"> */}
         <img
           src={profilePhoto || 'https://via.placeholder.com/150'}
           alt={`${firstName} ${lastName}`}
@@ -51,9 +50,9 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
         <h2 className="profile-card__name">{`${firstName} ${lastName}`}</h2>
         <p className="profile-card__title">{expertise}</p>
         <h3 className="profile-card__tagline">{tagline}</h3>
-
-        <p className="profile-card__email">{email}</p>
+        {/* <div className="profile-card__details"> */}
         <ul className="profile-card__social-links">
+          <p className="profile-card__email">{email}</p>
           {linkedin && (
             <li>
               <a
@@ -91,8 +90,8 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
             </li>
           )}
         </ul>
-        {/* </div> */}
       </div>
+      {/* </div> */}
       <EditProfileModal
         isOpen={isModalOpen}
         onClose={closeModal}

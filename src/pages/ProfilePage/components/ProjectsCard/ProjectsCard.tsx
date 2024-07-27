@@ -1,7 +1,6 @@
 import "./ProjectsCard.scss";
 import { ProjectDetails } from "@/src/interfaces/types";
 
-// A single Project component
 const Project: React.FC<ProjectDetails> = ({
   project_name,
   project_description,
@@ -34,14 +33,13 @@ const ProjectsCard: React.FC<ProjectsCardProps> = ({ projects }) => {
     <div className="projects">
       <h2 className="projects__title">Portfolio Projects</h2>
       <div className="projects__list">
-        {projects.map((project, index) => (
+        {projects.map((project) => (
           <Project
-            key={index}
+            key={project.project_id}
             project_name={project.project_name}
             project_image={project.project_image}
             project_description={project.project_description}
-            project_url={project.project_url}
-          />
+            project_url={project.project_url} project_id={0} user_id={0} />
         ))}
       </div>
     </div>

@@ -10,6 +10,7 @@ import { getUserData } from '@/src/utils/Firebase'
 import { UserData } from '@/src/interfaces/types'
 
 function ProfilePage() {
+  const [profileTab, setProfileTab] = useState('profile')
   const [userData, setUserData] = useState<UserData>({})
 
   const firstUserProjects = projectData.users[0]?.projects ?? []
@@ -57,17 +58,45 @@ function ProfilePage() {
 
             {/* </div> */}
           </div>
-          <div className="profile__secondwrap">
-            <div className="profile__second-inner">
-              <div className="profile__bio-card">
-                {userData && <BioCard bio={userData.bio} />}
-              </div>
-              <div className="profile__skills-card">
-                {userData && <SkillsCard skills={userData.skills ?? []} />}
-              </div>
+          <div className="profile__folder">
+            <div className="profile__tabs">
+              <button
+                className={`profile__tab ${
+                  profileTab === 'profile' ? 'profile__tab--active' : ''
+                }`}
+                onClick={() => setProfileTab('profile')}
+              >
+                About Me
+              </button>
+              <button
+                className={`profile__tab ${
+                  profileTab === 'projects' ? 'profile__tab--active' : ''
+                }`}
+                onClick={() => setProfileTab('projects')}
+              >
+                My Applications
+              </button>
+              <button
+                className={`profile__tab ${
+                  profileTab === 'settings' ? 'profile__tab--active' : ''
+                }`}
+                onClick={() => setProfileTab('settings')}
+              >
+                My Request
+              </button>
             </div>
-            <div className="profile__projects">
-              <ProjectsCard projects={firstUserProjects} />
+            <div className="profile__folder-content">
+              <div className="profile__folder-inner">
+                <div className="profile__bio-card">
+                  {userData && <BioCard bio={userData.bio} />}
+                </div>
+                <div className="profile__skills-card">
+                  {userData && <SkillsCard skills={userData.skills ?? []} />}
+                </div>
+              </div>
+              <div className="profile__projects">
+                <ProjectsCard projects={firstUserProjects} />
+              </div>
             </div>
           </div>
         </div>
