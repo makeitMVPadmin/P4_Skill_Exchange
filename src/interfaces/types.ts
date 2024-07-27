@@ -49,17 +49,3 @@ export interface Skill {
   skillName: string
   yearsExperience: number
 }
-
-// export interface UserData {
-//   //   id: number;
-//   profilephoto_link: string
-//   first_name: string
-//   last_name: string
-//   email: string
-//   user_profile: string
-//   title: string
-//   bio: string
-//   interested_skills: string[]
-//   own_skills: Skill[]
-//   projects?: ProjectDetails[]
-// }

@@ -124,7 +124,6 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
     e.preventDefault()
     const updatedData: UserData = {
       id: userData.id,
-      // profilephoto_link: userData.profilephoto_link,
       firstName: firstName,
       lastName: lastName,
       email: userData.email,

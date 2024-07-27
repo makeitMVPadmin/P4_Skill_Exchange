@@ -29,6 +29,11 @@ export default [
       ...tsConfigs.recommended.rules,
       ...fixupConfigRules(reactConfig).rules,
       ...eslintConfigPrettier.rules
+    },
+    settings: {
+      react: {
+        version: 'detect'
+      }
     }
   }
 ]

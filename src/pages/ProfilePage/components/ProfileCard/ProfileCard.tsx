@@ -17,10 +17,12 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
     profilePhoto,
     firstName,
     lastName,
-    industry,
     expertise,
     email,
-    tagline
+    tagline,
+    linkedin,
+    github,
+    portfolioLink
   } = userData
 
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -47,30 +49,47 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
         </div>
 
         <h2 className="profile-card__name">{`${firstName} ${lastName}`}</h2>
-        <h3 className="profile-card__tagline">{tagline}</h3>
         <p className="profile-card__title">{expertise}</p>
+        <h3 className="profile-card__tagline">{tagline}</h3>
+
         <p className="profile-card__email">{email}</p>
         <ul className="profile-card__social-links">
-          <li>
-            <a
-              className="profile-card__social-link"
-              href="https://www.linkedin.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              LinkedIn
-            </a>
-          </li>
-          <li>
-            <a
-              className="profile-card__social-link"
-              href="https://github.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              GitHub
-            </a>
-          </li>
+          {linkedin && (
+            <li>
+              <a
+                className="profile-card__social-link"
+                href={linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LinkedIn
+              </a>
+            </li>
+          )}
+          {github && (
+            <li>
+              <a
+                className="profile-card__social-link"
+                href={github}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub
+              </a>
+            </li>
+          )}
+          {portfolioLink && (
+            <li>
+              <a
+                className="profile-card__social-link"
+                href={portfolioLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Portfolio
+              </a>
+            </li>
+          )}
         </ul>
         {/* </div> */}
       </div>
