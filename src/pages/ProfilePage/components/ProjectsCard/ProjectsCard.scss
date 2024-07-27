@@ -31,12 +31,14 @@
     // margin-bottom: 20px;
 
     &--thumbnail {
+      border-top-left-radius: 0.5rem;
+      border-top-right-radius: 0.5rem;
       width: 100%;
-      height: 150px;
-      background-color: #e0e0e0;
-      margin-bottom: 10px;
+      height: 9rem;
+      margin-bottom: 0.5rem;
       overflow: hidden;
     }
+
     &--img {
       width: 100%;
       height: 100%;
