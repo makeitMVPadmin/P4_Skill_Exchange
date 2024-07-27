@@ -2,18 +2,19 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/typography" as *;
 @use "../../styles/partials/mixins" as *;
+
 .profile {
   font-family: "Gilroy", sans-serif;
   background-color: $MVP-cream;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 2rem;
+  padding: 0rem 2rem;
   min-height: 150vh;
   width: 100%;
 
   @include tablet-breakpoint {
-    padding: 0 4rem;
+    padding: 2rem 5rem;
   }
 
   // @include desktop-breakpoint {
@@ -98,12 +99,12 @@
     transition: background-color 0.3s;
 
     &:hover {
-      border-bottom: 0.2rem solid #3b82f6;
+   
       background-color: $MVP-dark-blue;
        color: $MVP-white;
     }
     &.active {
-      border-bottom: 0.2rem solid #3b82f6;
+  
       background-color: $MVP-dark-blue;
       color: $MVP-white;
     }
@@ -112,8 +113,9 @@
 &__folder-content{
        border-top-left-radius: .5rem;
      border-top-right-radius: .5rem;
-  border: 0.2rem solid $MVP-black;
+  border: 0.3rem solid $MVP-black;
 padding: 1rem 1rem;
+  background-color: $MVP-white;
 }
 
   &__folder-inner {
@@ -131,6 +133,7 @@ padding: 1rem 1rem;
 
   &__profile-card {
     display: flex;
+    // margin-top: 2.6rem;
     flex-direction: column;
     justify-content: center;
     // border: 0.2rem solid green;

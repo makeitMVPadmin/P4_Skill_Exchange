@@ -9,6 +9,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+    
   z-index: 1000;
 
   &__overlay {
@@ -25,6 +26,7 @@
     background: #ffffff;
     padding: 2rem;
     border-radius: 0.5rem;
+      border: 0.2rem solid $MVP-black;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
       0 2px 4px -2px rgba(0, 0, 0, 0.1);
     width: 100%;
@@ -32,7 +34,17 @@
     max-height: 90vh;
     overflow-y: auto;
     z-index: 1001;
+
+      &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
+
+    // Hide scrollbar for other browsers
+    -ms-overflow-style: none;  // IE and Edge
+    scrollbar-width: none;  // Firefox
   }
+  
 
   &__close-button {
     position: absolute;

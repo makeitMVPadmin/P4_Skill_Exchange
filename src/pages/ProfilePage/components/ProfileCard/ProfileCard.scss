@@ -6,7 +6,7 @@
 .profile-card {
   display: flex;
   justify-content: space-between;
-
+  border: 0.3rem solid $MVP-black;
   padding: 1rem;
   border-radius: 0.5rem;
   background-color: $MVP-light-blue;

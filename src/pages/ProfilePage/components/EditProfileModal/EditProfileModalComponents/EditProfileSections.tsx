@@ -55,8 +55,9 @@ export const showBasicInfo = (props: any) => {
       </div>
       <div className="edit-modal__basic-info">
         <label className="edit-modal__label">Tagline</label>
-        <textarea
-          className="edit-modal__textarea"
+        <input
+          type="text"
+          className="edit-modal__input"
           value={tagline}
           onChange={e => setTagline(e.target.value)}
         />

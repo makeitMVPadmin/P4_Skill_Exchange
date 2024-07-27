@@ -17,9 +17,9 @@ const Project: React.FC<ProjectDetails> = ({
         />
       </div>
       <div className="projects__project--name">{project_name}</div>
-      <div className="projects__project--description">
+      {/* <div className="projects__project--description">
         {project_description}
-      </div>
+      </div> */}
     </a>
   );
 };
@@ -31,7 +31,7 @@ interface ProjectsCardProps {
 const ProjectsCard: React.FC<ProjectsCardProps> = ({ projects }) => {
   return (
     <div className="projects">
-      <h2 className="projects__title">Portfolio Projects</h2>
+      <h2 className="projects__title">Portfolio</h2>
       <div className="projects__list">
         {projects.map((project) => (
           <Project

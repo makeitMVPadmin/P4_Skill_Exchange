@@ -44,7 +44,7 @@ function ProfilePage() {
   }
 
   return (
-    <div className="profile ">
+    <div className="profile">
       <div className="profile__main">
         <div className="profile__content">
           <div className="profile__firstwrap">

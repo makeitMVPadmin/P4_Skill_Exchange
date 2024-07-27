@@ -23,18 +23,17 @@
 
   &__project {
     width: 15rem;
-    background-color: $MVP-white;
+    padding-bottom: 0.5rem;
+    background-color: $MVP-yellow;
     @include box-shadow($MVP-black);
-    padding: 10px;
-    border-radius: 8px;
+    border-radius: 0.5rem;
     text-align: center;
-    margin-bottom: 20px;
+    // margin-bottom: 20px;
 
     &--thumbnail {
       width: 100%;
       height: 150px;
       background-color: #e0e0e0;
-      border-radius: 4px;
       margin-bottom: 10px;
       overflow: hidden;
     }
@@ -56,7 +55,6 @@
     &--name {
       font-size: 18px;
       font-weight: bold;
-      margin-bottom: 5px;
     }
 
     &--description {
