@@ -7,6 +7,7 @@ import {
   getFirestore,
   setDoc
 } from 'firebase/firestore'
+import { Skill } from '../interfaces/types'
 
 // Set up our config for Firebase
 // Define these in your env file, the values can be found in the project settings page on Firebase
@@ -87,7 +88,7 @@ export async function setUserData(
     github: string
     linkedin: string
     portfolioLink: string
-    skills: string[]
+    skills: Skill[]
   }
 ) {
   try {

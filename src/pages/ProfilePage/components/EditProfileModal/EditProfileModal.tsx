@@ -35,10 +35,10 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
   const [github, setGithub] = useState('')
   const [linkedin, setLinkedin] = useState('')
   const [portfolioLink, setPortfolioLink] = useState('')
-  const [ownSkills, setOwnSkills] = useState<Skill[]>(userData.own_skills)
+  const [ownSkills, setOwnSkills] = useState<Skill[]>([])
   const [newSkill, setNewSkill] = useState<Skill>({
-    skill_name: '',
-    years_experience: 0
+    skillName: '',
+    yearsExperience: 0
   })
   const [projects, setProjects] = useState<ProjectDetails[]>(
     userData.projects || []
@@ -52,29 +52,37 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
   useEffect(() => {
     setFirstName(userData.firstName)
     setLastName(userData.lastName)
-    setTitle(userData.title)
+    setTitle(userData.discipline)
     setBio(userData.bio)
+    setTagline(userData.tagline)
     setGithub(userData.github)
     setLinkedin(userData.linkedin)
     setPortfolioLink(userData.portfolioLink)
-    setOwnSkills(userData.own_skills)
+    setOwnSkills(userData.skills)
     // setProjects(userData.projects)
   }, [userData])
 
   // Add skill handler
 
   const handleAddSkill = () => {
-    if (!newSkill.skill_name) {
+    console.log('New Skill', newSkill)
+    if (!newSkill.skillName) {
       toast.warning('Please select a skill.')
       return
     }
 
-    if (ownSkills.some(skill => skill.skill_name === newSkill.skill_name)) {
+    if (ownSkills.some(skill => skill.skillName === newSkill.skillName)) {
       toast.warning('This skill is already added.')
     } else {
-      const skillToAdd = { ...newSkill, years_experience: yearsExperience }
+      const skillToAdd = {
+        skillName: newSkill.skillName,
+        yearsExperience: yearsExperience
+      }
       setOwnSkills([...ownSkills, skillToAdd])
-      setNewSkill({ skill_name: '', years_experience: 0 })
+
+      console.log('Skill to Add', skillToAdd)
+
+      setNewSkill({ skillName: '', yearsExperience: 0 })
       setYearsExperience(1)
       toast.success('Skill added successfully.')
     }
@@ -122,15 +130,15 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
       email: userData.email,
       tagline: tagline,
       discipline: userData.discipline,
-      bio: bio,
-      skills: ownSkills.map(skill => skill.skill_name),
+      bio: bio || '',
+      skills: ownSkills,
       profilePhoto: userData.profilePhoto,
-      github: github,
-      linkedin: linkedin,
-      portfolioLink: portfolioLink,
-      location: userData.location,
-      industry: userData.industry,
-      expertise: userData.expertise
+      github: github || '',
+      linkedin: linkedin || '',
+      portfolioLink: portfolioLink || '',
+      location: userData.location || '',
+      industry: userData.industry || '',
+      expertise: userData.expertise || ''
     }
     try {
       await setUserData(userData.id, {
@@ -138,11 +146,11 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
         lastName,
         tagline,
         title,
-        bio,
-        github,
-        linkedin,
-        portfolioLink,
-        skills: ownSkills.map(skill => skill.skill_name)
+        bio: bio || '',
+        github: github || '',
+        linkedin: linkedin || '',
+        portfolioLink: portfolioLink || '',
+        skills: ownSkills
       })
       onSave(updatedData)
       toast.success('Profile Updated.')
@@ -208,7 +216,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
             })}
           {activeTab === 'skills' &&
             showSkills({
-              ownSkills,
+              ownSkills: ownSkills || [],
               setOwnSkills,
               newSkill,
               setNewSkill,

@@ -126,9 +126,9 @@ export const showSkills = (props: any) => {
                 <label className="edit-modal__label">Skill</label>
                 <input
                   type="text"
-                  name="skill_name"
+                  name="skillName"
                   className="edit-modal__input-skill"
-                  value={skill.skill_name}
+                  value={skill.skillName}
                   readOnly
                 />
               </div>
@@ -136,9 +136,9 @@ export const showSkills = (props: any) => {
                 <label className="edit-modal__label">Years of Experience</label>
                 <input
                   type="text"
-                  name="years_experience"
+                  name="yearsExperience"
                   className="edit-modal__input-skill"
-                  value={skill.years_experience}
+                  value={skill.yearsExperience}
                   readOnly
                 />
               </div>
@@ -158,9 +158,9 @@ export const showSkills = (props: any) => {
           <div className="edit-modal__add-skill">
             <select
               className="edit-modal__select"
-              value={newSkill.skill_name}
+              value={newSkill.skillName}
               onChange={e =>
-                setNewSkill({ ...newSkill, skill_name: e.target.value })
+                setNewSkill({ ...newSkill, skillName: e.target.value })
               }
             >
               <option value="">Select a skill</option>
@@ -174,7 +174,7 @@ export const showSkills = (props: any) => {
             </select>
             <select
               className="edit-modal__select"
-              name="years_experience"
+              name="yearsExperience"
               value={yearsExperience}
               onChange={e => setYearsExperience(Number(e.target.value))}
             >

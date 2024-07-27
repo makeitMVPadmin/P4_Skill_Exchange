@@ -5,13 +5,14 @@ import ProfileCard from './components/ProfileCard/ProfileCard'
 import BioCard from './components/BioCard/BioCard'
 import SkillsCard from './components/SkillsCard/SkillsCard'
 import ProjectsCard from './components/ProjectsCard/ProjectsCard'
-// import projectData from '../../data/dummy_data_extended.json'
+import projectData from '../../data/dummy_data_extended.json'
 import { getUserData } from '@/src/utils/Firebase'
 import { UserData } from '@/src/interfaces/types'
 
 function ProfilePage() {
   const [userData, setUserData] = useState<UserData>({})
-  const [loading, setLoading] = useState(true)
+
+  const firstUserProjects = projectData.users[0]?.projects ?? []
 
   const userID = 'UID99993230'
 
@@ -31,8 +32,6 @@ function ProfilePage() {
       } catch (err) {
         console.log('Error fetching user data:', err)
         toast.error(`Failed to fetch user data: ${(err as Error).message}`)
-      } finally {
-        setLoading(false)
       }
     }
 
@@ -60,16 +59,16 @@ function ProfilePage() {
           </div>
           <div className="profile__secondwrap">
             <div className="profile__second-inner">
-              {/* <div className="profile__bio-card">
+              <div className="profile__bio-card">
                 {userData && <BioCard bio={userData.bio} />}
-              </div> */}
+              </div>
               <div className="profile__skills-card">
-                {userData && <SkillsCard skills={userData.interests ?? []} />}
+                {userData && <SkillsCard skills={userData.skills ?? []} />}
               </div>
             </div>
-            {/* <div className="profile__projects">
-              <ProjectsCard projects={projects} />
-            </div> */}
+            <div className="profile__projects">
+              <ProjectsCard projects={firstUserProjects} />
+            </div>
           </div>
         </div>
       </div>

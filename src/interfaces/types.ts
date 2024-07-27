@@ -21,6 +21,18 @@ export interface UserData {
   experience: number
   expertise: string
   interests: string[]
+  skills: Skill[]
+}
+
+export interface UserUpdateData {
+  firstName: string
+  lastName: string
+  tagline: string
+  title: string
+  bio: string
+  github: string
+  linkedin: string
+  portfolioLink: string
   skills: string[]
 }
 
@@ -34,8 +46,8 @@ export interface ProjectDetails {
 }
 
 export interface Skill {
-  skill_name: string
-  years_experience: number
+  skillName: string
+  yearsExperience: number
 }
 
 // export interface UserData {
