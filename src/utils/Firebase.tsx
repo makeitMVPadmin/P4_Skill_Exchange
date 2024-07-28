@@ -1,6 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { collection, doc, getDoc, getDocs, getFirestore, query, where } from "firebase/firestore";
-
+import { collection, doc, getDoc, getDocs, getFirestore, updateDoc, query, where } from "firebase/firestore";
 // Set up our config for Firebase
 // Define these in your env file, the values can be found in the project settings page on Firebase
 const firebaseConfig = {
@@ -50,6 +49,16 @@ export async function getUserData(userID: string) {
     console.log(userDoc.data());
 }
 
+// Edit user data
+export async function editUserData(userID: string, newData: Record<string, any>) {
+    const userRef = doc(db, "Users", userID);
+    try {
+        await updateDoc(userRef, newData);
+        console.log("User data updated successfully");
+    } catch (error) {
+        console.error("Error updating user data: ", error);
+    }
+}
 // Get all jobs applied to by a specific user
 export async function getUserJobs(userId: string): Promise<string[]> {
   const userJobsRef = collection(db, "userJobsApplied");
