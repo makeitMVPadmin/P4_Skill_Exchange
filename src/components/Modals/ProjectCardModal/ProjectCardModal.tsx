@@ -1,26 +1,43 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import MascotImage from "@/public/icons/MVP mascot.svg";
+import { getAllTasks, getUserDataForSpecificTask } from '@/src/utils/Firebase';
 
+// Define prop types
 interface PropTypes {
   isProjectCardModalOpen: boolean;
   onClose: () => void;
   onViewMoreProjects: () => void;
-  children?: React.ReactNode
+  jobId: string;
+  taskTitle: string;
+  children?: React.ReactNode;
 }
 
-const ProjectCardModal: React.FC<PropTypes> = ({ isProjectCardModalOpen, onClose, onViewMoreProjects }) => {
+const ProjectCardModal: React.FC<PropTypes> = ({
+  isProjectCardModalOpen,
+  onClose,
+  onViewMoreProjects,
+  jobId,
+  taskTitle,
+}) => {
   const [answers, setAnswers] = useState<any[]>([
-    { id: 1, answerOne: "Sample answer one", answerTwo: "Sample answer two" }
+    { id: 1, answerOne: 'Sample answer one', answerTwo: 'Sample answer two' },
   ]);
   const [answerOne, setAnswerOne] = useState<string>('');
   const [answerTwo, setAnswerTwo] = useState<string>('');
   const [isReviewMode, setIsReviewMode] = useState<boolean>(false);
   const [submissionComplete, setSubmissionComplete] = useState<boolean>(false);
 
+  useEffect(() => {
+    if (jobId) {
+      getUserDataForSpecificTask(jobId).catch(console.error);
+    }
+  }, [jobId]);
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!answerOne || !answerTwo) {
-      alert("Please answer all the questions.");
-      // TODO: replace the alert in the future
+      alert('Please answer all the questions.');
       return;
     }
     setIsReviewMode(true);
@@ -36,22 +53,20 @@ const ProjectCardModal: React.FC<PropTypes> = ({ isProjectCardModalOpen, onClose
     try {
       setAnswers((oldList) => {
         const answers = [...oldList, item];
-        // TODO: saving to the localStorage will be replaced with saving to the backend.
-        localStorage.setItem("answers", JSON.stringify(answers));
+        localStorage.setItem('answers', JSON.stringify(answers));
         return answers;
       });
-      setAnswerOne("");
-      setAnswerTwo("");
+      setAnswerOne('');
+      setAnswerTwo('');
       setIsReviewMode(false);
       setSubmissionComplete(true);
     } catch (error) {
-      console.error("Error saving to localStorage:", error);
-      // TODO: Add error handling logic (e.g., display an error message to the user)
+      console.error('Error saving to localStorage:', error);
     }
   };
 
   useEffect(() => {
-    const itemsFromLocalStorage = localStorage.getItem("answers");
+    const itemsFromLocalStorage = localStorage.getItem('answers');
     if (itemsFromLocalStorage) {
       const parsedItemsFromLocalStorage = JSON.parse(itemsFromLocalStorage);
       setAnswers(parsedItemsFromLocalStorage);
@@ -65,7 +80,7 @@ const ProjectCardModal: React.FC<PropTypes> = ({ isProjectCardModalOpen, onClose
           Question 1
         </label>
         <input
-          className="w-full px-3 py-2 border border-gray-300 rounded"
+          className="w-full px-3 py-2 border-2 border-black rounded shadow-sm shadow-gray-500 text-sm font-light"
           type="text"
           name="question1"
           value={answerOne}
@@ -77,7 +92,7 @@ const ProjectCardModal: React.FC<PropTypes> = ({ isProjectCardModalOpen, onClose
           Question 2
         </label>
         <input
-          className="w-full px-3 py-2 border border-gray-300 rounded"
+          className="w-full px-3 py-2 border-2 border-black rounded shadow-sm shadow-gray-500"
           type="text"
           name="question2"
           value={answerTwo}
@@ -85,18 +100,8 @@ const ProjectCardModal: React.FC<PropTypes> = ({ isProjectCardModalOpen, onClose
         />
       </div>
       <div className="flex justify-end space-x-4">
-        <button
-          className="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300"
-          type="button"
-          onClick={onClose}
-        >
-          Back
-        </button>
-        <button
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          type="submit"
-        >
-          Review
+        <button className="px-4 py-2 bg-blue-900 text-white rounded hover:bg-blue-700" type="submit">
+          Next: Review
         </button>
       </div>
     </form>
@@ -118,14 +123,14 @@ const ProjectCardModal: React.FC<PropTypes> = ({ isProjectCardModalOpen, onClose
       </div>
       <div className="flex justify-end space-x-4">
         <button
-          className="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300"
+          className="px-4 py-2 bg-white text-gray-700 border border-black rounded hover:bg-gray-100"
           type="button"
           onClick={() => setIsReviewMode(false)}
         >
           Back
         </button>
         <button
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          className="px-4 py-2 bg-blue-900 text-white rounded hover:bg-blue-700"
           type="button"
           onClick={handleFinalSubmit}
         >
@@ -139,56 +144,37 @@ const ProjectCardModal: React.FC<PropTypes> = ({ isProjectCardModalOpen, onClose
     <div className="text-center">
       <h2 className="text-xl font-semibold">Application submitted</h2>
       <div className="flex justify-center items-center my-4">
-        <svg
-          className="w-12 h-12 text-green-500"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M5 13l4 4L19 7"
-          ></path>
-        </svg>
+        <img src={MascotImage} alt="success image" />
       </div>
-      <p className="mb-4">Your application to "task name" has been submitted</p>
+      <p className="mb-4 text-sm">Your application to "{taskTitle}" has been submitted</p>
       <div className="flex justify-center space-x-4">
-        <button
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          type="button"
-          onClick={onViewMoreProjects}
+        <Link
+          to="/"
+          className="px-4 py-2 bg-white text-gray-700 border border-black rounded hover:bg-gray-100"
         >
           View more projects
-        </button>
-        <button
-          className="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300"
-          type="button"
-          onClick={onClose}
+        </Link>
+        <Link
+          to="/profile"
+          className="px-4 py-2 bg-blue-900 text-white rounded hover:bg-blue-600 text-center"
         >
           Go to profile
-        </button>
+        </Link>
       </div>
     </div>
   );
 
   return (
     <div
-      className={`fixed inset-0 flex justify-center items-center transition-colors ${
-        isProjectCardModalOpen ? 'visible bg-black/20' : 'invisible'
-      }`}
+      className={`fixed inset-0 flex justify-center items-center transition-colors backdrop-blur-sm ${isProjectCardModalOpen ? 'visible bg-black/40' : 'invisible'}`}
       onClick={onClose}
     >
       <div
-        className={`bg-white rounded-lg shadow p-6 transition-all max-w-md ${
-          isProjectCardModalOpen ? 'scale-100 opacity-100' : 'scale-110 opacity-0'
-        }`}
+        className={`bg-white rounded-lg shadow p-6 border border-black transition-all max-w-xl ${isProjectCardModalOpen ? 'scale-100 opacity-100' : 'scale-110 opacity-0'}`}
         onClick={(e) => e.stopPropagation()}
       >
         <button
-          className="absolute top-2 right-2 py-1 px-2 border border-neutral-200 rounded-md text-gray-400 bg-white hover:text-grey-600"
+          className="absolute top-2 right-2 py-1 px-2 rounded-md text-gray-500 bg-white hover:text-grey-600"
           onClick={(e) => {
             e.stopPropagation();
             onClose();
@@ -201,9 +187,9 @@ const ProjectCardModal: React.FC<PropTypes> = ({ isProjectCardModalOpen, onClose
             renderSubmissionComplete()
           ) : (
             <>
-              <h2 className="text-xl font-semibold">Apply to "task name"</h2>
-              <section className="text-gray-700">
-                Your skills and your project information from your profile will be included with your application.
+              <h2 className="text-lg font-medium">Apply to: {taskTitle}</h2>
+              <section className="text-gray-900 bg-blue-300 p-2 text-sm rounded-md">
+                Your profile information will be automatically included with your application.
               </section>
               <h3 className="text-lg font-medium">Additional Questions</h3>
               {isReviewMode ? renderReview() : renderForm()}
