@@ -9,20 +9,19 @@ type SkillsStepProps = {
 };
 
 function SkillsStep({ form }: SkillsStepProps) {
-  const [formSkills, setFormSkills] = useState<string[]>([])
-  const [skillItem, setSkillItem] = useState('');  
+  const [skillItemInputField, setSkillItemInputField] = useState('');  
 
-  form.values.skills = formSkills
 
-  const addFormSkill = () => {
-    if (skillItem && !formSkills.includes(skillItem)) {
-      setFormSkills([...formSkills, skillItem]);
-      setSkillItem("");
-    }
+ const addFormSkill = () => {
+  if (skillItemInputField && !form.values.skills.includes(skillItemInputField)) {
+    const updatedSkills = [...form.values.skills, skillItemInputField];
+    form.setFieldValue("skills", updatedSkills);
+    setSkillItemInputField("");  // or skillItemInputFieldInputField
   }
+}
 
   const handleNewSkill = (event: any) => {
-    setSkillItem(event.target.value)
+    setSkillItemInputField(event.target.value)
   }
 
   return (  
@@ -45,7 +44,7 @@ function SkillsStep({ form }: SkillsStepProps) {
             <div className="form-item__skills-input">
               <input 
                 type="text" 
-                value={skillItem}
+                value={skillItemInputField}
                 onChange={handleNewSkill}
                 name="skills"
               />
@@ -58,7 +57,7 @@ function SkillsStep({ form }: SkillsStepProps) {
             <p>Choose up to 2-3 skills for the project</p>
               <div className="form-item__skills">
                 { form.values.skills?.map((skill: string, index: number) => (
-                    <Tag text={skill} />
+                    <Tag text={skill} key={index} />
                 ))}
               </div>
           </div>
