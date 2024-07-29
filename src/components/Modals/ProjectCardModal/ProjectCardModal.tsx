@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { db } from '@/src/utils/Firebase';
 interface PropTypes {
   isProjectCardModalOpen: boolean;
   onClose: () => void;
   onViewMoreProjects: () => void;
+  jobId: string;
   children?: React.ReactNode
 }
 
@@ -16,6 +18,7 @@ const ProjectCardModal: React.FC<PropTypes> = ({ isProjectCardModalOpen, onClose
   const [isReviewMode, setIsReviewMode] = useState<boolean>(false);
   const [submissionComplete, setSubmissionComplete] = useState<boolean>(false);
 
+  
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!answerOne || !answerTwo) {

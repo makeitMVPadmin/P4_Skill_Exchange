@@ -56,6 +56,7 @@ function MarketplaceTaskDetail() {
           <ProjectCardModal
             isProjectCardModalOpen={isProjectCardModalOpen}
             onClose={() => setIsProjectCardModalOpen(false)}
+            // jobId={id}
             onViewMoreProjects={() => {}}
           >
             <h1 className="pcmodal__maintitle">Application for {jobDetail.name}</h1>
