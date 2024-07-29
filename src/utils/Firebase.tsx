@@ -48,21 +48,14 @@ export async function createNewJob(userID: string, title: string, description: s
             userID: userID,
             title: title,
             description: description,
-            jobSkills: jobSkills,
-            createdAt: new Date()
+            jobSkills: jobSkills
         };
         
         const docRef = await addDoc(collection(db, "Jobs"), newJob);
-        const returnedJob = await getDoc(docRef);
-
-        if (returnedJob.exists()) {
-            console.log("Job created with ID: ", docRef.id);
-            return { id: docRef.id, ...returnedJob.data() };
-        } else {
-            throw new Error("No such document!");
-        } } catch (e) {
+        console.log("Document written with ID: ", docRef.id);
+        return docRef.id;
+      } catch (e) {
         console.error("Error adding document: ", e);
-        throw e;
     }
 }
 
