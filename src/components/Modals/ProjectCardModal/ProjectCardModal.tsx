@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { db } from '@/src/utils/Firebase';
+import MascotImage from "../../../styles/assets/icons/MVP mascot.svg";
+// import { db } from '@/src/utils/Firebase';
 interface PropTypes {
   isProjectCardModalOpen: boolean;
   onClose: () => void;
@@ -144,7 +145,7 @@ const ProjectCardModal: React.FC<PropTypes> = ({ isProjectCardModalOpen, onClose
     <div className="text-center">
       <h2 className="text-xl font-semibold">Application submitted</h2>
       <div className="flex justify-center items-center my-4">
-        <svg
+        {/* <svg
           className="w-12 h-12 text-green-500"
           fill="none"
           stroke="currentColor"
@@ -157,7 +158,8 @@ const ProjectCardModal: React.FC<PropTypes> = ({ isProjectCardModalOpen, onClose
             strokeWidth="2"
             d="M5 13l4 4L19 7"
           ></path>
-        </svg>
+        </svg> */}
+        <img src={MascotImage} alt="success image" />
       </div>
       <p className="mb-4 text-sm">Your application to "task name" has been submitted</p>
       {/* task name should be replaced by the real task name from be */}
