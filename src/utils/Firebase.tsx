@@ -16,18 +16,27 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 // Initialize Cloud Firestore and get a reference to the service
-const db = getFirestore(app);
+export const db = getFirestore(app);
 
 
 
 // Get all the jobs from the Jobs table
+// export async function getAllTasks() {
+//     const data = await getDocs(collection(db, "Jobs"));
+//     data.docs.map((doc) => {
+//         console.log(doc.id)
+//         console.log(doc.data())
+//     });
+// }
 export async function getAllTasks() {
-    const data = await getDocs(collection(db, "Jobs"));
-    data.docs.map((doc) => {
-        console.log(doc.id)
-        console.log(doc.data())
-    });
+  const data = await getDocs(collection(db, "Jobs"));
+  const tasks = data.docs.map((doc) => {
+    console.log(doc.data().title)
+      return { id: doc.id, ...doc.data() };
+  });
+  return tasks;
 }
+
 
 // Get user info for the user who created a job given the job ID
 export async function getUserDataForSpecificTask(jobID: string) {
