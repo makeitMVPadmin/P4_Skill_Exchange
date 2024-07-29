@@ -7,7 +7,7 @@ import ProjectCardModal from "@/src/components/Modals/ProjectCardModal/ProjectCa
 import Tag from "@/src/components/Tag/Tag";
 import Button from "@/src/components/SeButton/SeButton";
 import TaskPosterCard from "@/src/pages/MarketPlacePage/components/TaskPosterCard/TaskPosterCard";
-
+import { getAllTasks } from '@/src/utils/Firebase'; 
 import { JobDetail } from "@/src/types";
 
 import "./MarketPlaceTaskDetail.scss";
@@ -45,6 +45,9 @@ function MarketplaceTaskDetail() {
           <div className="task__detail-header__favorite">
             <img src={HeartIcon} alt="header__favorite-icon" />
           </div>
+          <button onClick={() => getAllTasks().catch(console.error)}>
+        Fetch All Tasks
+      </button>
           <Button 
             text="apply now" 
             onClick={() => setIsProjectCardModalOpen(true)}

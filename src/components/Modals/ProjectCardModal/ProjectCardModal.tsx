@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+import { Link } from 'react-router-dom';
 interface PropTypes {
   isProjectCardModalOpen: boolean;
   onClose: () => void;
@@ -63,9 +63,10 @@ const ProjectCardModal: React.FC<PropTypes> = ({ isProjectCardModalOpen, onClose
       <div>
         <label className="block text-gray-700" htmlFor="question1">
           Question 1
+          {/* should be fetched from be */}
         </label>
         <input
-          className="w-full px-3 py-2 border border-gray-300 rounded"
+          className="w-full px-3 py-2 border-2 border-black rounded shadow-sm shadow-gray-500 text-sm font-light"
           type="text"
           name="question1"
           value={answerOne}
@@ -75,9 +76,10 @@ const ProjectCardModal: React.FC<PropTypes> = ({ isProjectCardModalOpen, onClose
       <div>
         <label className="block text-gray-700" htmlFor="question2">
           Question 2
+          {/* should be fetched from be */}
         </label>
         <input
-          className="w-full px-3 py-2 border border-gray-300 rounded"
+          className="w-full px-3 py-2 border-2 border-black rounded shadow-sm shadow-gray-500"
           type="text"
           name="question2"
           value={answerTwo}
@@ -85,18 +87,18 @@ const ProjectCardModal: React.FC<PropTypes> = ({ isProjectCardModalOpen, onClose
         />
       </div>
       <div className="flex justify-end space-x-4">
-        <button
+        {/* <button
           className="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300"
           type="button"
           onClick={onClose}
         >
           Back
-        </button>
+        </button> */}
         <button
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          className="px-4 py-2 bg-blue-900 text-white rounded hover:bg-blue-700"
           type="submit"
         >
-          Review
+          Next: Review
         </button>
       </div>
     </form>
@@ -118,14 +120,14 @@ const ProjectCardModal: React.FC<PropTypes> = ({ isProjectCardModalOpen, onClose
       </div>
       <div className="flex justify-end space-x-4">
         <button
-          className="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300"
+          className="px-4 py-2 bg-white text-gray-700 border border-black rounded hover:bg-gray-100"
           type="button"
           onClick={() => setIsReviewMode(false)}
         >
           Back
         </button>
         <button
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          className="px-4 py-2 bg-blue-900 text-white rounded hover:bg-blue-700"
           type="button"
           onClick={handleFinalSubmit}
         >
@@ -154,22 +156,21 @@ const ProjectCardModal: React.FC<PropTypes> = ({ isProjectCardModalOpen, onClose
           ></path>
         </svg>
       </div>
-      <p className="mb-4">Your application to "task name" has been submitted</p>
+      <p className="mb-4 text-sm">Your application to "task name" has been submitted</p>
+      {/* task name should be replaced by the real task name from be */}
       <div className="flex justify-center space-x-4">
-        <button
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          type="button"
-          onClick={onViewMoreProjects}
+        <Link
+          to="/"
+          className="px-4 py-2 bg-white text-gray-700 border border-black rounded hover:bg-gray-100"
         >
           View more projects
-        </button>
-        <button
-          className="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300"
-          type="button"
-          onClick={onClose}
+        </Link>
+        <Link
+          to="/profile"
+          className="px-4 py-2 bg-blue-900 text-white rounded hover:bg-blue-600 text-center"
         >
           Go to profile
-        </button>
+        </Link>
       </div>
     </div>
   );
@@ -182,13 +183,13 @@ const ProjectCardModal: React.FC<PropTypes> = ({ isProjectCardModalOpen, onClose
       onClick={onClose}
     >
       <div
-        className={`bg-white rounded-lg shadow p-6 transition-all max-w-md ${
-          isProjectCardModalOpen ? 'scale-100 opacity-100' : 'scale-110 opacity-0'
-        }`}
+        className={`bg-white rounded-lg shadow p-6 border border-black transition-all max-w-x1 ${
+        isProjectCardModalOpen ? 'scale-100 opacity-100' : 'scale-110 opacity-0'
+      }`}
         onClick={(e) => e.stopPropagation()}
       >
         <button
-          className="absolute top-2 right-2 py-1 px-2 border border-neutral-200 rounded-md text-gray-400 bg-white hover:text-grey-600"
+          className="absolute top-2 right-2 py-1 px-2 rounded-md text-gray-500 bg-white hover:text-grey-600"
           onClick={(e) => {
             e.stopPropagation();
             onClose();
@@ -201,9 +202,10 @@ const ProjectCardModal: React.FC<PropTypes> = ({ isProjectCardModalOpen, onClose
             renderSubmissionComplete()
           ) : (
             <>
-              <h2 className="text-xl font-semibold">Apply to "task name"</h2>
-              <section className="text-gray-700">
-                Your skills and your project information from your profile will be included with your application.
+              <h2 className="text-lg font-medium">Apply to: "task name"</h2> 
+              {/* task name should be fetched from the project info */}
+              <section className="text-gray-900 bg-blue-300 p-2 text-sm rounded-md">
+                Your profile information will be automatically included with your application.
               </section>
               <h3 className="text-lg font-medium">Additional Questions</h3>
               {isReviewMode ? renderReview() : renderForm()}
