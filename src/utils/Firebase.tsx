@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { collection, doc, getDoc, getDocs, getFirestore, updateDoc, query, where } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, getFirestore, updateDoc, query, where, addDoc, Timestamp } from "firebase/firestore";
 // Set up our config for Firebase
 // Define these in your env file, the values can be found in the project settings page on Firebase
 const firebaseConfig = {
@@ -90,4 +90,17 @@ export async function getUserJobs(userId: string): Promise<string[]> {
   const jobInfos = await Promise.all(jobInfoPromises);
   // console.log(`Job information: ${jobInfos}`); // Debug log
   return jobInfos.filter(info => info !== null);
+}
+
+export async function submitUserForJob(userId: string, jobId: string, questionAnswers: string[]) { 
+  try { 
+    const docRef = await addDoc(collection(db, "userJobsApplied"),{ 
+      userId: userId,
+      jobId: jobId,
+      questionAnswers: questionAnswers
+    });
+    console.log("Document written with ID: ", docRef.id); 
+  } catch (e) { 
+    console.error("Error adding document: ", e);
+  }
 }
