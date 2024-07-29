@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import MascotImage from "@/src/styles/assets/icons/MVP mascot.svg";
+import MascotImage from "@/public/icons/MVP mascot.svg";
 import { getAllTasks, getUserDataForSpecificTask } from '@/src/utils/Firebase';
 
 // Define prop types
