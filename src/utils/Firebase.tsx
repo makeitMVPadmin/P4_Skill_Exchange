@@ -41,21 +41,3 @@ export async function getUserDataForSpecificTask(jobID: string) {
 
     console.log(userDoc.data());
 }
-
-export async function createNewJob(userID: string, title: string, description: string, jobSkills: string[]) {
-    try {
-        const newJob = {
-            userID: userID,
-            title: title,
-            description: description,
-            jobSkills: jobSkills
-        };
-        
-        const docRef = await addDoc(collection(db, "Jobs"), newJob);
-        console.log("Document written with ID: ", docRef.id);
-        return docRef.id;
-      } catch (e) {
-        console.error("Error adding document: ", e);
-    }
-}
-
