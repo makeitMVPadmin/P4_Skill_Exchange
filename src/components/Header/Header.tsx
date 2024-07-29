@@ -155,8 +155,7 @@ function Header() {
           </ul>
         </nav>
       </div>
-      <div className="container mx-auto px-4 py-2 flex justify-center items-center space-x-4">
-        {/* TODO: Make a reusable button */}
+      {/* <div className="container mx-auto px-4 py-2 flex justify-center items-center space-x-4">
         <button
           onClick={() => handleTabClick('provider')}
           className={providerButtonClass}
@@ -169,7 +168,7 @@ function Header() {
         >
           As a Talent Seeker
         </button>
-      </div>
+      </div> */}
     </header>
   )
 }
