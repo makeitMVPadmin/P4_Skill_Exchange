@@ -2,6 +2,10 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import classNames from 'classnames'
 import '../../styles/index.scss'
+import Home from '../../../public/icons/Home.svg'
+import Communities from '../../../public/icons/Community.svg'
+import Events from '../../../public/icons/Events.svg'
+import SkillShare from '../../../public/icons/Skill share.svg'
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -157,7 +161,7 @@ function Header() {
       </div>
       <div className="container mx-auto px-4 py-2 flex justify-center items-center space-x-4">
         {/* TODO: Make a reusable button */}
-        <button
+        {/* <button
           onClick={() => handleTabClick('provider')}
           className={providerButtonClass}
         >
@@ -168,7 +172,7 @@ function Header() {
           className={seekerButtonClass}
         >
           As a Talent Seeker
-        </button>
+        </button> */}
       </div>
     </header>
   )
