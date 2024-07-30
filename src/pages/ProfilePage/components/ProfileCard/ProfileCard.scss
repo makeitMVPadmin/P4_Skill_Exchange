@@ -24,11 +24,11 @@
     flex-direction: column;
   }
   &__picture {
-    width: 15rem;
-    height: 15rem;
+    width: 13rem;
+    height: 13rem;
     max-width: 100%;
     max-height: 100%;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
     background-color: grey;
     border-radius: 50%;
   }
@@ -46,8 +46,13 @@
   }
 
   &__title,
-  &__email {
+  &__email,
+  &__linkedin,
+  &__github,
+  &__portfolio {
     color: $MVP-black;
+    display: flex;
+    gap: 0.5rem;
   }
   &__tagline {
     text-align: center;
@@ -56,9 +61,14 @@
     color: $MVP-black;
   }
 
+  &__logo {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
   &__social-links {
     width: 90%;
-    // height: 8rem;
+
     background-color: $MVP-white;
     border-radius: 0.5rem;
     padding: 1rem 1rem;

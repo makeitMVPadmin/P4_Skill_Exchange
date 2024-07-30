@@ -2,6 +2,10 @@ import { useState } from 'react'
 import './ProfileCard.scss'
 import EditProfileModal from '../EditProfileModal/EditProfileModal'
 import EditButton from '../EditButton/EditButton'
+import EmailLogo from '@/src/assets/Icons/email.png'
+import GithubLogo from '@/src/assets/Icons/github.png'
+import LinkedInLogo from '@/src/assets/Icons/linkedin.png'
+import PortfolioLogo from '@/src/assets/Icons/portfolio.png'
 import { UserData } from '@/src/interfaces/types'
 
 interface ProfileCardProps {
@@ -52,11 +56,15 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
         <h3 className="profile-card__tagline">{tagline}</h3>
         {/* <div className="profile-card__details"> */}
         <ul className="profile-card__social-links">
-          <p className="profile-card__email">{email}</p>
+          <p className="profile-card__email">
+            <img className="profile-card__logo" src={`${EmailLogo}`} />
+            {email}
+          </p>
           {linkedin && (
-            <li>
+            <li className="profile-card__linkedin">
+              <img className="profile-card__logo" src={`${LinkedInLogo}`} />
               <a
-                className="profile-card__social-link"
+                className="profile-card__social-link "
                 href={linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -66,9 +74,10 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
             </li>
           )}
           {github && (
-            <li>
+            <li className="profile-card__github">
+              <img className="profile-card__logo" src={`${GithubLogo}`} />
               <a
-                className="profile-card__social-link"
+                className="profile-card__social-link profile-card__github"
                 href={github}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -78,9 +87,10 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
             </li>
           )}
           {portfolioLink && (
-            <li>
+            <li className="profile-card__portfolio">
+              <img className="profile-card__logo" src={`${PortfolioLogo}`} />
               <a
-                className="profile-card__social-link"
+                className="profile-card__social-link "
                 href={portfolioLink}
                 target="_blank"
                 rel="noopener noreferrer"

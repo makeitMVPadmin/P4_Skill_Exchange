@@ -1,6 +1,6 @@
 import avaibleSkills from '@/src/data/availableSkills.json'
-import deleteIcon from '@/src/assets/icons/deleteIcon.png'
-import addIcon from '@/src/assets/icons/addIcon.png'
+import deleteIcon from '@/src/assets/Icons/Close.svg'
+import addIcon from '@/src/assets/Icons/Add.svg'
 import { Skill } from '@/src/interfaces/types'
 
 // Show basic info component

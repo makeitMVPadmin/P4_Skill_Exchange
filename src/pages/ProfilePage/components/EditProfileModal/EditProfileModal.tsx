@@ -240,7 +240,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
           )}
 
           <button type="submit" className="edit-modal__submit-button">
-            Save Changes
+            Update
           </button>
         </form>
       </div>
