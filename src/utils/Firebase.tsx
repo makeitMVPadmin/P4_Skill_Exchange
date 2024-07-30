@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { collection, doc, getDoc, getDocs, getFirestore, updateDoc, query, where, addDoc } from "firebase/firestore";
+
+import { collection, doc, getDoc, getDocs, getFirestore, updateDoc, query, where, addDoc, Timestamp } from "firebase/firestore";
 
 // Set up our config for Firebase
 // Define these in your env file, the values can be found in the project settings page on Firebase
@@ -93,6 +94,20 @@ export async function getUserJobs(userId: string): Promise<string[]> {
   return jobInfos.filter(info => info !== null);
 }
 
+
+export async function submitUserForJob(userId: string, jobId: string, questionAnswers: string[]) { 
+  try { 
+    const docRef = await addDoc(collection(db, "userJobsApplied"),{ 
+      userId: userId,
+      jobId: jobId,
+      questionAnswers: questionAnswers
+    });
+    console.log("Document written with ID: ", docRef.id); 
+    return docRef.id;
+  } catch (e) { 
+    console.error("Error adding document: ", e);
+  }
+
 export async function createNewJob(userID: string, title: string, description: string, jobSkills: string[], header: string, thumbnail: string, jobDuration: number, questions: string[]) {
   if (!userID || !title) {
     console.error ("User ID and title are required to create a new job");
@@ -120,3 +135,4 @@ export async function createNewJob(userID: string, title: string, description: s
     console.error("Error adding document: ", e);
   }
 }
+
