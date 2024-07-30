@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { collection, doc, getDoc, getDocs, getFirestore, updateDoc, query, where } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, getFirestore, updateDoc, query, where, addDoc } from "firebase/firestore";
+
 // Set up our config for Firebase
 // Define these in your env file, the values can be found in the project settings page on Firebase
 const firebaseConfig = {
@@ -90,4 +91,32 @@ export async function getUserJobs(userId: string): Promise<string[]> {
   const jobInfos = await Promise.all(jobInfoPromises);
   // console.log(`Job information: ${jobInfos}`); // Debug log
   return jobInfos.filter(info => info !== null);
+}
+
+export async function createNewJob(userID: string, title: string, description: string, jobSkills: string[], header: string, thumbnail: string, jobDuration: number, questions: string[]) {
+  if (!userID || !title) {
+    console.error ("User ID and title are required to create a new job");
+    return;
+  }
+  
+  try {
+    const newJob = {
+      userID: userID,
+      title: title,
+      description: description,
+      jobSkills: jobSkills,
+      status: 0,
+      header: header,
+      thumbnail: thumbnail,
+      jobDuration: jobDuration,
+      questions: questions
+    };
+    
+    const docRef = await addDoc(collection(db, "Jobs"), newJob);
+    
+    console.log("Document written with ID: ", docRef.id); // Debug log
+    return docRef.id;
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
 }
