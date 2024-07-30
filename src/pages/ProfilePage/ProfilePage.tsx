@@ -1,88 +1,109 @@
-import { useState } from "react";
-import "./ProfilePage.scss";
-import ProfileCard from "./components/ProfileCard/ProfileCard";
-import BioCard from "./components/BioCard/BioCard";
-import SkillsCard from "./components/SkillsCard/SkillsCard";
-import ProjectsCard from "./components/ProjectsCard/ProjectsCard";
-import EditButton from "./components/EditButton/EditButton";
-import EditProfileModal from "./components/EditProfileModal/EditProfileModal";
-import projectData from "../../data/dummy_data_extended.json";
-
-interface Project {
-  project_name: string;
-  project_image: string;
-  project_description: string;
-  project_url: string;
-}
-
-interface UserData {
-  profilephoto_link: string;
-  first_name: string;
-  last_name: string;
-  email: string;
-  user_profile: string;
-  title: string;
-  bio: string;
-  interested_skills: string[];
-  own_skills: string[];
-  projects: Project[];
-}
+import { useState, useEffect } from 'react'
+import { ToastContainer, toast } from 'react-toastify'
+import './ProfilePage.scss'
+import ProfileCard from './components/ProfileCard/ProfileCard'
+import BioCard from './components/BioCard/BioCard'
+import SkillsCard from './components/SkillsCard/SkillsCard'
+import ProjectsCard from './components/ProjectsCard/ProjectsCard'
+import projectData from '../../data/dummy_data_extended.json'
+import { getUserData } from '@/src/utils/Firebase'
+import { UserData } from '@/src/interfaces/types'
 
 function ProfilePage() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [userData, setUserData] = useState<UserData>(projectData.users[0]);
+  const [profileTab, setProfileTab] = useState('profile')
+  const [userData, setUserData] = useState<UserData>({})
 
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const firstUserProjects = projectData.users[0]?.projects ?? []
+
+  const userID = 'UID99993230'
+
+  // getUserData(userID).then(data => console.log('Fetched user data:', data))
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getUserData(userID)
+        if (data !== undefined && data !== null) {
+          console.log('Fetched user data:', data)
+          setUserData(data as UserData)
+        } else {
+          console.log('User not found')
+          toast.error('User not found')
+        }
+      } catch (err) {
+        console.log('Error fetching user data:', err)
+        toast.error(`Failed to fetch user data: ${(err as Error).message}`)
+      }
+    }
+
+    fetchData()
+  }, [userID])
 
   const handleSaveChanges = (updatedData: UserData) => {
-    setUserData(updatedData);
-    closeModal();
-  };
+    setUserData(updatedData)
+  }
 
   return (
-    <div className="profile ">
+    <div className="profile">
       <div className="profile__main">
         <div className="profile__content">
           <div className="profile__firstwrap">
-            <div className="profile__first-innerwrap">
-              <div className="profile__profile-card">
-                <ProfileCard
-                  profilePhotoLink={userData.profilephoto_link}
-                  firstName={userData.first_name}
-                  lastName={userData.last_name}
-                  tagline={userData.user_profile}
-                  title={userData.title}
-                  email={userData.email}
-                />
-              </div>
-              <div className="profile__edit-button">
-                <EditButton onClick={openModal} />
-              </div>
+            {/* <div className="profile__first-innerwrap"> */}
+            <div className="profile__profile-card">
+              <ProfileCard
+                userData={userData}
+                onSaveChanges={handleSaveChanges}
+              />
             </div>
 
-            <div className="profile__bio-card">
-              <BioCard bio={userData.bio} />
-            </div>
+            {/* </div> */}
           </div>
-          <div className="profile__secondwrap">
-            <div className="profile__skills-card">
-              <SkillsCard skills={userData.own_skills} />
+          <div className="profile__folder">
+            <div className="profile__tabs">
+              <button
+                className={`profile__tab ${
+                  profileTab === 'profile' ? 'profile__tab--active' : ''
+                }`}
+                onClick={() => setProfileTab('profile')}
+              >
+                About Me
+              </button>
+              <button
+                className={`profile__tab ${
+                  profileTab === 'projects' ? 'profile__tab--active' : ''
+                }`}
+                onClick={() => setProfileTab('projects')}
+              >
+                My Applications
+              </button>
+              <button
+                className={`profile__tab ${
+                  profileTab === 'settings' ? 'profile__tab--active' : ''
+                }`}
+                onClick={() => setProfileTab('settings')}
+              >
+                My Request
+              </button>
             </div>
-            <div className="profile__projects">
-              <ProjectsCard projects={userData.projects} />
+            <div className="profile__folder-content">
+              <div className="profile__folder-inner">
+                <div className="profile__bio-card">
+                  {userData && <BioCard bio={userData.bio} />}
+                </div>
+                <div className="profile__skills-card">
+                  {userData && <SkillsCard skills={userData.skills ?? []} />}
+                </div>
+              </div>
+              <div className="profile__projects">
+                <ProjectsCard projects={firstUserProjects} />
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <EditProfileModal
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        userData={userData}
-        onSave={handleSaveChanges}
-      />
+      <ToastContainer />
     </div>
-  );
+  )
 }
 
-export default ProfilePage;
+export default ProfilePage

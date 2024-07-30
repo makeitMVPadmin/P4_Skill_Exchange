@@ -1,3 +1,5 @@
+@use "../../../../styles/partials/variables" as *;
+
 .edit-modal {
   position: fixed;
   top: 0;
@@ -7,6 +9,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
   z-index: 1000;
 
   &__overlay {
@@ -23,6 +26,7 @@
     background: #ffffff;
     padding: 2rem;
     border-radius: 0.5rem;
+    border: 0.2rem solid $MVP-black;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
       0 2px 4px -2px rgba(0, 0, 0, 0.1);
     width: 100%;
@@ -30,7 +34,17 @@
     max-height: 90vh;
     overflow-y: auto;
     z-index: 1001;
+
+    &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
+
+    // Hide scrollbar for other browsers
+    -ms-overflow-style: none; // IE and Edge
+    scrollbar-width: none; // Firefox
   }
+
 
   &__close-button {
     position: absolute;
@@ -45,6 +59,38 @@
   &__title {
     font-size: 1.5rem;
     margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  &__tabs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+    border-bottom: 0.1rem solid $MVP-light-gray;
+  }
+
+  &__tab {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-bottom: 0.1rem solid transparent;
+    border-top-left-radius: .5rem;
+    border-top-right-radius: .5rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      border-bottom: 0.2rem solid #3b82f6;
+      background-color: $MVP-dark-blue;
+      color: $MVP-white;
+    }
+
+    &.active {
+      border-bottom: 0.2rem solid #3b82f6;
+      background-color: $MVP-dark-blue;
+      color: $MVP-white;
+    }
   }
 
   &__form {
@@ -58,12 +104,14 @@
 
   &__label {
     font-size: 1rem;
-    margin-bottom: 0.5rem;
+    // margin-bottom: 0.5rem;
     display: block;
   }
 
   &__input,
-  &__textarea {
+  &__textarea,
+  &__input-skill,
+  &__input-years {
     width: 100%;
     padding: 0.5rem;
     border: 1px solid black;
@@ -76,42 +124,104 @@
     height: 100px;
   }
 
-  &__skills,
-  &__experience {
+  &__basic {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+    flex-direction: column;
+  }
 
-    &-item {
-      display: flex;
-      align-items: center;
-      background: #e5e7eb;
-      padding: 0.25rem 0.5rem;
-      border-radius: 0.25rem;
+  &__skills {
+    display: flex;
+    flex-direction: column;
+    // gap: 0.5rem;
+  }
 
-      .edit-modal__delete-button {
-        background: none;
-        border: none;
-        color: #ef4444;
-        cursor: pointer;
-        margin-left: 0.5rem;
-      }
-    }
+  &__skill-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+  }
+
+  &__skill-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    // align-items: center;
+    // padding: 0.25rem 0.5rem;
+    // border-radius: 0.25rem;
+  }
+
+  &__add-skill {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    margin-top: 0.5rem;
+  }
+
+  &__select {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid black;
+    border-radius: 0.25rem;
+    box-sizing: border-box;
+  }
+
+  &__delete-button {
+    cursor: pointer;
+    width: 4rem;
+    height: 2rem;
+    margin-top: 2rem;
   }
 
   &__add-button {
-    padding: 0.5rem 1rem;
+    background: none;
+    border: none;
+    width: 4rem;
+    height: 2rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: $MVP-dark-blue;
+    }
+
+    &:active {
+      background-color: $MVP-dark-blue;
+    }
+  }
+
+  &__portfolio {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  &__portfolio-info {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #d1d5db;
+  }
+
+  &__submit-button {
+    padding: 0.75rem 1.5rem;
     font-size: 1rem;
     font-weight: bold;
     color: #ffffff;
-    background-color: #3b82f6;
+    background-color: $MVP-light-blue;
     border: none;
     border-radius: 0.25rem;
     cursor: pointer;
     transition: background-color 0.3s;
 
     &:hover {
-      background-color: #2563eb;
+      background-color: $MVP-dark-blue;
     }
 
     &:focus {
@@ -120,18 +230,7 @@
     }
 
     &:active {
-      background-color: #1d4ed8;
+      background-color: $MVP-dark-blue;
     }
-  }
-
-  &__submit-button {
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    font-weight: bold;
-    color: #ffffff;
-    background-color: #10b981;
-    border: none;
-    border-radius: 0.25rem;
-    cursor: pointer;
   }
 }

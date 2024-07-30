@@ -1,10 +1,6 @@
 import "./EditButton.scss";
 
-type EditButtonProps = {
-  onClick: () => void;
-};
-
-function EditButton(props: EditButtonProps) {
+function EditButton(props: any) {
   return (
     <button className="edit-button" onClick={props.onClick}>
       Edit Profile
