@@ -1,4 +1,4 @@
-@use "../../../../styles/partials/variables" as *;
+@use '../../../../styles/partials/variables' as *;
 
 .edit-modal {
   position: fixed;
@@ -27,7 +27,8 @@
     padding: 2rem;
     border-radius: 0.5rem;
     border: 0.2rem solid $MVP-black;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
       0 2px 4px -2px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 600px;
@@ -35,16 +36,17 @@
     overflow-y: auto;
     z-index: 1001;
 
-    &::-webkit-scrollbar {
-      width: 0;
-      height: 0;
+    & {
+      ::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+      }
+
+      // Hide scrollbar for other browsers
+      -ms-overflow-style: none; // IE and Edge
+      scrollbar-width: none; // Firefox
     }
-
-    // Hide scrollbar for other browsers
-    -ms-overflow-style: none; // IE and Edge
-    scrollbar-width: none; // Firefox
   }
-
 
   &__close-button {
     position: absolute;
@@ -75,8 +77,8 @@
     font-weight: bold;
     border: none;
     border-bottom: 0.1rem solid transparent;
-    border-top-left-radius: .5rem;
-    border-top-right-radius: .5rem;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
     cursor: pointer;
     transition: background-color 0.3s;
 
