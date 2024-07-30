@@ -95,18 +95,19 @@ export async function getUserJobs(userId: string): Promise<string[]> {
 }
 
 
-export async function submitUserForJob(userId: string, jobId: string, questionAnswers: string[]) { 
-  try { 
-    const docRef = await addDoc(collection(db, "userJobsApplied"),{ 
+export async function submitUserForJob(userId: string, jobId: string, questionAnswers: string[]) {
+  try {
+    const docRef = await addDoc(collection(db, "userJobsApplied"), {
       userId: userId,
       jobId: jobId,
       questionAnswers: questionAnswers
     });
-    console.log("Document written with ID: ", docRef.id); 
+    console.log("Document written with ID: ", docRef.id);
     return docRef.id;
-  } catch (e) { 
+  } catch (e) {
     console.error("Error adding document: ", e);
   }
+}
 
 export async function createNewJob(userID: string, title: string, description: string, jobSkills: string[], header: string, thumbnail: string, jobDuration: number, questions: string[]) {
   if (!userID || !title) {
