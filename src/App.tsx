@@ -1,5 +1,4 @@
 import { Routes, Route } from 'react-router-dom'
-
 import MarketPlace from './pages/MarketPlacePage/MarketPlace.tsx'
 import MarketplaceTaskDetail from './pages/MarketPlacePage/MarketPlaceTaskDetail.tsx'
 import ProfilePage from './pages/ProfilePage/ProfilePage.tsx'
