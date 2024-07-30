@@ -94,6 +94,11 @@ export async function getUserJobs(userId: string): Promise<string[]> {
 }
 
 export async function createNewJob(userID: string, title: string, description: string, jobSkills: string[], header: string, thumbnail: string, jobDuration: number, questions: string[]) {
+  if (!userID || !title) {
+    console.error ("User ID and title are required to create a new job");
+    return;
+  }
+  
   try {
     const newJob = {
       userID: userID,
