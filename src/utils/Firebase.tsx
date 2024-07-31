@@ -1,4 +1,5 @@
 import { initializeApp } from 'firebase/app'
+import { toast } from 'react-toastify'
 
 import {
   collection,
@@ -197,5 +198,42 @@ export async function setUserData(
   } catch (error) {
     console.error('Error updating user data:', error)
     throw error
+  }
+}
+
+export async function createNewProject(
+  userID: string,
+  title: string,
+  thumbnail: string,
+  description: string,
+  url: string
+) {
+  if (!userID || !title) {
+    console.error('User ID and title are required to create a new project')
+    return
+  }
+
+  try {
+    const newProject = {
+      userID: userID,
+      title: title,
+      thumbnail: thumbnail,
+      description: description,
+      url: url
+    }
+
+    const docRef = await addDoc(collection(db, 'Projects'), newProject)
+
+    // console.log('Document written with ID: ', docRef.id) // Debug log
+    return docRef.id
+  } catch (error) {
+      if (error instanceof Error) {
+        const errorMessage = "Failed to create Project. Status: ${error.name}. Message: ${error.message}";
+        toast.error(errorMessage);
+        throw new Error(errorMessage);
+    } else {
+        const genericErrorMessage = "An unexpected error occurred while creating the project";
+        toast.error(genericErrorMessage);
+    }
   }
 }
