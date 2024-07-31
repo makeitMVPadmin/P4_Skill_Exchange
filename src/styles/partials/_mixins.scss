@@ -1,4 +1,4 @@
-@use "./variables" as *;
+@use './variables' as *;
 
 // Breakpoints
 
@@ -63,5 +63,51 @@
 
 // Box Shadow Mixin
 @mixin box-shadow($color) {
-  box-shadow: 0 4px 6px rgba($color, 0.1), 0 1px 7px rgba($color, 0.08);
+  box-shadow:
+    0 4px 6px rgba($color, 0.1),
+    0 1px 7px rgba($color, 0.08);
+}
+
+// Border Mixin
+
+@mixin component-border {
+  border-top: 3px solid $MVP-black;
+  border-right: 5px solid $MVP-black;
+  border-bottom: 5px solid $MVP-black;
+  border-left: 3px solid $MVP-black;
+  border-radius: 8px;
+}
+
+@mixin tab-border {
+  border-top: 3px solid $MVP-black;
+  border-right: 3px solid $MVP-black;
+  border-left: 3px solid $MVP-black;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+@mixin input-border {
+  border-top: 3px solid $MVP-black;
+  border-right: 5px solid $MVP-black;
+  border-bottom: 5px solid $MVP-black;
+  border-left: 3px solid $MVP-black;
+  border-radius: 8px;
+  & {
+    &:focus {
+      border-top: 3px solid $MVP-light-blue;
+      border-right: 5px solid $MVP-light-blue;
+      border-bottom: 5px solid $MVP-light-blue;
+      border-left: 3px solid $MVP-light-blue;
+      border-radius: 8px;
+    }
+  }
+  & {
+    .error {
+      border-top: 3px solid $MVP-red;
+      border-right: 5px solid $MVP-red;
+      border-bottom: 5px solid $MVP-red;
+      border-left: 3px solid $MVP-red;
+      border-radius: 8px;
+    }
+  }
 }

@@ -5,9 +5,8 @@
 
 .skills-card {
   padding: 1rem;
-  border-radius: 0.5rem;
   background-color: $MVP-white;
-  @include box-shadow($MVP-black);
+  @include component-border;
   margin-bottom: 1rem;
 
   &__title {

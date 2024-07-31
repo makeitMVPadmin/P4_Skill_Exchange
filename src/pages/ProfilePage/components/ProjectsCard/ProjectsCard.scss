@@ -6,7 +6,7 @@
 .projects {
   padding: 20px;
   background-color: $MVP-white;
-  @include box-shadow($MVP-black);
+  @include component-border;
 
   &__title {
     font-size: 24px;
@@ -22,17 +22,14 @@
   }
 
   &__project {
+    @include component-border;
     width: 15rem;
     padding-bottom: 0.5rem;
     background-color: $MVP-yellow;
-    @include box-shadow($MVP-black);
-    border-radius: 0.5rem;
     text-align: center;
     // margin-bottom: 20px;
 
     &--thumbnail {
-      border-top-left-radius: 0.5rem;
-      border-top-right-radius: 0.5rem;
       width: 100%;
       height: 9rem;
       margin-bottom: 0.5rem;
