@@ -1,17 +1,16 @@
-@use "../../../../styles/partials/global" as *;
-@use "../../../../styles/partials/variables" as *;
-@use "../../../../styles/partials/typography" as *;
-@use "../../../../styles/partials/mixins" as *;
+@use '../../../../styles/partials/global' as *;
+@use '../../../../styles/partials/variables' as *;
+@use '../../../../styles/partials/typography' as *;
+@use '../../../../styles/partials/mixins' as *;
 
 .bio {
   height: 3.75rem;
   padding: 1rem;
-  border-radius: 0.5rem;
   margin-bottom: 1rem;
   background-color: $MVP-white;
-  @include box-shadow($MVP-black);
   width: 100%;
   height: 100%;
+  @include component-border;
 
   &__title {
     font-size: 1.125rem;
