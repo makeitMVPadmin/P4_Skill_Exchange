@@ -1,4 +1,6 @@
 @use '../../../../styles/partials/variables' as *;
+@use '../../../../styles/partials/typography' as *;
+@use '../../../../styles/partials/mixins' as *;
 
 .edit-modal {
   position: fixed;
@@ -83,13 +85,11 @@
     transition: background-color 0.3s;
 
     &:hover {
-      border-bottom: 0.2rem solid #3b82f6;
       background-color: $MVP-dark-blue;
       color: $MVP-white;
     }
 
     &.active {
-      border-bottom: 0.2rem solid #3b82f6;
       background-color: $MVP-dark-blue;
       color: $MVP-white;
     }
@@ -116,8 +116,9 @@
   &__input-years {
     width: 100%;
     padding: 0.5rem;
-    border: 1px solid black;
-    border-radius: 0.25rem;
+    @include input-border;
+    // border: 1px solid black;
+    // border-radius: 0.25rem;
     box-sizing: border-box;
   }
 
@@ -140,9 +141,14 @@
   &__skill-item {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    padding: 0.25rem 0.5rem;
+    // gap: 1rem;
+    // padding: 0.25rem 0.5rem;
     border-radius: 0.25rem;
+  }
+  &__skill-content {
+    display: flex;
+    width: 100%;
+    gap: 0.5rem;
   }
 
   &__skill-wrapper {
@@ -159,9 +165,10 @@
     align-items: center;
     width: 100%;
     gap: 1rem;
-    padding: 0.25rem 0.5rem;
+    // padding: 0.25rem 0.5rem;
     border-radius: 0.25rem;
     margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
   }
 
   &__select {
@@ -169,35 +176,35 @@
     align-items: center;
     width: 100%;
     padding: 0.5rem;
-    border: 1px solid black;
-    border-radius: 0.25rem;
+    @include component-border;
     box-sizing: border-box;
   }
 
-  &__delete-button {
+  &__delete-skill {
     cursor: pointer;
-    width: 4rem;
-    height: 2rem;
-    margin-top: 2rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    padding-left: 0.2rem;
+    padding-top: 0.8rem;
   }
 
-  &__add-button {
-    background: none;
-    border: none;
-    width: 4rem;
-    height: 2rem;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background-color 0.3s;
+  // &__add-button {
+  //   background: none;
+  //   border: none;
+  //   width: 4rem;
+  //   height: 2rem;
+  //   border-radius: 50%;
+  //   cursor: pointer;
+  //   transition: background-color 0.3s;
 
-    &:hover {
-      background-color: $MVP-dark-blue;
-    }
+  //   &:hover {
+  //     background-color: $MVP-dark-blue;
+  //   }
 
-    &:active {
-      background-color: $MVP-dark-blue;
-    }
-  }
+  //   &:active {
+  //     background-color: $MVP-dark-blue;
+  //   }
+  // }
 
   &__portfolio {
     display: flex;
@@ -205,25 +212,47 @@
     gap: 0.5rem;
   }
 
+  // &__portfolio-item {
+  //   position: relative;
+  //   display: inline-block;
+  //   width: 100%;
+  // }
+
   &__portfolio-info {
+    @include component-border;
     display: flex;
-    flex-direction: column;
-    border: 1px solid #d1d5db;
+    align-items: center;
+    justify-content: space-between;
   }
 
-  &__submit-button {
+  &__project-input {
+    width: 100%;
+    padding-left: 0.5rem;
+    &:focus {
+      outline: none;
+    }
+  }
+  &__edit-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  &__submit-button,
+  &__add-project,
+  &__add-skill-button {
     padding: 0.75rem 1.5rem;
     font-size: 1rem;
     font-weight: bold;
     color: #ffffff;
-    background-color: $MVP-light-blue;
+    background-color: $MVP-dark-blue;
     border: none;
     border-radius: 0.25rem;
     cursor: pointer;
     transition: background-color 0.3s;
 
     &:hover {
-      background-color: $MVP-dark-blue;
+      background-color: $MVP-light-blue;
     }
 
     &:focus {
@@ -232,7 +261,7 @@
     }
 
     &:active {
-      background-color: $MVP-dark-blue;
+      background-color: $MVP-light-blue;
     }
   }
 }

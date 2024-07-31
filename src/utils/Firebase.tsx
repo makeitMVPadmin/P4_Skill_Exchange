@@ -201,6 +201,23 @@ export async function setUserData(
   }
 }
 
+
+// The status field on a Job stores whether the job is open, in progress, or completed.
+// 0 = Open, 1 = In Progress, 2 = Completed
+// Update the status of a job to in progress (status = 1)
+export async function setJobToInProgress(jobID: string) {
+  try {
+    const jobRef = doc(db, 'Jobs', jobID)
+    await updateDoc(jobRef, { status: 1 })
+
+    console.log('Job status updated to in progress')
+    return { message: 'Job status updated to in progress' }
+  } catch (error) {
+    console.error('Error updating job status:', error)
+    throw error
+  }
+}
+
 export async function createNewProject(
   userID: string,
   title: string,

@@ -1,6 +1,7 @@
 import avaibleSkills from '@/src/data/availableSkills.json'
 import deleteIcon from '@/src/assets/Icons/Close.svg'
 import addIcon from '@/src/assets/Icons/Add.svg'
+import editIcon from '@/src/assets/Icons/Edit.svg'
 import { Skill } from '@/src/interfaces/types'
 
 // Show basic info component
@@ -123,29 +124,33 @@ export const showSkills = (props: any) => {
         <div className="edit-modal__skills">
           {ownSkills.map((skill: Skill, index: number) => (
             <div key={index} className="edit-modal__skill-item">
-              <div className="edit-modal__skill-wrapper">
-                <label className="edit-modal__label">Skill</label>
-                <input
-                  type="text"
-                  name="skillName"
-                  className="edit-modal__input-skill"
-                  value={skill.skillName}
-                  readOnly
-                />
-              </div>
-              <div className="edit-modal__skill-wrapper">
-                <label className="edit-modal__label">Years of Experience</label>
-                <input
-                  type="text"
-                  name="yearsExperience"
-                  className="edit-modal__input-skill"
-                  value={skill.yearsExperience}
-                  readOnly
-                />
+              <div className="edit-modal__skill-content">
+                <div className="edit-modal__skill-wrapper">
+                  <label className="edit-modal__label">Skill</label>
+                  <input
+                    type="text"
+                    name="skillName"
+                    className="edit-modal__input-skill"
+                    value={skill.skillName}
+                    readOnly
+                  />
+                </div>
+                <div className="edit-modal__skill-wrapper">
+                  <label className="edit-modal__label">
+                    Years of Experience
+                  </label>
+                  <input
+                    type="text"
+                    name="yearsExperience"
+                    className="edit-modal__input-skill"
+                    value={skill.yearsExperience}
+                    readOnly
+                  />
+                </div>
               </div>
               <button
                 type="button"
-                className="edit-modal__delete-button"
+                className="edit-modal__delete-skill"
                 onClick={() => handleDeleteSkill(index)}
               >
                 <img
@@ -185,14 +190,14 @@ export const showSkills = (props: any) => {
                 </option>
               ))}
             </select>
-            <button
-              type="button"
-              className="edit-modal__add-button"
-              onClick={() => handleAddSkill()}
-            >
-              <img className="edit-modal__add-icon" src={addIcon} alt="Add" />
-            </button>
           </div>
+          <button
+            type="button"
+            className="edit-modal__add-skill-button"
+            onClick={() => handleAddSkill()}
+          >
+            Add Skill
+          </button>
         </div>
       </div>
     </>
@@ -205,26 +210,31 @@ export const showPortfolio = (props: any) => {
   const { projects, handleEditProject, handleAddProject } = props
   return (
     <div className="edit-modal__form-group">
-      <label className="edit-modal__label">Portfolio</label>
+      {/* <label className="edit-modal__label">Portfolio</label> */}
       <div className="edit-modal__portfolio">
         {projects.map((project: any, index: number) => (
           <div key={index} className="edit-modal__portfolio-item">
-            <div className="edit-modal__portfolio-info">
-              <span>{project.project_name}</span>
-              {/* <span>{project.project_description}</span> */}
-            </div>
-            <button
-              type="button"
-              className="edit-modal__edit-button"
-              onClick={() => handleEditProject(index)}
-            >
-              Edit
-            </button>
+            <form className="edit-modal__portfolio-info">
+              <input
+                type="text"
+                name="projectName"
+                className="edit-modal__project-input"
+                value={project.project_name}
+                readOnly
+              />
+              <button
+                type="button"
+                className="edit-modal__edit-button"
+                onClick={() => handleEditProject(index)}
+              >
+                <img src={editIcon} alt="" />
+              </button>
+            </form>
           </div>
         ))}
         <button
           type="button"
-          className="edit-modal__add-button"
+          className="edit-modal__add-project"
           onClick={handleAddProject}
         >
           Add Project

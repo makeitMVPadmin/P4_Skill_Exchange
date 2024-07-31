@@ -87,10 +87,7 @@
     font-weight: bold;
     background-color: $MVP-white;
     color: $MVP-dark-gray;
-    border-top-left-radius: 0.5rem;
-    border-top-right-radius: 0.5rem;
-    border: 0.2rem solid $MVP-black;
-    border-bottom: none;
+    @include tab-border;
     cursor: pointer;
     transition: background-color 0.3s;
 
@@ -108,7 +105,7 @@
   &__folder-content {
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
-    border: 0.3rem solid $MVP-black;
+    @include component-border;
     padding: 1rem 1rem;
     background-color: $MVP-white;
   }
