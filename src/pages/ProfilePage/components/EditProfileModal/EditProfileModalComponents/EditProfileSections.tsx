@@ -218,7 +218,7 @@ export const showPortfolio = (props: {
       <div className="edit-modal__portfolio">
         {projects.map((project: any, index: number) => (
           <div key={project.id} className="edit-modal__portfolio-item">
-            <form className="edit-modal__portfolio-info">
+            <div className="edit-modal__portfolio-info">
               <input
                 type="text"
                 name="projectName"
@@ -233,7 +233,7 @@ export const showPortfolio = (props: {
               >
                 <img src={editIcon} alt="" />
               </button>
-            </form>
+            </div>
           </div>
         ))}
         <button
@@ -331,7 +331,9 @@ export const AddProject = (props: {
   const [url, setUrl] = useState('')
   const [thumbnail, setThumbnail] = useState('')
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  console.log('userId:', userId)
+
+  const handleSubmitProject = async (e: React.FormEvent) => {
     e.preventDefault()
     console.log('Trying to save project:', title, description)
     if (!title || !description) {
@@ -357,7 +359,7 @@ export const AddProject = (props: {
   }
   return (
     <div className="edit-modal__add-portfolio">
-      <form onSubmit={handleSubmit}>
+      <div>
         <label className="edit-modal__label">Project Name</label>
         <input
           type="text"
@@ -395,7 +397,11 @@ export const AddProject = (props: {
           onChange={e => setThumbnail(e.target.value)}
         />
         <div className="edit-modal__buttons">
-          <button type="submit" className="edit-modal__button">
+          <button
+            type="button"
+            className="edit-modal__button"
+            onClick={handleSubmitProject}
+          >
             Add Project
           </button>
           <button
@@ -406,7 +412,7 @@ export const AddProject = (props: {
             Cancel
           </button>
         </div>
-      </form>
+      </div>
     </div>
   )
 }
