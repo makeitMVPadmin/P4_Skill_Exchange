@@ -1,6 +1,4 @@
-import { useState } from 'react'
 import './ProfileCard.scss'
-import EditProfileModal from '../EditProfileModal/EditProfileModal'
 import EditButton from '../EditButton/EditButton'
 import EmailLogo from '@/src/assets/Icons/email.png'
 import GithubLogo from '@/src/assets/Icons/github.png'
@@ -10,13 +8,10 @@ import { UserData } from '@/src/interfaces/types'
 
 interface ProfileCardProps {
   userData: UserData
-  onSaveChanges: (updatedData: UserData) => void
+  onEdit: () => void
 }
 
-const ProfileCard: React.FC<ProfileCardProps> = ({
-  userData,
-  onSaveChanges
-}) => {
+const ProfileCard: React.FC<ProfileCardProps> = ({ userData, onEdit }) => {
   const {
     profilePhoto,
     firstName,
@@ -29,16 +24,6 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
     portfolioLink
   } = userData
 
-  const [isModalOpen, setIsModalOpen] = useState(false)
-
-  const openModal = () => setIsModalOpen(true)
-  const closeModal = () => setIsModalOpen(false)
-
-  const handleSaveChanges = (updatedData: UserData) => {
-    onSaveChanges(updatedData)
-    closeModal()
-  }
-
   return (
     <div className="profile-card">
       <div className="profile-card__content">
@@ -48,7 +33,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
           className="profile-card__picture"
         />
         <div className="profile__edit-button">
-          <EditButton onClick={openModal} />
+          <EditButton onClick={onEdit} />
         </div>
 
         <h2 className="profile-card__name">{`${firstName} ${lastName}`}</h2>
@@ -102,12 +87,6 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
         </ul>
       </div>
       {/* </div> */}
-      <EditProfileModal
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        userData={userData}
-        onSave={handleSaveChanges}
-      />
     </div>
   )
 }

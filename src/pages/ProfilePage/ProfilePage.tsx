@@ -5,15 +5,19 @@ import ProfileCard from './components/ProfileCard/ProfileCard'
 import BioCard from './components/BioCard/BioCard'
 import SkillsCard from './components/SkillsCard/SkillsCard'
 import ProjectsCard from './components/ProjectsCard/ProjectsCard'
-import projectData from '../../data/dummy_data_extended.json'
-import { getUserData } from '@/src/utils/Firebase'
-import { UserData } from '@/src/interfaces/types'
+// import projectData from '../../data/dummy_data_extended.json'
+import { getUserData, getAllProjectsByUserID } from '@/src/utils/Firebase'
+import { UserData, ProjectDetails } from '@/src/interfaces/types'
+import EditProfileModal from './components/EditProfileModal/EditProfileModal'
+import { CreateProjectsButton } from './TestFunction'
 
 function ProfilePage() {
   const [profileTab, setProfileTab] = useState('profile')
   const [userData, setUserData] = useState<UserData>({})
+  const [projects, setProjects] = useState<ProjectDetails[]>([])
+  const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false)
 
-  const firstUserProjects = projectData.users[0]?.projects ?? []
+  // const firstUserProjects = projectData.users[0]?.projects ?? []
 
   const userID = 'UID99993230'
 
@@ -22,6 +26,7 @@ function ProfilePage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // Fetch user data
         const data = await getUserData(userID)
         if (data !== undefined && data !== null) {
           console.log('Fetched user data:', data)
@@ -29,6 +34,15 @@ function ProfilePage() {
         } else {
           console.log('User not found')
           toast.error('User not found')
+        }
+
+        // Fetch projects
+        const userProjects = await getAllProjectsByUserID(userID)
+        if (userProjects.length > 0) {
+          console.log('Fetched user projects:', userProjects)
+          setProjects(userProjects)
+        } else {
+          console.log('No projects found for user.')
         }
       } catch (err) {
         console.log('Error fetching user data:', err)
@@ -39,8 +53,19 @@ function ProfilePage() {
     fetchData()
   }, [userID])
 
-  const handleSaveChanges = (updatedData: UserData) => {
-    setUserData(updatedData)
+  const handleOpenEditProfileModal = () => {
+    setIsEditProfileModalOpen(true)
+  }
+
+  const handleCloseEditProfileModal = () => {
+    setIsEditProfileModalOpen(false)
+  }
+  const handleDataUpdate = (
+    updatedUserData: UserData,
+    updatedProjects: ProjectDetails[]
+  ) => {
+    setUserData(updatedUserData)
+    setProjects(updatedProjects)
   }
 
   return (
@@ -52,7 +77,7 @@ function ProfilePage() {
             <div className="profile__profile-card">
               <ProfileCard
                 userData={userData}
-                onSaveChanges={handleSaveChanges}
+                onEdit={handleOpenEditProfileModal}
               />
             </div>
 
@@ -95,13 +120,23 @@ function ProfilePage() {
                 </div>
               </div>
               <div className="profile__projects">
-                <ProjectsCard projects={firstUserProjects} />
+                <ProjectsCard projects={projects} />
               </div>
             </div>
           </div>
         </div>
       </div>
       <ToastContainer />
+      {isEditProfileModalOpen && (
+        <EditProfileModal
+          isOpen={isEditProfileModalOpen}
+          onClose={handleCloseEditProfileModal}
+          userData={userData}
+          projects={projects}
+          onDataUpdate={handleDataUpdate}
+        />
+      )}
+      <CreateProjectsButton />
     </div>
   )
 }

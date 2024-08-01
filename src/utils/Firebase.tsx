@@ -226,7 +226,7 @@ export async function createNewProject(
   thumbnail: string,
   description: string,
   url: string
-) {
+): Promise<string | void> {
   if (!userID || !title) {
     console.error('User ID and title are required to create a new project')
     return
@@ -249,12 +249,13 @@ export async function createNewProject(
     if (error instanceof Error) {
       const errorMessage =
         'Failed to create Project. Status: ${error.name}. Message: ${error.message}'
-      toast.error(errorMessage)
+      console.error(errorMessage)
       throw new Error(errorMessage)
     } else {
       const genericErrorMessage =
         'An unexpected error occurred while creating the project'
-      toast.error(genericErrorMessage)
+      console.error(genericErrorMessage)
+      throw new Error(genericErrorMessage)
     }
   }
 }
@@ -276,18 +277,38 @@ export async function editProject(
     return
   }
   try {
-    const updatedProject = {
+    const projectDocRef = doc(db, 'Projects', projectID)
+
+    const updatedFields = {
       userId: userId,
       title: title,
       thumbnail: thumbnail,
       description: description,
       url: url
     }
-    await setDoc(doc(db, 'Projects', projectID), updatedProject)
+
+    await updateDoc(projectDocRef, updatedFields)
     console.log('Project updated successfully')
-    return { message: 'Project updated successfully' }
+    return updatedFields
   } catch (error) {
     console.error('Error updating project:', error)
     throw error
+  }
+}
+
+// Get all projects by a specific user
+export async function getAllProjectsByUserID(userID: string) {
+  try {
+    const projectsRef = collection(db, 'Projects')
+    const q = query(projectsRef, where('userID', '==', userID))
+    const querySnapshot = await getDocs(q)
+    const projects = querySnapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }))
+    return projects
+  } catch (error) {
+    console.error('Error fetching projects:', error)
+    return []
   }
 }

@@ -24,25 +24,37 @@ export interface UserData {
   skills: Skill[]
 }
 
-export interface UserUpdateData {
+export interface UpdatedData {
+  id: string
   firstName: string
   lastName: string
+  email: string
+  profilePhoto: string
   tagline: string
-  title: string
-  bio: string
   github: string
   linkedin: string
   portfolioLink: string
-  skills: string[]
+  bio: string
+  location: string
+  discipline: string
+  dob: Timestamp
+  createdAt: Timestamp
+  updatedAt: Timestamp
+  lastLogin: Timestamp
+  industry: string
+  experience: number
+  expertise: string
+  interests: string[]
+  skills: Skill[]
 }
 
 export interface ProjectDetails {
-  project_id: number
-  project_name: string
-  project_image: string
-  project_description: string
-  project_url: string
-  user_id: number
+  id: string
+  userID: string
+  title: string
+  thumbnail: string
+  description: string
+  url: string
 }
 
 export interface Skill {
