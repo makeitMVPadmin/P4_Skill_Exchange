@@ -4,12 +4,12 @@
       "id": 1,
       "email": "michellelo.dev@gmail.com",
       "own_skills": [
-        "React",
-        "Node.js",
-        "MongoDB",
-        "Express.js",
-        "React Native",
-        "Firebase"
+        { "skill_name": "React", "years_experience": 2 },
+        { "skill_name": "Node.js", "years_experience": 1 },
+        { "skill_name": "MongoDB", "years_experience": 1 },
+        { "skill_name": "Express.js", "years_experience": 2 },
+        { "skill_name": "React Native", "years_experience": 1 },
+        { "skill_name": "Firebase", "years_experience": 1 }
       ],
       "interested_skills": ["Developer"],
       "user_profile": "Full stack developer with a passion for building web applications.",
@@ -58,6 +58,46 @@
           "project_url": "https://via.placeholder.com/150",
           "project_description": "A website to share and publish blogs.",
           "user_id": 5
+        },
+        {
+          "project_id": 6,
+          "project_name": "Fitness Tracking App",
+          "project_image": "https://plus.unsplash.com/premium_photo-1667509259690-d393766a5249?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "project_url": "https://via.placeholder.com/150",
+          "project_description": "An app to track and monitor fitness activities.",
+          "user_id": 6
+        },
+        {
+          "project_id": 7,
+          "project_name": "Recipe Sharing Platform",
+          "project_image": "https://plus.unsplash.com/premium_photo-1666920345410-8c9ca9b3c318?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "project_url": "https://via.placeholder.com/150",
+          "project_description": "A platform to share and discover new recipes.",
+          "user_id": 7
+        },
+        {
+          "project_id": 8,
+          "project_name": "Travel Planning App",
+          "project_image": "https://images.unsplash.com/photo-1515941821061-27d7f9900d43?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "project_url": "https://via.placeholder.com/150",
+          "project_description": "An app to plan and organize travel itineraries.",
+          "user_id": 8
+        },
+        {
+          "project_id": 9,
+          "project_name": "Online Learning Platform",
+          "project_image": "https://media.istockphoto.com/id/1177184973/photo/e-learning-for-student-and-university-concept.jpg?s=2048x2048&w=is&k=20&c=dhazYESMZ8xEKsjKZI_iYuFIJN8FSVwroP2IvbIVrOY=",
+          "project_url": "https://via.placeholder.com/150",
+          "project_description": "A platform to provide online learning courses.",
+          "user_id": 9
+        },
+        {
+          "project_id": 10,
+          "project_name": "Music Streaming App",
+          "project_image": "https://media.istockphoto.com/id/1412634290/photo/take-relaxation-with-you.jpg?s=2048x2048&w=is&k=20&c=-mJJSl6Jr6JJp99iMTuAAksZ0dhtJfnL8dxeHgP4MEs=",
+          "project_url": "https://via.placeholder.com/150",
+          "project_description": "An app to stream and discover music.",
+          "user_id": 10
         }
       ]
     },

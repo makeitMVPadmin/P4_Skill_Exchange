@@ -14,10 +14,12 @@
 
     &__buttons {
       display: flex;
-      border-radius: 12px;
+      border-radius: 7px;
       background: #FFFFFF;
       color: #6B6B6B;
-      border: 2px solid #000;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      border-bottom: 3px solid #000;
       overflow: hidden;
 
       button {
