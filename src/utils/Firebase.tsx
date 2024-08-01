@@ -175,6 +175,7 @@ export async function getUserData(userID: string) {
   }
 }
 
+// Create user data (Function made by Michelle to create user info for design). Do not use in production.
 export async function setUserData(
   userID: string,
   userData: {
@@ -201,7 +202,6 @@ export async function setUserData(
   }
 }
 
-
 // The status field on a Job stores whether the job is open, in progress, or completed.
 // 0 = Open, 1 = In Progress, 2 = Completed
 // Update the status of a job to in progress (status = 1)
@@ -217,6 +217,8 @@ export async function setJobToInProgress(jobID: string) {
     throw error
   }
 }
+
+// Create a Portfolio Project
 
 export async function createNewProject(
   userID: string,
@@ -241,16 +243,51 @@ export async function createNewProject(
 
     const docRef = await addDoc(collection(db, 'Projects'), newProject)
 
-    // console.log('Document written with ID: ', docRef.id) // Debug log
+    console.log('Document written with ID: ', docRef.id) // Debug log
     return docRef.id
   } catch (error) {
-      if (error instanceof Error) {
-        const errorMessage = "Failed to create Project. Status: ${error.name}. Message: ${error.message}";
-        toast.error(errorMessage);
-        throw new Error(errorMessage);
+    if (error instanceof Error) {
+      const errorMessage =
+        'Failed to create Project. Status: ${error.name}. Message: ${error.message}'
+      toast.error(errorMessage)
+      throw new Error(errorMessage)
     } else {
-        const genericErrorMessage = "An unexpected error occurred while creating the project";
-        toast.error(genericErrorMessage);
+      const genericErrorMessage =
+        'An unexpected error occurred while creating the project'
+      toast.error(genericErrorMessage)
     }
+  }
+}
+
+// Edit a Portfolio Project
+
+export async function editProject(
+  projectID: string,
+  userId: string,
+  title: string,
+  thumbnail: string,
+  description: string,
+  url: string
+) {
+  if (!projectID || !userId || !title) {
+    console.error(
+      'Project ID, User ID, and title are required to edit a project'
+    )
+    return
+  }
+  try {
+    const updatedProject = {
+      userId: userId,
+      title: title,
+      thumbnail: thumbnail,
+      description: description,
+      url: url
+    }
+    await setDoc(doc(db, 'Projects', projectID), updatedProject)
+    console.log('Project updated successfully')
+    return { message: 'Project updated successfully' }
+  } catch (error) {
+    console.error('Error updating project:', error)
+    throw error
   }
 }

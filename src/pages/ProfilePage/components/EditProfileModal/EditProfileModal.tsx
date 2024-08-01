@@ -9,7 +9,11 @@ import {
 } from './EditProfileModalComponents/EditProfileSections'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { setUserData } from '@/src/utils/Firebase'
+import {
+  setUserData,
+  createNewProject,
+  editProject
+} from '@/src/utils/Firebase'
 import projectData from '@/src/data/dummy_data_extended.json'
 
 interface EditProfileModalProps {
@@ -94,9 +98,9 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
     setOwnSkills(ownSkills.filter((_, i) => i !== index))
   }
 
-  const handleEditProject = (index: number) => {
-    setEditingProject({ ...projects[index], index })
-  }
+  // const handleEditProject = (index: number) => {
+  //   setEditingProject({ ...projects[index], index })
+  // }
 
   const handleAddProject = () => {
     setEditingProject({
@@ -107,6 +111,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
     })
   }
 
+  // Save project handler will determin if we are adding a new project or editing an existing one
   const handleSaveProject = () => {
     const updatedProjects = [...projects]
     if (editingProject.index === -1) {
@@ -118,10 +123,12 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
     setEditingProject(null)
   }
 
+  // Cancel edit project handler
   const cancelEdit = () => {
     setEditingProject(null)
   }
 
+  // Save changes handler
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     const updatedData: UserData = {
