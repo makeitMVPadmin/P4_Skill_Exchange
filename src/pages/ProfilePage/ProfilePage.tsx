@@ -9,7 +9,6 @@ import ProjectsCard from './components/ProjectsCard/ProjectsCard'
 import { getUserData, getAllProjectsByUserID } from '@/src/utils/Firebase'
 import { UserData, ProjectDetails } from '@/src/interfaces/types'
 import EditProfileModal from './components/EditProfileModal/EditProfileModal'
-import { CreateProjectsButton } from './TestFunction'
 
 function ProfilePage() {
   const [profileTab, setProfileTab] = useState('profile')
@@ -136,7 +135,6 @@ function ProfilePage() {
           onDataUpdate={handleDataUpdate}
         />
       )}
-      <CreateProjectsButton />
     </div>
   )
 }
