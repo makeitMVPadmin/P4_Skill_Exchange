@@ -142,8 +142,13 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
   // Update project handler
   const updatedProject = async (project: ProjectDetails) => {
     try {
-      if (!project.title || !project.description) {
-        toast.warning('Please enter project name and description.')
+      if (
+        !project.title ||
+        !project.description ||
+        !project.url ||
+        !project.thumbnail
+      ) {
+        toast.warning('Please fill out all the forms.')
         return
       }
 

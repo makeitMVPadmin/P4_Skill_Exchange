@@ -336,8 +336,8 @@ export const AddProject = (props: {
   const handleSubmitProject = async (e: React.FormEvent) => {
     e.preventDefault()
     console.log('Trying to save project:', title, description)
-    if (!title || !description) {
-      console.log('Title and description are required')
+    if (!title || !description || !url || !thumbnail) {
+      console.log('Missing required fields, please fill out')
       return
     }
     const newProject: ProjectDetails = {

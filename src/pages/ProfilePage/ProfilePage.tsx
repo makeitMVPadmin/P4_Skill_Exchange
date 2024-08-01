@@ -6,7 +6,11 @@ import BioCard from './components/BioCard/BioCard'
 import SkillsCard from './components/SkillsCard/SkillsCard'
 import ProjectsCard from './components/ProjectsCard/ProjectsCard'
 // import projectData from '../../data/dummy_data_extended.json'
-import { getUserData, getAllProjectsByUserID } from '@/src/utils/Firebase'
+import {
+  getUserData,
+  getAllProjectsByUserID,
+  getAllTasks
+} from '@/src/utils/Firebase'
 import { UserData, ProjectDetails } from '@/src/interfaces/types'
 import EditProfileModal from './components/EditProfileModal/EditProfileModal'
 
@@ -48,7 +52,6 @@ function ProfilePage() {
         toast.error(`Failed to fetch user data: ${(err as Error).message}`)
       }
     }
-
     fetchData()
   }, [userID])
 
