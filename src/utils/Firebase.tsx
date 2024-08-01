@@ -303,8 +303,8 @@ export async function getAllProjectsByUserID(userID: string) {
     const q = query(projectsRef, where('userID', '==', userID))
     const querySnapshot = await getDocs(q)
     const projects = querySnapshot.docs.map(doc => ({
-      id: doc.id,
-      ...doc.data()
+      ...doc.data(),
+      id: doc.id
     }))
     return projects
   } catch (error) {

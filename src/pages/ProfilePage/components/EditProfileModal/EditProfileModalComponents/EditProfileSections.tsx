@@ -331,13 +331,10 @@ export const AddProject = (props: {
   const [url, setUrl] = useState('')
   const [thumbnail, setThumbnail] = useState('')
 
-  console.log('userId:', userId)
-
   const handleSubmitProject = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log('Trying to save project:', title, description)
     if (!title || !description || !url || !thumbnail) {
-      console.log('Missing required fields, please fill out')
+      console.error('Missing required fields, please fill out')
       return
     }
     const newProject: ProjectDetails = {

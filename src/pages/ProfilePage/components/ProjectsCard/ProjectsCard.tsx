@@ -2,9 +2,8 @@ import './ProjectsCard.scss'
 import { ProjectDetails } from '@/src/interfaces/types'
 
 const Project: React.FC<ProjectDetails> = ({
-  id,
   title,
-  description,
+
   thumbnail,
   url
 }) => {
@@ -14,9 +13,6 @@ const Project: React.FC<ProjectDetails> = ({
         <img className="projects__project--img" src={thumbnail} alt={title} />
       </div>
       <div className="projects__project--name">{title}</div>
-      {/* <div className="projects__project--description">
-        {project_description}
-      </div> */}
     </a>
   )
 }

@@ -5,26 +5,17 @@ import ProfileCard from './components/ProfileCard/ProfileCard'
 import BioCard from './components/BioCard/BioCard'
 import SkillsCard from './components/SkillsCard/SkillsCard'
 import ProjectsCard from './components/ProjectsCard/ProjectsCard'
-// import projectData from '../../data/dummy_data_extended.json'
-import {
-  getUserData,
-  getAllProjectsByUserID,
-  getAllTasks
-} from '@/src/utils/Firebase'
+import { getUserData, getAllProjectsByUserID } from '@/src/utils/Firebase'
 import { UserData, ProjectDetails } from '@/src/interfaces/types'
 import EditProfileModal from './components/EditProfileModal/EditProfileModal'
 
 function ProfilePage() {
   const [profileTab, setProfileTab] = useState('profile')
+  const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false)
   const [userData, setUserData] = useState<UserData>({})
   const [projects, setProjects] = useState<ProjectDetails[]>([])
-  const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false)
-
-  // const firstUserProjects = projectData.users[0]?.projects ?? []
 
   const userID = 'UID99993230'
-
-  // getUserData(userID).then(data => console.log('Fetched user data:', data))
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,23 +23,20 @@ function ProfilePage() {
         // Fetch user data
         const data = await getUserData(userID)
         if (data !== undefined && data !== null) {
-          console.log('Fetched user data:', data)
           setUserData(data as UserData)
         } else {
-          console.log('User not found')
           toast.error('User not found')
         }
 
         // Fetch projects
         const userProjects = await getAllProjectsByUserID(userID)
         if (userProjects.length > 0) {
-          console.log('Fetched user projects:', userProjects)
           setProjects(userProjects as ProjectDetails[])
         } else {
-          console.log('No projects found for user.')
+          console.error('No projects found for user.')
         }
       } catch (err) {
-        console.log('Error fetching user data:', err)
+        console.error('Error fetching user data:', err)
         toast.error(`Failed to fetch user data: ${(err as Error).message}`)
       }
     }
@@ -75,15 +63,12 @@ function ProfilePage() {
       <div className="profile__main">
         <div className="profile__content">
           <div className="profile__firstwrap">
-            {/* <div className="profile__first-innerwrap"> */}
             <div className="profile__profile-card">
               <ProfileCard
                 userData={userData}
                 onEdit={handleOpenEditProfileModal}
               />
             </div>
-
-            {/* </div> */}
           </div>
           <div className="profile__folder">
             <div className="profile__tabs">

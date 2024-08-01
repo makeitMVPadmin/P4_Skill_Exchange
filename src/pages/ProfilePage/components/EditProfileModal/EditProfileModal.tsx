@@ -13,10 +13,8 @@ import 'react-toastify/dist/ReactToastify.css'
 import {
   setUserData,
   createNewProject,
-  editProject,
-  getAllProjectsByUserID
+  editProject
 } from '@/src/utils/Firebase'
-// import projectData from '@/src/data/dummy_data_extended.json'
 
 interface EditProfileModalProps {
   isOpen: boolean
@@ -83,7 +81,6 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
   // Add skill handler
 
   const handleAddSkill = () => {
-    console.log('New Skill', newSkill)
     if (!newSkill.skillName) {
       toast.warning('Please select a skill.')
       return
@@ -97,8 +94,6 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
         yearsExperience: yearsExperience
       }
       setOwnSkills([...ownSkills, skillToAdd])
-
-      console.log('Skill to Add', skillToAdd)
 
       setNewSkill({ skillName: '', yearsExperience: 0 })
       setYearsExperience(1)
@@ -116,7 +111,6 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
 
   // Add project handler
   const addProject = async (project: ProjectDetails) => {
-    console.log('addProject function called', project)
     try {
       if (!project.title || !project.description) {
         toast.warning('Please enter project name and description.')
@@ -130,7 +124,6 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
         project.description,
         project.url
       )
-      console.log('New project added with ID:', projectID)
       setProjects([...projects, { ...project, id: projectID || '' }])
       toast.success('Project added successfully.')
     } catch (error) {
@@ -152,15 +145,14 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
         return
       }
 
-      const projectID = await editProject(
-        project.id,
-        userData.id,
-        project.title,
-        project.thumbnail,
-        project.description,
-        project.url
-      )
-      console.log('Project updated with ID:', projectID)
+      const updatedData = {
+        userID: userData.id,
+        title: project.title,
+        thumbnail: project.thumbnail,
+        description: project.description,
+        url: project.url
+      }
+      const projectID = await editProject(project.id, updatedData)
       const updatedProjects = projects.map(p =>
         p.id === project.id ? { ...p, ...project } : p
       )
