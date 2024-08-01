@@ -49,7 +49,7 @@ export interface UpdatedData {
 }
 
 export interface ProjectDetails {
-  id: string
+  id?: string
   userID: string
   title: string
   thumbnail: string

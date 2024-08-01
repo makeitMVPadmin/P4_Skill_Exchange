@@ -116,6 +116,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
 
   // Add project handler
   const addProject = async (project: ProjectDetails) => {
+    console.log('addProject function called', project)
     try {
       if (!project.title || !project.description) {
         toast.warning('Please enter project name and description.')
@@ -288,14 +289,14 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
               // userId={userData.id}
               project={editingProject}
               setProject={setEditingProject}
-              handleSaveProject={updatedProject}
+              handleUpdateProject={updatedProject}
               handleCancelEdit={cancelEdit}
             />
           )}
           {activeTab === 'portfolio' && isAddingProject && (
             <AddProject
               userId={userData.id}
-              handleSaveProject={addProject}
+              handleAddProject={addProject}
               handleCancelEdit={cancelEdit}
             />
           )}

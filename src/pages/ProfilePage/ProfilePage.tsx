@@ -40,7 +40,7 @@ function ProfilePage() {
         const userProjects = await getAllProjectsByUserID(userID)
         if (userProjects.length > 0) {
           console.log('Fetched user projects:', userProjects)
-          setProjects(userProjects)
+          setProjects(userProjects as ProjectDetails[])
         } else {
           console.log('No projects found for user.')
         }

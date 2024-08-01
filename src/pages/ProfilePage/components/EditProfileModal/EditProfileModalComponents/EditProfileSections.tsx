@@ -253,13 +253,13 @@ export const showPortfolio = (props: {
 export const EditProject = (props: {
   project: ProjectDetails
   setProject: (project: ProjectDetails) => void
-  handleSaveProject: (project: ProjectDetails) => Promise<void>
+  handleUpdateProject: (project: ProjectDetails) => Promise<void>
   handleCancelEdit: () => void
 }) => {
-  const { project, setProject, handleSaveProject, handleCancelEdit } = props
+  const { project, setProject, handleUpdateProject, handleCancelEdit } = props
 
   const onSaveClick = () => {
-    handleSaveProject(project)
+    handleUpdateProject(project)
   }
 
   return (
@@ -322,10 +322,10 @@ export const EditProject = (props: {
 
 export const AddProject = (props: {
   userId: string
-  handleSaveProject: (project: ProjectDetails) => Promise<void>
+  handleAddProject: (project: ProjectDetails) => Promise<void>
   handleCancelEdit: () => void
 }) => {
-  const { userId, handleSaveProject, handleCancelEdit } = props
+  const { userId, handleAddProject, handleCancelEdit } = props
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [url, setUrl] = useState('')
@@ -335,10 +335,10 @@ export const AddProject = (props: {
     e.preventDefault()
     console.log('Trying to save project:', title, description)
     if (!title || !description) {
+      console.log('Title and description are required')
       return
     }
     const newProject: ProjectDetails = {
-      id: '',
       userID: userId,
       title,
       description,
@@ -346,7 +346,7 @@ export const AddProject = (props: {
       thumbnail
     }
     try {
-      await handleSaveProject(newProject)
+      await handleAddProject(newProject)
       setTitle('')
       setDescription('')
       setUrl('')
