@@ -1,25 +1,53 @@
-import { useState } from "react";
-import "./index.scss";
-import CategoryDropdown from "@/src/components/CategoryDropdown/CategoryDropdown";
-import SearchCard from "@/src/components/Search/Search";
-import CreateProjectCard from "./components/CreateProjectCard/CreateProjectCard";
-import projectData from '../../data/dummy_data_extended.json'
-import JobCard from "@/src/components/JobCard/JobCard";
+import { useEffect, useState } from 'react'
+import './index.scss'
+import CategoryDropdown from '@/src/components/CategoryDropdown/CategoryDropdown'
+import SearchCard from '@/src/components/Search/Search'
+import CreateProjectCard from './components/CreateProjectCard/CreateProjectCard'
+//import projectData from '../../data/dummy_data_extended.json'
+import JobCard from '@/src/components/JobCard/JobCard'
+import { getAllTasks } from '@/src/utils/Firebase'
 
 function SkillShare() {
   const [tabStatus, setTabStatus] = useState('provider')
+  const [projectData, setProjectData] = useState<{ id: string }[]>([])
+
+
+  async function fetchAllTasks() {
+    try {
+      console.log('getAllTasks...')
+      const tasks = await getAllTasks()
+      setProjectData(tasks);
+      return tasks;
+    } catch (error) {
+      console.error('Error fetching tasks:', error)
+    }
+  }
+
+  
+
+  useEffect(() => {
+   fetchAllTasks();
+    
+    // setProjectData(tasks);
+  }, [])
+
+  console.log(JSON.stringify(projectData)+ "!!!.>>");
 
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
 
   const onSelectCategory = (category: string) => {
-    
-    category !== "Show All" ? setSelectedCategory(category) : setSelectedCategory(null)
+    category !== 'Show All'
+      ? setSelectedCategory(category)
+      : setSelectedCategory(null)
   }
 
   // Filter jobs based on selectedCategory
   const filteredJobs = selectedCategory
-    ? projectData.jobs.filter((job: Job) => job.category === selectedCategory)
-    : projectData.jobs
+    ? projectData.filter(
+        (job: Job) =>
+          job.categories.include(selectedCategory)
+      )
+    : projectData
 
   return (
     <div className="c_skillshare">
@@ -50,8 +78,8 @@ function SkillShare() {
         <div className="c_skillshare-projects-cards">
           {tabStatus == 'seeker' && <CreateProjectCard />}
           <div className="bg-white  col-span-3">
-            <h2 className="text-xl font-bold mb-2">Projects you might like</h2>
-            <div className="w-full flex sm:items-center flex-wrap gap-5">
+            <h2 className="text-xl font-bold mb-4">Projects you might like</h2>
+            <div className="c_skillshare-projects-cardcontainer">
               {filteredJobs.map((job: Job) => (
                 <JobCard key={job.id} job={job} flag={false} />
               ))}

@@ -60,5 +60,20 @@
         letter-spacing: -0.22px;
       }
     }
+
+    &-cards {
+      display: grid;
+      grid-template-columns: auto auto auto;
+      
+ // grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px; 
+    }
+
+    &-cardcontainer {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+    
+    }
   }
 }

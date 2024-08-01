@@ -26,6 +26,8 @@ const firebaseConfig = {
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 }
 
+
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig)
 
@@ -132,7 +134,6 @@ export async function createNewJob(
     console.error('User ID and title are required to create a new job')
     return
   }
-
 
   try {
     const newJob = {
