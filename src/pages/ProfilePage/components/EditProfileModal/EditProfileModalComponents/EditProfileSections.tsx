@@ -1,8 +1,8 @@
+import { useState } from 'react'
 import avaibleSkills from '@/src/data/availableSkills.json'
 import deleteIcon from '@/src/assets/Icons/Close.svg'
-import addIcon from '@/src/assets/Icons/Add.svg'
 import editIcon from '@/src/assets/Icons/Edit.svg'
-import { Skill } from '@/src/interfaces/types'
+import { ProjectDetails, Skill } from '@/src/interfaces/types'
 
 // Show basic info component
 
@@ -206,20 +206,24 @@ export const showSkills = (props: any) => {
 
 // Show portfolio component
 
-export const showPortfolio = (props: any) => {
+export const showPortfolio = (props: {
+  projects: ProjectDetails[]
+  handleEditProject: (index: number) => void
+  handleAddProject: () => void
+}) => {
   const { projects, handleEditProject, handleAddProject } = props
   return (
     <div className="edit-modal__form-group">
       {/* <label className="edit-modal__label">Portfolio</label> */}
       <div className="edit-modal__portfolio">
         {projects.map((project: any, index: number) => (
-          <div key={index} className="edit-modal__portfolio-item">
-            <form className="edit-modal__portfolio-info">
+          <div key={project.id} className="edit-modal__portfolio-item">
+            <div className="edit-modal__portfolio-info">
               <input
                 type="text"
                 name="projectName"
                 className="edit-modal__project-input"
-                value={project.project_name}
+                value={project.title}
                 readOnly
               />
               <button
@@ -229,7 +233,7 @@ export const showPortfolio = (props: any) => {
               >
                 <img src={editIcon} alt="" />
               </button>
-            </form>
+            </div>
           </div>
         ))}
         <button
@@ -246,18 +250,28 @@ export const showPortfolio = (props: any) => {
 
 // Edit Project component
 
-export const EditProject = (props: any) => {
-  const { project, setProject, handleSaveProject, handleCancelEdit } = props
+export const EditProject = (props: {
+  project: ProjectDetails
+  setProject: (project: ProjectDetails) => void
+  handleUpdateProject: (project: ProjectDetails) => Promise<void>
+  handleCancelEdit: () => void
+}) => {
+  const { project, setProject, handleUpdateProject, handleCancelEdit } = props
+
+  const onSaveClick = () => {
+    handleUpdateProject(project)
+  }
+
   return (
     <div className="edit-modal__add-portfolio">
       <label className="edit-modal__label">Project Name</label>
       <input
         type="text"
-        name="project_name"
+        name="projectTitle"
         className="edit-modal__input-skill"
         placeholder="Project Name"
-        value={project.project_name}
-        onChange={e => setProject({ ...project, project_name: e.target.value })}
+        value={project.title}
+        onChange={e => setProject({ ...project, title: e.target.value })}
       />
       <label className="edit-modal__label">Project Description</label>
       <input
@@ -265,10 +279,8 @@ export const EditProject = (props: any) => {
         name="project_description"
         className="edit-modal__input-skill"
         placeholder="Project Description"
-        value={project.project_description}
-        onChange={e =>
-          setProject({ ...project, project_description: e.target.value })
-        }
+        value={project.description}
+        onChange={e => setProject({ ...project, description: e.target.value })}
       />
       <label className="edit-modal__label">Project URL</label>
       <input
@@ -276,14 +288,23 @@ export const EditProject = (props: any) => {
         name="project_url"
         className="edit-modal__input-skill"
         placeholder="Project URL"
-        value={project.project_url}
-        onChange={e => setProject({ ...project, project_url: e.target.value })}
+        value={project.url}
+        onChange={e => setProject({ ...project, url: e.target.value })}
+      />
+      <label className="edit-modal__label">Project Image</label>
+      <input
+        type="text"
+        name="thumbnail"
+        className="edit-modal__input-skill"
+        placeholder="Project Image"
+        value={project.thumbnail}
+        onChange={e => setProject({ ...project, thumbnail: e.target.value })}
       />
       <div className="edit-modal__buttons">
         <button
           type="button"
           className="edit-modal__button"
-          onClick={handleSaveProject}
+          onClick={onSaveClick}
         >
           Save
         </button>
@@ -294,6 +315,100 @@ export const EditProject = (props: any) => {
         >
           Cancel
         </button>
+      </div>
+    </div>
+  )
+}
+
+export const AddProject = (props: {
+  userId: string
+  handleAddProject: (project: ProjectDetails) => Promise<void>
+  handleCancelEdit: () => void
+}) => {
+  const { userId, handleAddProject, handleCancelEdit } = props
+  const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('')
+  const [url, setUrl] = useState('')
+  const [thumbnail, setThumbnail] = useState('')
+
+  const handleSubmitProject = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!title || !description || !url || !thumbnail) {
+      console.error('Missing required fields, please fill out')
+      return
+    }
+    const newProject: ProjectDetails = {
+      userID: userId,
+      title,
+      description,
+      url,
+      thumbnail
+    }
+    try {
+      await handleAddProject(newProject)
+      setTitle('')
+      setDescription('')
+      setUrl('')
+      setThumbnail('')
+    } catch (error) {
+      console.error('Error adding project:', error)
+    }
+  }
+  return (
+    <div className="edit-modal__add-portfolio">
+      <div>
+        <label className="edit-modal__label">Project Name</label>
+        <input
+          type="text"
+          name="project_name"
+          className="edit-modal__input-skill"
+          placeholder="Project Name"
+          value={title}
+          onChange={e => setTitle(e.target.value)}
+        />
+        <label className="edit-modal__label">Project Description</label>
+        <input
+          type="text"
+          name="project_description"
+          className="edit-modal__input-skill"
+          placeholder="Project Description"
+          value={description}
+          onChange={e => setDescription(e.target.value)}
+        />
+        <label className="edit-modal__label">Project URL</label>
+        <input
+          type="text"
+          name="project_url"
+          className="edit-modal__input-skill"
+          placeholder="Project URL"
+          value={url}
+          onChange={e => setUrl(e.target.value)}
+        />
+        <label className="edit-modal__label">Project Image</label>
+        <input
+          type="text"
+          name="project_thumbnail"
+          className="edit-modal__input-skill"
+          placeholder="Project Image"
+          value={thumbnail}
+          onChange={e => setThumbnail(e.target.value)}
+        />
+        <div className="edit-modal__buttons">
+          <button
+            type="button"
+            className="edit-modal__button"
+            onClick={handleSubmitProject}
+          >
+            Add Project
+          </button>
+          <button
+            type="button"
+            className="edit-modal__button"
+            onClick={handleCancelEdit}
+          >
+            Cancel
+          </button>
+        </div>
       </div>
     </div>
   )

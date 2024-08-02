@@ -5,29 +5,39 @@ import {
   showBasicInfo,
   showPortfolio,
   showSkills,
-  EditProject
+  EditProject,
+  AddProject
 } from './EditProfileModalComponents/EditProfileSections'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { setUserData } from '@/src/utils/Firebase'
-import projectData from '@/src/data/dummy_data_extended.json'
+import {
+  setUserData,
+  createNewProject,
+  editProject
+} from '@/src/utils/Firebase'
 
 interface EditProfileModalProps {
   isOpen: boolean
   onClose: () => void
   userData: UserData
-  onSave: (updatedData: UserData) => void
+  projects: ProjectDetails[]
+  onDataUpdate: (
+    updatedUserData: UserData,
+    updatedProjects: ProjectDetails[]
+  ) => void
 }
 
 const EditProfileModal: React.FC<EditProfileModalProps> = ({
   isOpen,
   onClose,
   userData,
-  onSave
+  projects: initialProjects,
+  onDataUpdate
 }) => {
-  if (!isOpen) return null
-
+  // tab state
   const [activeTab, setActiveTab] = useState('basicInfo')
+
+  // Basic Info state
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [title, setTitle] = useState('')
@@ -36,20 +46,24 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
   const [github, setGithub] = useState('')
   const [linkedin, setLinkedin] = useState('')
   const [portfolioLink, setPortfolioLink] = useState('')
+
+  // Skills state
   const [ownSkills, setOwnSkills] = useState<Skill[]>([])
+  const [yearsExperience, setYearsExperience] = useState<number>(1)
   const [newSkill, setNewSkill] = useState<Skill>({
     skillName: '',
     yearsExperience: 0
   })
-
-  const [projects, setProjects] = useState<ProjectDetails[]>(
-    projectData.users[0]?.projects ?? []
-  )
-  const [editingProject, setEditingProject] = useState<any>(null)
-
-  const [yearsExperience, setYearsExperience] = useState<number>(1)
-
   const yearsOptions = Array.from({ length: 31 }, (_, i) => i + 1)
+
+  // Projects state
+  const [projects, setProjects] = useState<ProjectDetails[]>(initialProjects)
+  const [editingProject, setEditingProject] = useState<any>(null)
+  const [isAddingProject, setIsAddingProject] = useState(false)
+  const [projectName, setProjectName] = useState('')
+  const [projectImage, setProjectImage] = useState('')
+  const [projectDescription, setProjectDescription] = useState('')
+  const [projectUrl, setProjectUrl] = useState('')
 
   useEffect(() => {
     setFirstName(userData.firstName)
@@ -61,13 +75,12 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
     setLinkedin(userData.linkedin)
     setPortfolioLink(userData.portfolioLink)
     setOwnSkills(userData.skills)
-    // setProjects(userData.projects)
-  }, [userData])
+    setProjects(initialProjects)
+  }, [userData, initialProjects])
 
   // Add skill handler
 
   const handleAddSkill = () => {
-    console.log('New Skill', newSkill)
     if (!newSkill.skillName) {
       toast.warning('Please select a skill.')
       return
@@ -81,8 +94,6 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
         yearsExperience: yearsExperience
       }
       setOwnSkills([...ownSkills, skillToAdd])
-
-      console.log('Skill to Add', skillToAdd)
 
       setNewSkill({ skillName: '', yearsExperience: 0 })
       setYearsExperience(1)
@@ -98,30 +109,74 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
     setEditingProject({ ...projects[index], index })
   }
 
-  const handleAddProject = () => {
-    setEditingProject({
-      project_name: '',
-      project_description: '',
-      project_url: '',
-      index: -1
-    })
+  // Add project handler
+  const addProject = async (project: ProjectDetails) => {
+    try {
+      if (!project.title || !project.description) {
+        toast.warning('Please enter project name and description.')
+        return
+      }
+
+      const projectID = await createNewProject(
+        userData.id,
+        project.title,
+        project.thumbnail,
+        project.description,
+        project.url
+      )
+      setProjects([...projects, { ...project, id: projectID || '' }])
+      toast.success('Project added successfully.')
+    } catch (error) {
+      console.error('Error adding project:', error)
+      toast.error('Error adding project.')
+    }
   }
 
-  const handleSaveProject = () => {
-    const updatedProjects = [...projects]
-    if (editingProject.index === -1) {
-      updatedProjects.push(editingProject)
-    } else {
-      updatedProjects[editingProject.index] = editingProject
+  // Update project handler
+  const updatedProject = async (project: ProjectDetails) => {
+    try {
+      if (
+        !project.title ||
+        !project.description ||
+        !project.url ||
+        !project.thumbnail
+      ) {
+        toast.warning('Please fill out all the forms.')
+        return
+      }
+
+      const updatedData = {
+        userID: userData.id,
+        title: project.title,
+        thumbnail: project.thumbnail,
+        description: project.description,
+        url: project.url
+      }
+      const projectID = await editProject(project.id, updatedData)
+      const updatedProjects = projects.map(p =>
+        p.id === project.id ? { ...p, ...project } : p
+      )
+      setProjects(updatedProjects)
+      toast.success('Project updated successfully.')
+    } catch (error) {
+      console.error('Error updating project:', error)
+      toast.error('Error updating project.')
     }
-    setProjects(updatedProjects)
+  }
+
+  // Add project handler
+  const handleAddProject = () => {
+    setIsAddingProject(true)
     setEditingProject(null)
   }
 
+  // Cancel edit project handler
   const cancelEdit = () => {
     setEditingProject(null)
+    setIsAddingProject(false)
   }
 
+  // Save changes handler
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     const updatedData: UserData = {
@@ -142,19 +197,10 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
       expertise: userData.expertise || ''
     }
     try {
-      await setUserData(userData.id, {
-        firstName,
-        lastName,
-        tagline,
-        title,
-        bio: bio || '',
-        github: github || '',
-        linkedin: linkedin || '',
-        portfolioLink: portfolioLink || '',
-        skills: ownSkills
-      })
-      onSave(updatedData)
+      await setUserData(userData.id, updatedData)
+      onDataUpdate(updatedData, projects)
       toast.success('Profile Updated.')
+      onClose()
     } catch (error) {
       toast.error('Error updating profile.')
     }
@@ -229,12 +275,25 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
             })}
           {activeTab === 'portfolio' &&
             !editingProject &&
-            showPortfolio({ projects, handleAddProject, handleEditProject })}
+            !isAddingProject &&
+            showPortfolio({
+              projects,
+              handleEditProject,
+              handleAddProject
+            })}
           {activeTab === 'portfolio' && editingProject && (
             <EditProject
+              // userId={userData.id}
               project={editingProject}
               setProject={setEditingProject}
-              handleSaveProject={handleSaveProject}
+              handleUpdateProject={updatedProject}
+              handleCancelEdit={cancelEdit}
+            />
+          )}
+          {activeTab === 'portfolio' && isAddingProject && (
+            <AddProject
+              userId={userData.id}
+              handleAddProject={addProject}
               handleCancelEdit={cancelEdit}
             />
           )}
