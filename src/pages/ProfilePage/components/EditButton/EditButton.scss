@@ -3,9 +3,8 @@
 @use '../../../../styles/partials/mixins' as *;
 
 .edit-button {
-  // padding: 0.5rem 1rem;
-  font-size: 1rem;
-  font-weight: bold;
+  height: 2.5rem;
+  width: 2.5rem;
   background-color: $MVP-dark-blue;
   border: none;
   border-radius: 50%;
@@ -18,8 +17,6 @@
   }
   &__icon {
     display: inline-block;
-    // width: 24px;
-    // height: 24px;
     color: white;
 
     filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(93deg)
