@@ -11,6 +11,7 @@ function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const [activeTab, setActiveTab] = useState('provider')
+  const [activeNavItem, setActiveNavItem] = useState('home')
   const navigate = useNavigate()
 
   const toggleMenu = () => {
@@ -89,6 +90,7 @@ function Header() {
                 href="/"
                 className="text-gray-600 hover:text-gray-900 font-gilroy"
               >
+                <img src={Home} alt="home icon" />
                 Home
               </a>
             </li>
@@ -97,6 +99,7 @@ function Header() {
                 href="#"
                 className="text-gray-600 hover:text-gray-900 font-gilroy"
               >
+              <img src={Communities} alt="communities icon" />
                 Communities
               </a>
             </li>
@@ -105,6 +108,7 @@ function Header() {
                 href="#"
                 className="text-gray-600 hover:text-gray-900 font-gilroy"
               >
+              <img src={Events} alt="events icon" />
                 Events
               </a>
             </li>
@@ -113,6 +117,7 @@ function Header() {
                 href="/skillshare"
                 className="text-gray-600 hover:text-gray-900 font-gilroy"
               >
+              <img src={SkillShare} alt="skill share icon" />
                 Skill Share
               </a>
             </li>
@@ -160,19 +165,6 @@ function Header() {
         </nav>
       </div>
       <div className="container mx-auto px-4 py-2 flex justify-center items-center space-x-4">
-        {/* TODO: Make a reusable button */}
-        {/* <button
-          onClick={() => handleTabClick('provider')}
-          className={providerButtonClass}
-        >
-          As a Skill Provider
-        </button>
-        <button
-          onClick={() => handleTabClick('seeker')}
-          className={seekerButtonClass}
-        >
-          As a Talent Seeker
-        </button> */}
       </div>
     </header>
   )
