@@ -1,7 +1,12 @@
-import "./SkillsCard.scss";
+import './SkillsCard.scss'
+
+interface Skill {
+  skillName: string
+  yearsExperience: number
+}
 
 interface SkillsCardProps {
-  skills: string[];
+  skills: Skill[]
 }
 
 const SkillsCard: React.FC<SkillsCardProps> = ({ skills }) => {
@@ -11,12 +16,12 @@ const SkillsCard: React.FC<SkillsCardProps> = ({ skills }) => {
       <ul className="skills-card__list">
         {skills.map((skill, index) => (
           <li key={index} className="skills-card__skill">
-            {skill}
+            {skill.skillName} ({skill.yearsExperience} years)
           </li>
         ))}
       </ul>
     </div>
-  );
-};
+  )
+}
 
-export default SkillsCard;
+export default SkillsCard

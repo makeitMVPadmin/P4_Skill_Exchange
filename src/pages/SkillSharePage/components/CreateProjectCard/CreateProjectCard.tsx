@@ -27,7 +27,7 @@ function CreateProjectCard() {
         onClick={handleFormChange}
       />
 
-      { isFormOpen && <CreateProjectForm /> }
+      { isFormOpen && <CreateProjectForm handleFormChange={handleFormChange}/> }
     </div>
   )
 }

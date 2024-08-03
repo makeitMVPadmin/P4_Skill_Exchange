@@ -1,9 +1,17 @@
+@use '../../../../styles/partials/global' as *;
+@use '../../../../styles/partials/variables' as *;
+@use '../../../../styles/partials/typography' as *;
+@use '../../../../styles/partials/mixins' as *;
+
 .projects {
   padding: 20px;
+  background-color: $MVP-white;
+  @include component-border;
 
   &__title {
     font-size: 24px;
     margin-bottom: 20px;
+    font-weight: bold;
   }
 
   &__list {
@@ -14,35 +22,41 @@
   }
 
   &__project {
+    @include component-border;
     width: 15rem;
-    background-color: #f5f5f5;
-    padding: 10px;
-    border-radius: 8px;
+    padding-bottom: 0.5rem;
+    background-color: $MVP-yellow;
     text-align: center;
-    margin-bottom: 20px;
+    // margin-bottom: 20px;
 
-    &-thumbnail {
+    &--thumbnail {
       width: 100%;
-      height: 150px;
-      background-color: #e0e0e0;
-      border-radius: 4px;
-      margin-bottom: 10px;
+      height: 9rem;
+      margin-bottom: 0.5rem;
       overflow: hidden;
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
     }
 
-    &-name {
+    &--img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(80%);
+      transition:
+        filter 0.5s ease-in-out,
+        transform 0.5s ease-in-out;
+    }
+
+    &:hover &--thumbnail &--img {
+      filter: grayscale(0%) brightness(1.2);
+      transform: scale(1.05);
+    }
+
+    &--name {
       font-size: 18px;
       font-weight: bold;
-      margin-bottom: 5px;
     }
 
-    &-description {
+    &--description {
       font-size: 14px;
       color: #666;
     }

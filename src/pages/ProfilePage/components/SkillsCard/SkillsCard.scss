@@ -1,7 +1,12 @@
+@use '../../../../styles/partials/global' as *;
+@use '../../../../styles/partials/variables' as *;
+@use '../../../../styles/partials/typography' as *;
+@use '../../../../styles/partials/mixins' as *;
+
 .skills-card {
   padding: 1rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: $MVP-white;
+  @include component-border;
   margin-bottom: 1rem;
 
   &__title {
@@ -12,14 +17,16 @@
 
   &__list {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
   }
 
   &__skill {
-    background-color: #e2e8f0;
+    background-color: $MVP-light-gray;
     padding: 0.5rem 1rem;
+
     border: 0.1rem solid black;
     border-radius: 0.5rem;
   }

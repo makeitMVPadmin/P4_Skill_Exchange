@@ -1,15 +1,26 @@
+@use '../../styles/partials/global' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/typography' as *;
+@use '../../styles/partials/mixins' as *;
+
 .profile {
+  font-family: 'Gilroy', sans-serif;
+  background-color: $MVP-cream;
   display: flex;
   flex-direction: column;
-  padding: 0 4rem;
-  background-color: #f3f4f6;
+  align-items: center;
+  padding: 0rem 2rem;
   min-height: 150vh;
   width: 100%;
-  // border: 0.2rem solid black;
+
+  @include tablet-breakpoint {
+    padding: 2rem 5rem;
+  }
 
   &__main {
+    background-color: $MVP-cream;
     display: flex;
-    flex-direction: column;
+
     width: 100%;
     height: 100%;
     gap: 2rem;
@@ -18,36 +29,105 @@
   &__content {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     // border: 0.2rem solid black;
     width: 100%;
     margin-top: 2rem;
+    gap: 2rem;
+
+    @include tablet-breakpoint {
+      flex-direction: row;
+    }
   }
 
   &__firstwrap {
     display: flex;
+    align-self: center;
+    // justify-content: center;
+    max-width: 80%;
+    // align-items: center;
     flex-direction: column;
-    justify-content: space-around;
+    // justify-content: space-around;
     // border: 0.2rem solid red;
     gap: 1rem;
+
+    @include tablet-breakpoint {
+      max-width: 35%;
+      align-self: flex-start;
+      // justify-content: flex-start;
+    }
   }
 
-  &__first-innerwrap {
+  // &__first-innerwrap {
+  //   display: flex;
+  //   justify-content: space-between;
+  //   gap: 1rem;
+  // }
+
+  &__folder {
     display: flex;
-    justify-content: space-between;
-    gap: 1rem;
+    flex-wrap: wrap;
+
+    // border: 2px solid red;
+    @include tablet-breakpoint {
+      max-width: 70%;
+    }
   }
 
-  &__secondwrap {
+  &__tabs {
+    display: flex;
+    gap: 1rem;
+    margin: 0 2rem;
+    border-bottom: 0.1rem solid $MVP-light-gray;
+  }
+
+  &__tab {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: $MVP-white;
+    color: $MVP-dark-gray;
+    @include tab-border;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: $MVP-dark-blue;
+      color: $MVP-white;
+    }
+
+    &.active {
+      background-color: $MVP-dark-blue;
+      color: $MVP-white;
+    }
+  }
+
+  &__folder-content {
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    @include component-border;
+    padding: 1rem 1rem;
+    background-color: $MVP-white;
+  }
+
+  &__folder-inner {
     display: flex;
     flex-direction: column;
-    // border: 0.2rem solid blue;
+    gap: 1rem;
+    width: 100%;
+
+    @include desktop-breakpoint {
+      display: flex;
+      flex-direction: row;
+    }
   }
 
   &__profile-card {
     display: flex;
+    // margin-top: 2.6rem;
     flex-direction: column;
+    justify-content: center;
     // border: 0.2rem solid green;
-    width: 50%;
   }
 
   &__bio-card {
@@ -62,5 +142,6 @@
     flex-direction: column;
     // border: 0.2rem solid purple;
     width: 100%;
+    // height: 10rem;
   }
 }

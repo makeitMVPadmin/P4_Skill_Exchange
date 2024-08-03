@@ -1,53 +1,45 @@
-import "./ProjectsCard.scss";
+import './ProjectsCard.scss'
+import { ProjectDetails } from '@/src/interfaces/types'
 
-interface ProjectProps {
-  name: string;
-  image: string;
-  description: string;
-  url: string;
-}
+const Project: React.FC<ProjectDetails> = ({
+  title,
 
-// A single Project component
-const Project: React.FC<ProjectProps> = ({ name, description, image, url }) => {
+  thumbnail,
+  url
+}) => {
   return (
     <a href={url} target="_blank" className="projects__project">
-      <div className="projects__project-thumbnail">
-        <img src={image} alt={name} />
+      <div className="projects__project--thumbnail">
+        <img className="projects__project--img" src={thumbnail} alt={title} />
       </div>
-      <div className="projects__project-name">{name}</div>
-      <div className="projects__project-description">{description}</div>
+      <div className="projects__project--name">{title}</div>
     </a>
-  );
-};
-
-interface ProjectData {
-  project_name: string;
-  project_image: string;
-  project_description: string;
-  project_url: string;
+  )
 }
 
 interface ProjectsCardProps {
-  projects: ProjectData[];
+  projects: ProjectDetails[]
 }
 
 const ProjectsCard: React.FC<ProjectsCardProps> = ({ projects }) => {
   return (
     <div className="projects">
-      <h2 className="projects__title">Projects</h2>
+      <h2 className="projects__title">Portfolio</h2>
       <div className="projects__list">
-        {projects.map((project, index) => (
+        {projects.map(project => (
           <Project
-            key={index}
-            name={project.project_name}
-            image={project.project_image}
-            description={project.project_description}
-            url={project.project_url}
+            key={project.id}
+            id={project.id}
+            userID={project.userID}
+            title={project.title}
+            thumbnail={project.thumbnail}
+            description={project.description}
+            url={project.url}
           />
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ProjectsCard;
+export default ProjectsCard

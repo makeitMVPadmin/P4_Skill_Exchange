@@ -164,8 +164,20 @@ function Header() {
           </ul>
         </nav>
       </div>
-      <div className="container mx-auto px-4 py-2 flex justify-center items-center space-x-4">
-      </div>
+      {/* <div className="container mx-auto px-4 py-2 flex justify-center items-center space-x-4">
+        <button
+          onClick={() => handleTabClick('provider')}
+          className={providerButtonClass}
+        >
+          As a Skill Provider
+        </button>
+        <button
+          onClick={() => handleTabClick('seeker')}
+          className={seekerButtonClass}
+        >
+          As a Talent Seeker
+        </button>
+      </div> */}
     </header>
   )
 }
