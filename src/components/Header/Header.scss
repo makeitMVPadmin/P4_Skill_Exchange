@@ -71,12 +71,14 @@
     }
 
     .nav-item {
-        &--img{
-            width: 3rem;
-        }
-        &--title{
-            font-size: 1rem;
-        }
+      &--img {
+        width: 3rem;
+      }
+
+      &--title {
+        font-size: 1rem;
+      }
+
       color: #4a4a4a;
       display: flex;
       flex-direction: column;
@@ -87,6 +89,10 @@
         svg {
           fill: currentColor;
         }
+      }
+
+      &.active {
+        color: blue;
       }
     }
 
@@ -100,9 +106,10 @@
         align-items: center;
         cursor: pointer;
 
-        .smallicon{
+        .smallicon {
           width: 2rem;
         }
+
         .avatar {
           height: 40px;
           width: 40px;
@@ -137,6 +144,10 @@
           color: #4a4a4a;
           &:hover {
             background-color: #f0f0f0;
+          }
+
+          &.active {
+            color: blue;
           }
         }
       }

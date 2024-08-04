@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import '../../styles/index.scss'
 import '../../styles/partials/_global.scss'
 import './Header.scss'
@@ -16,6 +16,7 @@ function Header() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const [activeTab, setActiveTab] = useState('provider')
   const navigate = useNavigate()
+  const location = useLocation()
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -25,12 +26,14 @@ function Header() {
     setIsDropdownOpen(!isDropdownOpen)
   }
 
+  const isActive = (path) => location.pathname === path
+
   return (
     <header className="header">
       <div className="header__container">
         <a 
-        href="/"
-        className='header__logo'
+          href="/"
+          className={`header__logo ${isActive('/') ? 'active' : ''}`}
         >
           <img src={Logo} alt="logo" />
         </a>
@@ -56,33 +59,27 @@ function Header() {
           </div>
           <ul className={`nav-list ${isMenuOpen ? 'open' : ''}`}>
             <li className="nav-parent">
-              <a href="/" className="nav-item">
+              <a href="/" className={`nav-item ${isActive('/') ? 'active' : ''}`}>
                 <img className="nav-item--img" src={Home} alt="home icon" />
                 <p className="nav-item--title">Home</p>
               </a>
             </li>
             <li className="nav-parent">
-              <a href="#" className="nav-item">
+              <a href="/communities" className={`nav-item ${isActive('/communities') ? 'active' : ''}`}>
                 <img className="nav-item--img" src={Communities} alt="communities icon" />
-                <p className="nav-item--title">
-                  Communities
-                </p>
+                <p className="nav-item--title">Communities</p>
               </a>
             </li>
             <li className="nav-parent">
-              <a href="#" className="nav-item">
+              <a href="/events" className={`nav-item ${isActive('/events') ? 'active' : ''}`}>
                 <img className="nav-item--img" src={Events} alt="events icon" />
-                <p className="nav-item--title">
-                  Events
-                </p>
+                <p className="nav-item--title">Events</p>
               </a>
             </li>
             <li className="nav-parent">
-              <a href="/skillshare" className="nav-item">
+              <a href="/skillshare" className={`nav-item ${isActive('/skillshare') ? 'active' : ''}`}>
                 <img className="nav-item--img" src={SkillShare} alt="skill share icon" />
-                <p className="nav-item--title">
-                  Skill Share
-                </p>
+                <p className="nav-item--title">Skill Share</p>
               </a>
             </li>
             <li className="dropdown">
@@ -94,14 +91,13 @@ function Header() {
               {isDropdownOpen && (
                 <ul className="dropdown-menu">
                   <li>
-                    <a href="/profile" className="dropdown-item">
+                    <a href="/profile" className={`dropdown-item ${isActive('/profile') ? 'active' : ''}`}>
                       View Profile
                     </a>
                   </li>
                   <li>
                     <a href="#" className="dropdown-item">
                       Sign Out
-                      {/* // TODO: Add functionality to this when ready */}
                     </a>
                   </li>
                 </ul>
