@@ -33,7 +33,7 @@ function Header() {
       <div className="header__container">
         <a 
           href="/"
-          className={`header__logo ${isActive('/') ? 'active' : ''}`}
+          className="header__logo"
         >
           <img src={Logo} alt="logo" />
         </a>
