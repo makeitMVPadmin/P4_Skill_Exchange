@@ -1,17 +1,20 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import classNames from 'classnames'
 import '../../styles/index.scss'
+import '../../styles/partials/_global.scss'
+import './Header.scss'
 import Home from '../../../public/icons/Home.svg'
 import Communities from '../../../public/icons/Community.svg'
 import Events from '../../../public/icons/Events.svg'
 import SkillShare from '../../../public/icons/Skill share.svg'
+import Logo from '../../assets/images/Community Logo.svg'
+import DropDownIcon from '../../assets/Icons/Dropdown.svg'
+import NotificationsIcon from '../../assets/Icons/Notifications.svg'
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const [activeTab, setActiveTab] = useState('provider')
-  const [activeNavItem, setActiveNavItem] = useState('home')
   const navigate = useNavigate()
 
   const toggleMenu = () => {
@@ -22,49 +25,20 @@ function Header() {
     setIsDropdownOpen(!isDropdownOpen)
   }
 
-  const handleTabClick = tab => {
-    setActiveTab(tab)
-    if (tab === 'provider') {
-      navigate('/')
-    } else if (tab === 'seeker') {
-      // Add navigation for "seeker" if needed
-    }
-  }
-
-  const providerButtonClass = classNames(
-    'py-2 px-4',
-    {
-      'bg-gray-300': activeTab === 'provider',
-      'text-gray-600 hover:text-gray-900': activeTab !== 'provider'
-    },
-    'focus:outline-none focus:ring-2 focus:ring-gray-800 rounded-md'
-  )
-
-  const seekerButtonClass = classNames(
-    'py-2 px-4',
-    {
-      'bg-gray-300': activeTab === 'seeker',
-      'text-gray-600 hover:text-gray-900': activeTab !== 'seeker'
-    },
-    'focus:outline-none focus:ring-2 focus:ring-gray-800 rounded-md'
-  )
-
   return (
-    <header className="bg-white shadow-md">
-      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <a href="/">
-          <h1 className="text-2xl font-bold text-gray-800 font-corben">
-            Communiti
-          </h1>
+    <header className="header">
+      <div className="header__container">
+        <a 
+        href="/"
+        className='header__logo'
+        >
+          <img src={Logo} alt="logo" />
         </a>
-        <nav className="flex items-center space-x-6">
-          <div className="md:hidden">
-            <button
-              onClick={toggleMenu}
-              className="text-gray-600 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-800 rounded-md"
-            >
+        <nav className="nav">
+          <div className="menu-toggle">
+            <button onClick={toggleMenu} className="menu-button">
               <svg
-                className="h-6 w-6"
+                className="menu-icon"
                 fill="none"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -80,80 +54,52 @@ function Header() {
               </svg>
             </button>
           </div>
-          <ul
-            className={`${
-              isMenuOpen ? 'block' : 'hidden'
-            } md:flex space-x-6 mt-4 md:mt-0`}
-          >
+          <ul className={`nav-list ${isMenuOpen ? 'open' : ''}`}>
             <li>
-              <a
-                href="/"
-                className="text-gray-600 hover:text-gray-900 font-gilroy"
-              >
-                <img src={Home} alt="home icon" />
-                Home
+              <a href="/" className="nav-item">
+                <img className="nav-item--img" src={Home} alt="home icon" />
+                <p className="nav-item--title">Home</p>
               </a>
             </li>
             <li>
-              <a
-                href="#"
-                className="text-gray-600 hover:text-gray-900 font-gilroy"
-              >
-              <img src={Communities} alt="communities icon" />
-                Communities
+              <a href="#" className="nav-item">
+                <img className="nav-item--img" src={Communities} alt="communities icon" />
+                <p className="nav-item--title">
+                  Communities
+                </p>
               </a>
             </li>
             <li>
-              <a
-                href="#"
-                className="text-gray-600 hover:text-gray-900 font-gilroy"
-              >
-              <img src={Events} alt="events icon" />
-                Events
+              <a href="#" className="nav-item">
+                <img className="nav-item--img" src={Events} alt="events icon" />
+                <p className="nav-item--title">
+                  Events
+                </p>
               </a>
             </li>
             <li>
-              <a
-                href="/skillshare"
-                className="text-gray-600 hover:text-gray-900 font-gilroy"
-              >
-              <img src={SkillShare} alt="skill share icon" />
-                Skill Share
+              <a href="/skillshare" className="nav-item">
+                <img className="nav-item--img" src={SkillShare} alt="skill share icon" />
+                <p className="nav-item--title">
+                  Skill Share
+                </p>
               </a>
             </li>
-            <li className="relative">
-              <div
-                onClick={toggleDropdown}
-                className="flex items-center cursor-pointer"
-              >
-                <div className="h-10 w-10 bg-gray-300 rounded-full"></div>
-                <svg
-                  className="h-4 w-4 ml-2 text-gray-600 hover:text-gray-900"
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path d="M9 5l7 7-7 7"></path>
-                </svg>
+            <li className="dropdown">
+              <div onClick={toggleDropdown} className="dropdown-toggle">
+                <img src={NotificationsIcon} alt="notifications icon" />
+                <div className="avatar"></div>
+                <img src={DropDownIcon} alt="dropdpwn icon" />
               </div>
               {isDropdownOpen && (
-                <ul className="absolute right-0 mt-2 py-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg">
+                <ul className="dropdown-menu">
                   <li>
-                    <a
-                      href="/profile"
-                      className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
-                    >
+                    <a href="/profile" className="dropdown-item">
                       View Profile
                     </a>
                   </li>
                   <li>
-                    <a
-                      href="#"
-                      className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
-                    >
+                    <a href="#" className="dropdown-item">
                       Sign Out
                       {/* // TODO: Add functionality to this when ready */}
                     </a>
@@ -164,20 +110,6 @@ function Header() {
           </ul>
         </nav>
       </div>
-      {/* <div className="container mx-auto px-4 py-2 flex justify-center items-center space-x-4">
-        <button
-          onClick={() => handleTabClick('provider')}
-          className={providerButtonClass}
-        >
-          As a Skill Provider
-        </button>
-        <button
-          onClick={() => handleTabClick('seeker')}
-          className={seekerButtonClass}
-        >
-          As a Talent Seeker
-        </button>
-      </div> */}
     </header>
   )
 }
