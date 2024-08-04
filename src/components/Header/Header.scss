@@ -82,32 +82,27 @@
       flex-direction: column;
       align-items: center;
 
-      &:hover {
-        color: #4652c0;
-
-
-        .nav-item__img svg {
-          fill: currentColor; // Ensure SVG fills with the current color on hover
-        }
-      }
-
       &__img {
         margin-right: 8px;
         svg {
-          fill: currentColor; // Set the SVG fill to the current text color
+          fill: currentColor;
         }
       }
     }
 
     .dropdown {
       position: relative;
-      padding-left: 20vw;
+      padding-left: 25vw;
+      padding-top: 1rem;
 
       .dropdown-toggle {
         display: flex;
         align-items: center;
         cursor: pointer;
 
+        .smallicon{
+          width: 2rem;
+        }
         .avatar {
           height: 40px;
           width: 40px;
@@ -115,7 +110,7 @@
           border-radius: 50%;
         }
 
-        .dropdown-icon {
+        .dropdown {
           height: 16px;
           width: 16px;
           margin-left: 8px;

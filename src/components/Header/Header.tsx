@@ -55,13 +55,13 @@ function Header() {
             </button>
           </div>
           <ul className={`nav-list ${isMenuOpen ? 'open' : ''}`}>
-            <li>
+            <li className="nav-parent">
               <a href="/" className="nav-item">
                 <img className="nav-item--img" src={Home} alt="home icon" />
                 <p className="nav-item--title">Home</p>
               </a>
             </li>
-            <li>
+            <li className="nav-parent">
               <a href="#" className="nav-item">
                 <img className="nav-item--img" src={Communities} alt="communities icon" />
                 <p className="nav-item--title">
@@ -69,7 +69,7 @@ function Header() {
                 </p>
               </a>
             </li>
-            <li>
+            <li className="nav-parent">
               <a href="#" className="nav-item">
                 <img className="nav-item--img" src={Events} alt="events icon" />
                 <p className="nav-item--title">
@@ -77,7 +77,7 @@ function Header() {
                 </p>
               </a>
             </li>
-            <li>
+            <li className="nav-parent">
               <a href="/skillshare" className="nav-item">
                 <img className="nav-item--img" src={SkillShare} alt="skill share icon" />
                 <p className="nav-item--title">
@@ -87,9 +87,9 @@ function Header() {
             </li>
             <li className="dropdown">
               <div onClick={toggleDropdown} className="dropdown-toggle">
-                <img src={NotificationsIcon} alt="notifications icon" />
+                <img className="smallicon" src={NotificationsIcon} alt="notifications icon" />
                 <div className="avatar"></div>
-                <img src={DropDownIcon} alt="dropdpwn icon" />
+                <img className="smallicon" src={DropDownIcon} alt="dropdpwn icon" />
               </div>
               {isDropdownOpen && (
                 <ul className="dropdown-menu">
