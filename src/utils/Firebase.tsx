@@ -312,3 +312,15 @@ export async function getAllProjectsByUserID(userID: string) {
     return []
   }
 }
+export async function setJobToCompleted(jobID: string) {
+  try {
+    const jobRef = doc(db, 'Jobs', jobID)
+    await updateDoc(jobRef, { status: 2 })
+
+    console.log('Job status updated to completed')
+    return { message: 'Job status updated to completed' }
+  } catch (error) {
+    console.error('Error updating job status:', error)
+    throw error
+  }
+}
