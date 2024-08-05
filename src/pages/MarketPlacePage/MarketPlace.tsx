@@ -67,7 +67,7 @@ const MarketPlace = () => {
           <CategoryDropdown onSelectCategory={onSelectCategory} />
         </div>
         <div className="bg-white p-6 col-span-3">
-          <h2 className="text-xl font-bold mb-2">Market Place</h2>
+          <h2 className="text-xl font-bold mb-2">Marketplace</h2>
           <div className="w-full flex sm:items-center flex-wrap gap-5">
             {filteredJobs.map((job: Job) => (
               <JobCard key={job.id} job={job} flag={false} />

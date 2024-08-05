@@ -1,0 +1,159 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/_global" as *;
+
+.header {
+  background-color: white;
+  border-bottom: 0.0625rem solid black;
+  height: 15vh;
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 1rem;
+    max-width: 75rem;
+    margin: 0 auto;
+  }
+
+  &__logo {
+    padding-top: 1rem;
+    width: 17vw;
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+
+    .menu-toggle {
+      display: none;
+
+      @media (max-width: 48rem) {
+        display: block;
+      }
+    }
+
+    .menu-button {
+      color: #4a4a4a;
+
+      &:hover {
+        color: #1a1a1a;
+      }
+      outline: none;
+      border: none;
+      background: none;
+      border-radius: 0.25rem;
+      &:focus {
+        box-shadow: 0 0 0 0.125rem #333;
+      }
+    }
+
+    .menu-icon {
+      height: 1.5rem;
+      width: 1.5rem;
+    }
+
+    .nav-list {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1rem;
+
+      @media (max-width: 768px) {
+        display: none;
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 0;
+
+        &.open {
+          display: flex;
+        }
+      }
+    }
+    .nav-item {
+      &--img {
+        width: 2.5rem;
+      }
+
+      &--title {
+        font-family: "Corben";
+        font-size: 1rem;
+      }
+
+      color: #000000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      &__img {
+        margin-right: 0.5rem;
+        svg {
+          stroke: currentColor;
+        }
+      }
+
+      &.active {
+        color: $MVP-dark-blue;
+      }
+    }
+
+    .dropdown {
+      position: relative;
+      padding-left: 25vw;
+      padding-top: 1rem;
+
+      .dropdown-toggle {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        .smallicon {
+          width: 2rem;
+        }
+
+        .avatar {
+          height: 2.5rem;
+          width: 2.5rem;
+          background-color: #e0e0e0;
+          border-radius: 50%;
+        }
+
+        .dropdown {
+          height: 1rem;
+          width: 1rem;
+          margin-left: 0.5rem;
+          color: #4a4a4a;
+          &:hover {
+            color: #1a1a1a;
+          }
+        }
+      }
+
+      .dropdown-menu {
+        position: absolute;
+        right: 0;
+        margin-top: 0.5rem;
+        padding: 1rem 0.5rem;
+        width: 12rem;
+        background-color: white;
+        border: 0.0625rem solid #e0e0e0;
+        border-radius: 0.5rem;
+        box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.1);
+
+        .dropdown-item {
+          padding: 0.25rem 1rem;
+          color: #4a4a4a;
+          font-family: 'Corben';
+          &:hover {
+            background-color: #f0f0f0;
+          }
+
+          &.active {
+            color: $MVP-dark-blue;
+          }
+        }
+      }
+    }
+  }
+  
+}
