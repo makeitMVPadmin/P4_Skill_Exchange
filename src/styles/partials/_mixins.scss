@@ -78,6 +78,14 @@
   border-radius: 8px;
 }
 
+@mixin component-border-light {
+  border-top: 1px solid $MVP-light-gray;
+  border-right: 1px solid $MVP-light-gray;
+  border-bottom: 1px solid $MVP-light-gray;
+  border-left: 1px solid $MVP-light-gray;
+  border-radius: 8px;
+}
+
 @mixin tab-border {
   border-top: 3px solid $MVP-black;
   border-right: 3px solid $MVP-black;
