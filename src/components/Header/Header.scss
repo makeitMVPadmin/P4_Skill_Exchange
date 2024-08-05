@@ -5,7 +5,7 @@
 
 .header {
   background-color: white;
-  border-bottom: 1px solid black;
+  border-bottom: 0.0625rem solid black;
   height: 15vh;
 
   &__container {
@@ -13,7 +13,7 @@
     justify-content: space-between;
     align-items: center;
     padding-left: 1rem;
-    max-width: 1200px;
+    max-width: 75rem;
     margin: 0 auto;
   }
 
@@ -29,28 +29,29 @@
     .menu-toggle {
       display: none;
 
-      @media (max-width: 768px) {
+      @media (max-width: 48rem) {
         display: block;
       }
     }
 
     .menu-button {
       color: #4a4a4a;
+
       &:hover {
         color: #1a1a1a;
       }
       outline: none;
       border: none;
       background: none;
-      border-radius: 4px;
+      border-radius: 0.25rem;
       &:focus {
-        box-shadow: 0 0 0 2px #333;
+        box-shadow: 0 0 0 0.125rem #333;
       }
     }
 
     .menu-icon {
-      height: 24px;
-      width: 24px;
+      height: 1.5rem;
+      width: 1.5rem;
     }
 
     .nav-list {
@@ -61,7 +62,7 @@
       @media (max-width: 768px) {
         display: none;
         flex-direction: column;
-        gap: 16px;
+        gap: 1rem;
         margin-top: 0;
 
         &.open {
@@ -85,7 +86,7 @@
       align-items: center;
 
       &__img {
-        margin-right: 8px;
+        margin-right: 0.5rem;
         svg {
           stroke: currentColor;
         }
@@ -111,16 +112,16 @@
         }
 
         .avatar {
-          height: 40px;
-          width: 40px;
+          height: 2.5rem;
+          width: 2.5rem;
           background-color: #e0e0e0;
           border-radius: 50%;
         }
 
         .dropdown {
-          height: 16px;
-          width: 16px;
-          margin-left: 8px;
+          height: 1rem;
+          width: 1rem;
+          margin-left: 0.5rem;
           color: #4a4a4a;
           &:hover {
             color: #1a1a1a;
@@ -131,17 +132,18 @@
       .dropdown-menu {
         position: absolute;
         right: 0;
-        margin-top: 8px;
-        padding: 8px 0;
-        width: 192px;
+        margin-top: 0.5rem;
+        padding: 1rem 0.5rem;
+        width: 12rem;
         background-color: white;
-        border: 1px solid #e0e0e0;
-        border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border: 0.0625rem solid #e0e0e0;
+        border-radius: 0.5rem;
+        box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.1);
 
         .dropdown-item {
-          padding: 8px 16px;
+          padding: 0.25rem 1rem;
           color: #4a4a4a;
+          font-family: 'Corben';
           &:hover {
             background-color: #f0f0f0;
           }
@@ -153,4 +155,5 @@
       }
     }
   }
+  
 }
