@@ -26,7 +26,10 @@ const CategoryDropdown: React.FC<CategoryDropdownProps> = ({
     onSelectCategory(category)
     closeMenu()
   }
-
+  const handleCategoryAll = () => {
+    setJobs(Jobs)
+    closeMenu()
+  }
   // const handleCategoryAll = (category: )  => {}
 
   return (
@@ -40,7 +43,7 @@ const CategoryDropdown: React.FC<CategoryDropdownProps> = ({
           <Link
             to="#"
             className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-            onClick={() => handleCategoryClick('null')}
+            onClick={() => handleCategoryAll()}
           >
             All
           </Link>
