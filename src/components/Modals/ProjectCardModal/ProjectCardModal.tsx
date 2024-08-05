@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import emailjs from 'emailjs-com';
 import { Link } from 'react-router-dom';
 import MascotImage from "@/public/icons/MVP mascot.svg";
 import { getAllTasks, getUserDataForSpecificTask } from '@/src/utils/Firebase';
 
-// Define prop types
 interface PropTypes {
   isProjectCardModalOpen: boolean;
   onClose: () => void;
@@ -60,9 +60,33 @@ const ProjectCardModal: React.FC<PropTypes> = ({
       setAnswerTwo('');
       setIsReviewMode(false);
       setSubmissionComplete(true);
+
+      // Send email via EmailJS
+      sendEmail();
+
     } catch (error) {
       console.error('Error saving to localStorage:', error);
     }
+  };
+
+  const sendEmail = () => {
+    const templateParams = {
+      job_title: taskTitle,
+      user_answer_one: answerOne,
+      user_answer_two: answerTwo,
+      to_email: 'jobposter@example.com', // TODO: we should replace with the job poster's email
+    };
+
+    emailjs.send(
+      process.env.EMAILJS_SERVICE_ID,
+      process.env.EMAILJS_TEMPLATE_ID,
+      templateParams,
+      process.env.EMAILJS_USER_ID
+    ).then((result) => {
+      console.log('Email sent successfully:', result.text);
+    }).catch((error) => {
+      console.error('Error sending email:', error);
+    });
   };
 
   useEffect(() => {
