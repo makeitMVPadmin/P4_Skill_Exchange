@@ -1,28 +1,65 @@
-import { useState } from "react";
-import JobCard from "../../components/JobCard/JobCard";
-import CategoryDropdown from "../../components/CategoryDropdown/CategoryDropdown";
-import projectData from "../../data/dummy_data_extended.json";
+import { useState, useEffect } from 'react'
+import JobCard from '../../components/JobCard/JobCard'
+import CategoryDropdown from '../../components/CategoryDropdown/CategoryDropdown'
+import { getAllTasks } from '@/src/utils/Firebase'
+
 interface Job {
-  id: number
-  name: string
-  category: string
-  job_tags: string[]
-  job_description: string
+  id: string
+  usedId: string
+  categories: string[]
+  title: string
+  header: string
+  about: string
+  description: string
+  thumbnail: string
+  assignedUser: string
+  status: number
+  createdAt: number
+  updatedAt: number
+  jobDuration: number
   jobSkills: string[]
+  questions: number
 }
 
 const MarketPlace = () => {
+  const [jobs, setJobs] = useState<Job[]>([])
+  const [filteredJobs, setFilteredJobs] = useState<Job[]>([])
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
 
+  // Fetch jobs data from Firebase when component mounts
+  useEffect(() => {
+    const fetchJobs = async () => {
+      try {
+        const jobData = await getAllTasks()
+        setJobs(jobData)
+      } catch (error) {
+        console.error('Error fetching jobs data:', error)
+      }
+    }
+    fetchJobs()
+  }, [])
+
+  // Filter jobs based on selectedCategory
+  useEffect(() => {
+    const filterJobs = () => {
+      const jobsToDisplay = selectedCategory
+        ? jobs.filter(
+            (job: Job) =>
+              job.categories?.some(category => category === selectedCategory) ??
+              false
+          )
+        : jobs
+
+      setFilteredJobs(jobsToDisplay)
+    }
+
+    filterJobs()
+  }, [selectedCategory, jobs])
   const onSelectCategory = (category: string) => {
     setSelectedCategory(category)
   }
 
-  // Filter jobs based on selectedCategory
-  const filteredJobs = selectedCategory
-    ? projectData.jobs.filter((job: Job) => job.category === selectedCategory)
-    : projectData.jobs
-
+  console.log(jobs)
   return (
     <div className="mx-auto p-4 w-full">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -30,7 +67,7 @@ const MarketPlace = () => {
           <CategoryDropdown onSelectCategory={onSelectCategory} />
         </div>
         <div className="bg-white p-6 col-span-3">
-          <h2 className="text-xl font-bold mb-2">Market Place</h2>
+          <h2 className="text-xl font-bold mb-2">Marketplace</h2>
           <div className="w-full flex sm:items-center flex-wrap gap-5">
             {filteredJobs.map((job: Job) => (
               <JobCard key={job.id} job={job} flag={false} />

@@ -1,78 +1,86 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import "@/src/styles/index.scss";
-import DropdownIcon from "../../styles/assets/icons/icons8-dropdown-50.png";
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import '@/src/styles/index.scss'
+import DropdownIcon from '../../styles/assets/icons/icons8-dropdown-50.png'
 
 interface CategoryDropdownProps {
-  onSelectCategory: (category: string) => void;
+  onSelectCategory: (category: string) => void
 }
 
 const CategoryDropdown: React.FC<CategoryDropdownProps> = ({
-  onSelectCategory,
+  onSelectCategory
 }) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+    setIsMenuOpen(!isMenuOpen)
+  }
 
   const closeMenu = () => {
-    setIsMenuOpen(false);
-  };
+    setIsMenuOpen(false)
+  }
 
   const handleCategoryClick = (category: string) => {
-    setSelectedCategory(category);
-    onSelectCategory(category);
-    closeMenu();
-  };
+    setSelectedCategory(category)
+    onSelectCategory(category)
+    closeMenu()
+  }
+  const handleCategoryAll = () => {
+    setJobs(Jobs)
+    closeMenu()
+  }
+  // const handleCategoryAll = (category: )  => {}
 
   return (
     <div className="relative">
       <button onClick={toggleMenu} className="flex items-center space-x-2">
         <h2 className="text-xl font-bold mb-2">Categories</h2>
-        <img 
-          src={DropdownIcon} 
-          alt="Dropdown Icon" 
-          className="w-4 h-4 mt-1"
-        />
+        <img src={DropdownIcon} alt="Dropdown Icon" className="w-4 h-4 mt-1" />
       </button>
       {isMenuOpen && (
         <div className="absolute mt-2 w-56 bg-white shadow-lg rounded-md py-1 ring-1 ring-black ring-opacity-5">
           <Link
             to="#"
             className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-            onClick={() => handleCategoryClick("Development")}
+            onClick={() => handleCategoryAll()}
           >
-            Development
+            All
           </Link>
           <Link
             to="#"
             className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-            onClick={() => handleCategoryClick("Design")}
+            onClick={() => handleCategoryClick('tech')}
           >
-            Design
+            tech
           </Link>
           <Link
             to="#"
             className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-            onClick={() => handleCategoryClick("Research")}
+            onClick={() => handleCategoryClick('work')}
           >
-            Research
+            work
           </Link>
           <Link
             to="#"
             className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-            onClick={() => handleCategoryClick("Mobile Development")}
+            onClick={() => handleCategoryClick('database')}
           >
-            Mobile Development
+            database
           </Link>
           <Link
             to="#"
             className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-            onClick={() => handleCategoryClick("Tutoring")}
+            onClick={() => handleCategoryClick('Web Development')}
           >
-            Tutoring
+            Web Development
+          </Link>
+          <Link
+            to="#"
+            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+            onClick={() => handleCategoryClick('Backend Developer')}
+          >
+            Backend Developer
           </Link>
         </div>
       )}
@@ -85,7 +93,7 @@ const CategoryDropdown: React.FC<CategoryDropdownProps> = ({
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default CategoryDropdown;
+export default CategoryDropdown
