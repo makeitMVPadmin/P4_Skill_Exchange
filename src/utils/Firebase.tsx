@@ -127,7 +127,8 @@ export async function createNewJob(
   header: string,
   thumbnail: string,
   jobDuration: number,
-  questions: string[]
+  questions: string[],
+  categories: string[]
 ) {
   if (!userID || !title) {
     console.error('User ID and title are required to create a new job')
@@ -144,7 +145,8 @@ export async function createNewJob(
       header: header,
       thumbnail: thumbnail,
       jobDuration: jobDuration,
-      questions: questions
+      questions: questions,
+      categories: categories
     }
 
     const docRef = await addDoc(collection(db, 'Jobs'), newJob)
