@@ -51,6 +51,7 @@ const MarketPlace = () => {
         : jobs;
 
       setFilteredJobs(jobsToDisplay);
+      console.log(filteredJobs);
     };
 
     filterJobs();
@@ -68,7 +69,7 @@ const MarketPlace = () => {
           <CategoryDropdown onSelectCategory={onSelectCategory} />
         </div>
         <div className="marketplace-content">
-          <h2 className="marketplace-title">Marketplace</h2>
+          <h2 className="marketplace-title">Projects you might like</h2>
           <div className="job-cards-container">
             {filteredJobs.map((job: Job) => (
               <JobCard key={job.id} job={job} flag={false} />
