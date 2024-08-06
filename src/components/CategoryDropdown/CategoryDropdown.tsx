@@ -13,10 +13,6 @@ const CategoryDropdown: React.FC<CategoryDropdownProps> = ({
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen)
-  }
-
   const closeMenu = () => {
     setIsMenuOpen(false)
   }
@@ -26,24 +22,29 @@ const CategoryDropdown: React.FC<CategoryDropdownProps> = ({
     onSelectCategory(category)
     closeMenu()
   }
-  const handleCategoryAll = () => {
-    setJobs(Jobs)
+
+  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const category = event.target.value
+    setSelectedCategory(category)
+    onSelectCategory(category)
     closeMenu()
   }
-  // const handleCategoryAll = (category: )  => {}
+
+  const handleCategoryAll = () => {
+    setSelectedCategory("All")
+    onSelectCategory("All")
+    closeMenu()
+  }
 
   return (
     <div className="relative">
-      <button onClick={toggleMenu} className="flex items-center space-x-2">
-        <h2 className="text-xl font-bold mb-2">Categories</h2>
-        <img src={DropdownIcon} alt="Dropdown Icon" className="w-4 h-4 mt-1" />
-      </button>
+        <h2 className="text-xl font-bold mb-2">Search by category</h2>
       {isMenuOpen && (
         <div className="absolute mt-2 w-56 bg-white shadow-lg rounded-md py-1 ring-1 ring-black ring-opacity-5">
           <Link
             to="#"
             className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-            onClick={() => handleCategoryAll()}
+            onClick={handleCategoryAll}
           >
             All
           </Link>
@@ -92,6 +93,24 @@ const CategoryDropdown: React.FC<CategoryDropdownProps> = ({
           </span>
         </div>
       )}
+      {/* Dropdown field */}
+      <div className="mt-2">
+        <select
+          value={selectedCategory || "select"}
+          onChange={handleSelectChange}
+          className="border border-gray-300 rounded-md p-2 w-full"
+        >
+          <option value="select" disabled>
+            Select
+          </option>
+          <option value="All">All</option>
+          <option value="tech">tech</option>
+          <option value="work">work</option>
+          <option value="database">database</option>
+          <option value="Web Development">Web Development</option>
+          <option value="Backend Developer">Backend Developer</option>
+        </select>
+      </div>
     </div>
   )
 }
