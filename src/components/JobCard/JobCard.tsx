@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import './JobCard.scss'
 
 interface Job {
   id: string
@@ -27,31 +28,32 @@ const JobCard = ({ job }: JobCardProps) => {
 
   return (
     <Link to={`/marketplace/${job.id}`}>
-      <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white">
-        <div className="px-6 py-4">
-          <div className="font-bold text-xl mb-2">{job.title}</div>
-          <img className="w-full" src={job.thumbnail} alt={job.title} />
-          <p className="text-gray-700 text-base">{job.description}</p>
+      <div className="job-card">
+        <div className="job-card__content">
+          <div className="job-card__title">{job.title}</div>
+          <img className="job-card__image" src={job.thumbnail} alt={job.title} />
+          <p className="job-card__description">{job.description}</p>
         </div>
-        <button className="border border-neutral-300 rounded-lg py-1.5 px-10 my-2 bg-blue-800 hover:bg-blue-600 text-white ml-6">
+        {/* <button className="job-card__apply-button">
           Apply
-        </button>
-        <div className="px-6 pt-4 pb-2">
+        </button> */}
+        {/* the whole job card should have the apply button functionality */}
+        <div className="job-card__categories">
           {job.categories?.map((category: string) => (
             <span
               key={category}
-              className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+              className="job-card__category"
             >
               {category}
             </span>
           ))}
         </div>
-        <h3>SKILLS & TOOLS</h3>
-        <div className="px-6 pt-4 pb-2">
+        <h3 className="job-card__skills-title">SKILLS & TOOLS</h3>
+        <div className="job-card__skills">
           {jobSkills.map((skill: string) => (
             <span
               key={skill}
-              className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+              className="job-card__skill"
             >
               {skill}
             </span>
