@@ -52,6 +52,8 @@ export async function getAllTasks() {
 }
 
 // Get user info for the user who created a job given the job ID
+// This function is used to get the user's data who created a specific job.
+
 export async function getUserDataForSpecificTask(jobID: string) {
   const jobRef = doc(db, 'Jobs', jobID)
   const jobDoc = await getDoc(jobRef)
@@ -64,6 +66,8 @@ export async function getUserDataForSpecificTask(jobID: string) {
 }
 
 // Edit user data
+// This function is used to edit a user's data by updating the document in the Users table.
+
 export async function editUserData(
   userID: string,
   newData: Record<string, any>
@@ -78,6 +82,7 @@ export async function editUserData(
 }
 
 // Get all jobs applied to by a specific user
+// This function is used to get all the jobs that a specific user has applied to.
 export async function getUserJobs(userId: string): Promise<string[]> {
   const userJobsRef = collection(db, 'userJobsApplied')
   const userJobsQuery = query(userJobsRef, where('userId', '==', userId))
@@ -101,6 +106,9 @@ export async function getUserJobs(userId: string): Promise<string[]> {
   return jobInfos.filter(info => info !== null)
 }
 
+// Submit a user for a job
+// This function is used to submit a user for a job by adding a new document to the userJobsApplied table.
+
 export async function submitUserForJob(
   userId: string,
   jobId: string,
@@ -118,6 +126,9 @@ export async function submitUserForJob(
     console.error('Error adding document: ', e)
   }
 }
+
+// Create a new Job associated with a user
+// This function is used to create a new job for other users to apply to.
 
 export async function createNewJob(
   userID: string,
@@ -158,7 +169,9 @@ export async function createNewJob(
   }
 }
 
-// Get user info for a specific user
+// Get a User's data by their ID
+// This function is used to get a user's data by their ID to display on their profile page.
+
 export async function getUserData(userID: string) {
   try {
     const userRef = doc(db, 'Users', userID)
@@ -207,6 +220,7 @@ export async function setUserData(
 // The status field on a Job stores whether the job is open, in progress, or completed.
 // 0 = Open, 1 = In Progress, 2 = Completed
 // Update the status of a job to in progress (status = 1)
+
 export async function setJobToInProgress(jobID: string) {
   try {
     const jobRef = doc(db, 'Jobs', jobID)
@@ -221,6 +235,7 @@ export async function setJobToInProgress(jobID: string) {
 }
 
 // Create a Portfolio Project
+// This function is used to create a new project associated with a user.
 
 export async function createNewProject(
   userID: string,
@@ -263,6 +278,7 @@ export async function createNewProject(
 }
 
 // Edit a Portfolio Project
+// This function is used to edit a project that the user has created.
 
 export async function editProject(
   projectID: string,
@@ -299,6 +315,9 @@ export async function editProject(
 }
 
 // Get all projects by a specific user
+// This function is used to get all the projects created by a specific user
+// and display them on the user's profile page.
+
 export async function getAllProjectsByUserID(userID: string) {
   try {
     const projectsRef = collection(db, 'Projects')
@@ -314,6 +333,12 @@ export async function getAllProjectsByUserID(userID: string) {
     return []
   }
 }
+
+// Set the status of a job to completed
+// 0 = Open, 1 = In Progress, 2 = Completed
+// This function is used to mark a job as completed when the user has finished the job,
+// and the job creator marks it as complete.
+
 export async function setJobToCompleted(jobID: string) {
   try {
     const jobRef = doc(db, 'Jobs', jobID)
