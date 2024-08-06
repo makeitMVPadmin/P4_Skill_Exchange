@@ -8,8 +8,9 @@
   padding-left: 1.5rem;
 
   .category-title {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
     font-size: 1.25rem;
-    font-weight: bold;
   }
 
   .menu {
@@ -39,7 +40,6 @@
 
   .dropdown {
     margin-top: 0.5rem;
-
     &__parent {
       display: flex;
       flex-direction: row;
@@ -47,11 +47,18 @@
     }
 
     .dropdown-select {
+      font-size: 1.25rem;
+      // font-family: "Poppins", sans-serif;
+      // font-weight: 400;
       width: 24rem;
       padding: 0.5rem;
       @include input-border;
       border-radius: 0.5rem;
       margin-right: 1rem;
+
+      option {
+        font-size: 1.25rem;
+      }
     }
   }
 
@@ -63,13 +70,16 @@
       color: black;
       padding: 0.25rem 0.75rem;
       border-radius: 9999px;
-      font-size: 0.875rem;
+      font-size: 1rem;
+      font-family: "Poppins", sans-serif;
+      font-weight: 400;
       margin-right: 0.25rem;
       margin-top: 0.25rem;
       display: inline-block;
     }
   }
 }
+
 .selected-categories {
   .category-tag {
     display: flex;

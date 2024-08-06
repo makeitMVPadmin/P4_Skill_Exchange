@@ -65,11 +65,11 @@ const CategoryDropdown: React.FC<CategoryDropdownProps> = ({ onSelectCategory })
       <div className="dropdown__parent">
         <div className="dropdown">
           <select
-            value="select"  // Always set to "select"
+            value="select" 
             onChange={handleSelectChange}
             className="dropdown-select"
           >
-            <option value="select" disabled>
+            <option className="dropdown" value="select" disabled>
               Select
             </option>
             <option value="All">All</option>
