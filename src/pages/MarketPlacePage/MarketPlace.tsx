@@ -33,6 +33,7 @@ const MarketPlace = () => {
       try {
         const jobData = await getAllTasks();
         setJobs(jobData);
+        setFilteredJobs(jobData); // Initialize filteredJobs with all jobs
       } catch (error) {
         console.error('Error fetching jobs data:', error);
       }

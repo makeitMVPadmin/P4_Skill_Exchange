@@ -8,7 +8,7 @@ interface CategoryDropdownProps {
 
 const CategoryDropdown: React.FC<CategoryDropdownProps> = ({ onSelectCategory }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState<string | null>('');
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -33,8 +33,8 @@ const CategoryDropdown: React.FC<CategoryDropdownProps> = ({ onSelectCategory })
   };
 
   const clearSelection = () => {
-    setSelectedCategory('');
-    onSelectCategory('');
+    setSelectedCategory(null);
+    onSelectCategory('All');
   };
 
   return (
@@ -65,7 +65,7 @@ const CategoryDropdown: React.FC<CategoryDropdownProps> = ({ onSelectCategory })
       <div className="dropdown__parent">
         <div className="dropdown">
           <select
-            value={selectedCategory || 'select'}
+            value="select"  // Always set to "select"
             onChange={handleSelectChange}
             className="dropdown-select"
           >
@@ -81,7 +81,7 @@ const CategoryDropdown: React.FC<CategoryDropdownProps> = ({ onSelectCategory })
           </select>
         </div>
         <div className="selected-categories">
-          {selectedCategory && selectedCategory !== 'select' && (
+          {selectedCategory && selectedCategory !== 'All' && (
             <span key={selectedCategory} className="category-tag">
               {selectedCategory}
               <button className="clear-btn" onClick={clearSelection}>X</button>

@@ -12,10 +12,14 @@
   background-color: white;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 95%;
+
+//   &__subparent{
+//     height: 26rem;
+//   }
 
   &__content {
-    padding: 1.5rem;
+    padding: 1rem;
     flex-grow: 1;
     position: relative;
   }
@@ -41,11 +45,14 @@
 
   &__image {
     width: 100%;
+    height: 8rem;
     @include component-border;
+    border-radius: 2px;
   }
 
   &__description {
-    color: #4a5568;
+    margin-top: 1rem;
+    color: black;
     font-size: 1rem;
     display: -webkit-box;
     -webkit-line-clamp: 3;
@@ -71,7 +78,7 @@
   }
 
   &__categories {
-    padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+    padding: 0 1.5rem 0 1.5rem;
 
     span {
       display: inline-block;
@@ -103,12 +110,13 @@
     
     &--title {
         padding-top: 0.5rem;
-        font-size: 1.125rem;
+        font-size: 1rem;
         font-weight: bold;
     }
     
     &--container {
         width: 90%;
+        height: 10rem;
         margin: auto;
         border-top: solid 1px $MVP-light-gray;
     }
