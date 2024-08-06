@@ -12,11 +12,11 @@
   background-color: white;
   display: flex;
   flex-direction: column;
-  height: 100%; /* Ensures all job cards have equal height */
+  height: 100%;
 
   &__content {
     padding: 1.5rem;
-    flex-grow: 1; /* Makes this section take up remaining space */
+    flex-grow: 1;
   }
 
   &__title {

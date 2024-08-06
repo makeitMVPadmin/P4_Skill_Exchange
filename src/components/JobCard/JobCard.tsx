@@ -48,17 +48,19 @@ const JobCard = ({ job }: JobCardProps) => {
             </span>
           ))}
         </div>
-        <h3 className="job-card__skills-title">SKILLS & TOOLS</h3>
-        <div className="job-card__skills">
-          {jobSkills.map((skill: string) => (
-            <span
-              key={skill}
-              className="job-card__skill"
-            >
-              {skill}
-            </span>
-          ))}
-        </div>
+        <article className="job-card__skills-container">
+          <h3 className="job-card__skills-title">SKILLS & TOOLS</h3>
+          <div className="job-card__skills">
+            {jobSkills.map((skill: string) => (
+              <span
+                key={skill}
+                className="job-card__skill"
+              >
+                {skill}
+              </span>
+            ))}
+          </div>
+        </article>
       </div>
     </Link>
   )
