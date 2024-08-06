@@ -8,18 +8,21 @@
   padding: 4rem;
   width: 100%;
   background-color: $MVP-cream;
+  font-family: 'Corben', sans-serif;
 }
 
 .marketplace-content {
   background-color: $MVP-cream;
   padding: 1.5rem;
   grid-column: span 3;
+  font-family: 'Corben', sans-serif;
 }
 
 .marketplace-title {
   font-size: 1.25rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
+  font-family: 'Corben', sans-serif;
 }
 
 .job-cards-container {
@@ -27,4 +30,5 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 1.25rem;
   width: 100%;
+  font-family: 'Corben', sans-serif;
 }
