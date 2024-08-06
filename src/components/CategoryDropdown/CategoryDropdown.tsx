@@ -8,7 +8,11 @@ interface CategoryDropdownProps {
 
 const CategoryDropdown: React.FC<CategoryDropdownProps> = ({ onSelectCategory }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState<string | null>('All'); // Default to 'All'
+  const [selectedCategory, setSelectedCategory] = useState<string | null>('');
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen)
+  }
 
   const closeMenu = () => {
     setIsMenuOpen(false);
@@ -30,7 +34,7 @@ const CategoryDropdown: React.FC<CategoryDropdownProps> = ({ onSelectCategory })
   };
 
   const clearSelection = () => {
-    setSelectedCategory('All'); // Reset to 'All' when clearing
+    setSelectedCategory('All');
     onSelectCategory('All');
   };
 
@@ -39,22 +43,22 @@ const CategoryDropdown: React.FC<CategoryDropdownProps> = ({ onSelectCategory })
       <h2 className="category-title">Search by category</h2>
       {isMenuOpen && (
         <div className="menu">
-          <Link to="#" className="menu-item" onClick={() => handleCategoryClick('All')}>
+          <Link to="#" className="menu-item" onClick={toggleMenu}>
             All
           </Link>
-          <Link to="#" className="menu-item" onClick={() => handleCategoryClick('tech')}>
+          <Link to="#" className="menu-item" onClick={toggleMenu}>
             tech
           </Link>
-          <Link to="#" className="menu-item" onClick={() => handleCategoryClick('work')}>
+          <Link to="#" className="menu-item" onClick={toggleMenu}>
             work
           </Link>
-          <Link to="#" className="menu-item" onClick={() => handleCategoryClick('database')}>
+          <Link to="#" className="menu-item" onClick={toggleMenu}>
             database
           </Link>
-          <Link to="#" className="menu-item" onClick={() => handleCategoryClick('Web Development')}>
+          <Link to="#" className="menu-item" onClick={toggleMenu}>
             Web Development
           </Link>
-          <Link to="#" className="menu-item" onClick={() => handleCategoryClick('Backend Developer')}>
+          <Link to="#" className="menu-item" onClick={toggleMenu}>
             Backend Developer
           </Link>
         </div>
