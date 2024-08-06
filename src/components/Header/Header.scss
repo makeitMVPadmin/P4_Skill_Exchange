@@ -71,6 +71,7 @@
       }
     }
     .nav-item {
+      width: 6rem;
       &--img {
         width: 2.5rem;
       }
@@ -140,8 +141,8 @@
         border-radius: 0.5rem;
         box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.1);
 
-        .dropdown-item {
-          padding: 0.25rem 1rem;
+        .headerdropdown-item {
+          padding: 0 1rem;
           color: #4a4a4a;
           font-family: 'Corben';
           &:hover {
