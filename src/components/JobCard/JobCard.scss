@@ -15,42 +15,46 @@
   display: flex;
   flex-direction: column;
   height: 95%;
-//   &__subparent{
-//     height: 26rem;
-//   }
-&__category, &__skill{
+
+  &__category, &__skill {
     font-family: "Poppins", sans-serif;
     font-weight: 600;
     font-size: 1rem;
-}
+  }
+
   &__content {
     padding: 1rem;
     flex-grow: 1;
     position: relative;
   }
+
   &__title {
     font-family: "Poppins", sans-serif;
     font-weight: 700;
     font-size: 1.25rem;
     margin-bottom: 0.5rem;
   }
+
   &__title--parent {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
   }
+
   &__heart {
     position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
+    top: 1.25rem;
+    right: 1.25rem;
   }
+
   &__image {
     width: 24.6875rem;
     height: 10rem;
     @include component-border;
     border-radius: 2px;
   }
+
   &__description {
     font-family: "Poppins", sans-serif;
     font-weight: 600;
@@ -65,6 +69,7 @@
     line-height: 1.5;
     height: calc(1.5em * 3);
   }
+
   &__apply-button {
     border: 1px solid #d1d5db;
     border-radius: 0.5rem;
@@ -77,6 +82,7 @@
       background-color: #1c4c9c;
     }
   }
+
   &__categories {
     padding: 0 1.5rem 0 1.5rem;
     span {
@@ -91,6 +97,7 @@
       margin-bottom: 0.5rem;
     }
   }
+
   &__skills {
     padding: 0.5rem 1.5rem 0.5rem 0;
     span {
@@ -104,19 +111,21 @@
       margin-right: 0.5rem;
       margin-bottom: 0.5rem;
     }
+
     &--title {
-        font-family: "Poppins", sans-serif;
-        font-weight: 600;
-        font-size: 1rem;
-        padding-top: 0.5rem;
-        font-size: 1rem;
-        font-weight: bold;
+      font-family: "Poppins", sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      padding-top: 0.5rem;
+      font-size: 1rem;
+      font-weight: bold;
     }
+
     &--container {
-        width: 90%;
-        height: 10rem;
-        margin: auto;
-        border-top: solid 1px $MVP-light-gray;
+      width: 90%;
+      height: 10rem;
+      margin: auto;
+      border-top: solid 1px $MVP-light-gray;
     }
   }
 }
