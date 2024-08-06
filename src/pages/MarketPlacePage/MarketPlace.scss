@@ -1,0 +1,30 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/_global" as *;
+
+.marketplace-container {
+  margin: 0 auto;
+  padding: 4rem;
+  width: 100%;
+}
+
+.marketplace-content {
+  background-color: white;
+  padding: 1.5rem;
+  grid-column: span 3;
+}
+
+.marketplace-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.job-cards-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}

@@ -1,43 +1,32 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-// import '@/src/styles/index.scss';
-import "./CategoryDropdown.scss";
+import './CategoryDropdown.scss';
 
 interface CategoryDropdownProps {
   onSelectCategory: (category: string) => void;
 }
 
-const CategoryDropdown: React.FC<CategoryDropdownProps> = ({
-  onSelectCategory,
-}) => {
+const CategoryDropdown: React.FC<CategoryDropdownProps> = ({ onSelectCategory }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const closeMenu = () => {
     setIsMenuOpen(false);
   };
 
   const handleCategoryClick = (category: string) => {
-    if (!selectedCategories.includes(category)) {
-      setSelectedCategories([...selectedCategories, category]);
-      onSelectCategory(category);
-    }
+    setSelectedCategory(category);
+    onSelectCategory(category);
     closeMenu();
   };
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const category = event.target.value;
-    if (!selectedCategories.includes(category)) {
-      setSelectedCategories([...selectedCategories, category]);
+    if (category !== 'select') {
+      setSelectedCategory(category);
       onSelectCategory(category);
+      closeMenu();
     }
-    closeMenu();
-  };
-
-  const handleCategoryAll = () => {
-    setSelectedCategories(['All']);
-    onSelectCategory('All');
-    closeMenu();
   };
 
   return (
@@ -45,7 +34,7 @@ const CategoryDropdown: React.FC<CategoryDropdownProps> = ({
       <h2 className="category-title">Search by category</h2>
       {isMenuOpen && (
         <div className="menu">
-          <Link to="#" className="menu-item" onClick={handleCategoryAll}>
+          <Link to="#" className="menu-item" onClick={() => handleCategoryClick('All')}>
             All
           </Link>
           <Link to="#" className="menu-item" onClick={() => handleCategoryClick('tech')}>
@@ -84,11 +73,11 @@ const CategoryDropdown: React.FC<CategoryDropdownProps> = ({
           </select>
         </div>
         <div className="selected-categories">
-          {selectedCategories.map((category) => (
-            <span key={category} className="category-tag">
-              {category}
+          {selectedCategory && (
+            <span key={selectedCategory} className="category-tag">
+              {selectedCategory}
             </span>
-          ))}
+          )}
         </div>
       </div>
     </div>

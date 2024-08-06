@@ -1,43 +1,44 @@
-import { useState, useEffect } from 'react'
-import JobCard from '../../components/JobCard/JobCard'
-import CategoryDropdown from '../../components/CategoryDropdown/CategoryDropdown'
-import { getAllTasks } from '@/src/utils/Firebase'
+import { useState, useEffect } from 'react';
+import JobCard from '../../components/JobCard/JobCard';
+import CategoryDropdown from '../../components/CategoryDropdown/CategoryDropdown';
+import { getAllTasks } from '@/src/utils/Firebase';
+import './MarketPlace.scss';
 
 interface Job {
-  id: string
-  usedId: string
-  categories: string[]
-  title: string
-  header: string
-  about: string
-  description: string
-  thumbnail: string
-  assignedUser: string
-  status: number
-  createdAt: number
-  updatedAt: number
-  jobDuration: number
-  jobSkills: string[]
-  questions: number
+  id: string;
+  usedId: string;
+  categories: string[];
+  title: string;
+  header: string;
+  about: string;
+  description: string;
+  thumbnail: string;
+  assignedUser: string;
+  status: number;
+  createdAt: number;
+  updatedAt: number;
+  jobDuration: number;
+  jobSkills: string[];
+  questions: number;
 }
 
 const MarketPlace = () => {
-  const [jobs, setJobs] = useState<Job[]>([])
-  const [filteredJobs, setFilteredJobs] = useState<Job[]>([])
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
+  const [jobs, setJobs] = useState<Job[]>([]);
+  const [filteredJobs, setFilteredJobs] = useState<Job[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   // Fetch jobs data from Firebase when component mounts
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const jobData = await getAllTasks()
-        setJobs(jobData)
+        const jobData = await getAllTasks();
+        setJobs(jobData);
       } catch (error) {
-        console.error('Error fetching jobs data:', error)
+        console.error('Error fetching jobs data:', error);
       }
-    }
-    fetchJobs()
-  }, [])
+    };
+    fetchJobs();
+  }, []);
 
   // Filter jobs based on selectedCategory
   useEffect(() => {
@@ -45,30 +46,30 @@ const MarketPlace = () => {
       const jobsToDisplay = selectedCategory
         ? jobs.filter(
             (job: Job) =>
-              job.categories?.some(category => category === selectedCategory) ??
-              false
+              job.categories?.some(category => category === selectedCategory) ?? false
           )
-        : jobs
+        : jobs;
 
-      setFilteredJobs(jobsToDisplay)
-    }
+      setFilteredJobs(jobsToDisplay);
+    };
 
-    filterJobs()
-  }, [selectedCategory, jobs])
+    filterJobs();
+  }, [selectedCategory, jobs]);
+
   const onSelectCategory = (category: string) => {
-    setSelectedCategory(category)
-  }
+    setSelectedCategory(category);
+  };
 
-  console.log(jobs)
+  console.log(jobs);
   return (
-    <div className="mx-auto p-4 w-full">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-gray-100 p-6 col-span-1 ">
+    <div className="marketplace-container">
+      <div>
+        <div>
           <CategoryDropdown onSelectCategory={onSelectCategory} />
         </div>
-        <div className="bg-white p-6 col-span-3">
-          <h2 className="text-xl font-bold mb-2">Marketplace</h2>
-          <div className="w-full flex sm:items-center flex-wrap gap-5">
+        <div className="marketplace-content">
+          <h2 className="marketplace-title">Marketplace</h2>
+          <div className="job-cards-container">
             {filteredJobs.map((job: Job) => (
               <JobCard key={job.id} job={job} flag={false} />
             ))}
@@ -76,7 +77,7 @@ const MarketPlace = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default MarketPlace
+export default MarketPlace;
