@@ -8,28 +8,31 @@
   padding: 4rem;
   width: 100%;
   background-color: $MVP-cream;
-  font-family: 'Corben', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .marketplace-content {
   background-color: $MVP-cream;
   padding: 1.5rem;
   grid-column: span 3;
-  font-family: 'Corben', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .marketplace-title {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem;
   font-size: 1.5rem;
   font-weight: bold;
   margin-top: 1rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1.5625rem;
   font-family: 'Corben', sans-serif;
 }
 
 .job-cards-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem;
+  gap: 1.5rem;
   width: 100%;
   font-family: 'Corben', sans-serif;
 }
