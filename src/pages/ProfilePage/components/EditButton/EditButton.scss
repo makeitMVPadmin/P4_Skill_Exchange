@@ -1,24 +1,25 @@
+@use '../../../../styles/partials/variables' as *;
+@use '../../../../styles/partials/typography' as *;
+@use '../../../../styles/partials/mixins' as *;
+
 .edit-button {
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  font-weight: bold;
-  color: #ffffff;
-  background-color: #3b82f6;
+  height: 2.5rem;
+  width: 2.5rem;
+  background-color: $MVP-dark-blue;
   border: none;
-  border-radius: 0.25rem;
+  border-radius: 50%;
   cursor: pointer;
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: #2563eb;
-  }
-
-  &:focus {
-    outline: none;
+    background-color: $MVP-light-blue;
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
   }
+  &__icon {
+    display: inline-block;
+    color: white;
 
-  &:active {
-    background-color: #1d4ed8;
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(93deg)
+      brightness(104%) contrast(104%);
   }
 }

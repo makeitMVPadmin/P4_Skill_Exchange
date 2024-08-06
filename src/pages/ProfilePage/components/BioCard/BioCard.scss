@@ -10,7 +10,7 @@
   background-color: $MVP-white;
   width: 100%;
   height: 100%;
-  @include component-border;
+  @include component-border-light;
 
   &__title {
     font-size: 1.125rem;
