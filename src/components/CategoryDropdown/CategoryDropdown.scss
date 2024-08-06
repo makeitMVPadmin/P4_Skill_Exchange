@@ -70,3 +70,25 @@
     }
   }
 }
+.selected-categories {
+  .category-tag {
+    display: flex;
+    align-items: center;
+    background-color: #e0e0e0;
+    padding: 5px 10px;
+    border-radius: 12px;
+    margin: 5px;
+    font-size: 14px;
+    position: relative;
+
+    .clear-btn {
+      border: none;
+      background: none;
+      color: black;
+      font-size: 14px;
+      cursor: pointer;
+      margin-left: 8px;
+      padding: 0;
+    }
+  }
+}

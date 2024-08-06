@@ -25,7 +25,7 @@ interface Job {
 const MarketPlace = () => {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [filteredJobs, setFilteredJobs] = useState<Job[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>('All'); // Default to 'All'
 
   // Fetch jobs data from Firebase when component mounts
   useEffect(() => {
@@ -43,15 +43,13 @@ const MarketPlace = () => {
   // Filter jobs based on selectedCategory
   useEffect(() => {
     const filterJobs = () => {
-      const jobsToDisplay = selectedCategory
-        ? jobs.filter(
-            (job: Job) =>
-              job.categories?.some(category => category === selectedCategory) ?? false
-          )
-        : jobs;
+      const jobsToDisplay = selectedCategory === 'All'
+        ? jobs
+        : jobs.filter((job: Job) =>
+            job.categories?.some(category => category === selectedCategory) ?? false
+          );
 
       setFilteredJobs(jobsToDisplay);
-      console.log(filteredJobs);
     };
 
     filterJobs();
@@ -61,7 +59,6 @@ const MarketPlace = () => {
     setSelectedCategory(category);
   };
 
-  console.log(jobs);
   return (
     <div className="marketplace-container">
       <div>

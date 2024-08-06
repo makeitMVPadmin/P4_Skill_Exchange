@@ -8,7 +8,7 @@ interface CategoryDropdownProps {
 
 const CategoryDropdown: React.FC<CategoryDropdownProps> = ({ onSelectCategory }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>('All'); // Default to 'All'
 
   const closeMenu = () => {
     setIsMenuOpen(false);
@@ -27,6 +27,11 @@ const CategoryDropdown: React.FC<CategoryDropdownProps> = ({ onSelectCategory })
       onSelectCategory(category);
       closeMenu();
     }
+  };
+
+  const clearSelection = () => {
+    setSelectedCategory('All'); // Reset to 'All' when clearing
+    onSelectCategory('All');
   };
 
   return (
@@ -57,7 +62,7 @@ const CategoryDropdown: React.FC<CategoryDropdownProps> = ({ onSelectCategory })
       <div className="dropdown__parent">
         <div className="dropdown">
           <select
-            value="select"
+            value={selectedCategory || 'select'}
             onChange={handleSelectChange}
             className="dropdown-select"
           >
@@ -76,6 +81,7 @@ const CategoryDropdown: React.FC<CategoryDropdownProps> = ({ onSelectCategory })
           {selectedCategory && (
             <span key={selectedCategory} className="category-tag">
               {selectedCategory}
+              <button className="clear-btn" onClick={clearSelection}>X</button>
             </span>
           )}
         </div>
