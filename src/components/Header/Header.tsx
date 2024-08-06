@@ -100,12 +100,12 @@ function Header() {
               {isDropdownOpen && (
                 <ul className="dropdown-menu">
                   <li>
-                    <a href="/profile" className={`dropdown-item ${isActive('/profile') ? 'active' : ''}`}>
+                    <a href="/profile" className={`headerdropdown-item ${isActive('/profile') ? 'active' : ''}`}>
                       View Profile
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="dropdown-item">
+                    <a href="#" className="headerdropdown-item">
                       Sign Out
                     </a>
                   </li>
