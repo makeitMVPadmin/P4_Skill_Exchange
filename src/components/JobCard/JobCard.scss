@@ -41,11 +41,19 @@
 
   &__image {
     width: 100%;
+    @include component-border;
   }
 
   &__description {
     color: #4a5568;
     font-size: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.5;
+    height: calc(1.5em * 3);
   }
 
   &__apply-button {

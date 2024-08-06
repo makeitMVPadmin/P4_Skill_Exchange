@@ -11,8 +11,8 @@ const CategoryDropdown: React.FC<CategoryDropdownProps> = ({ onSelectCategory })
   const [selectedCategory, setSelectedCategory] = useState<string | null>('');
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen)
-  }
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   const closeMenu = () => {
     setIsMenuOpen(false);
@@ -29,13 +29,12 @@ const CategoryDropdown: React.FC<CategoryDropdownProps> = ({ onSelectCategory })
     if (category !== 'select') {
       setSelectedCategory(category);
       onSelectCategory(category);
-      closeMenu();
     }
   };
 
   const clearSelection = () => {
-    setSelectedCategory('All');
-    onSelectCategory('All');
+    setSelectedCategory('');
+    onSelectCategory('');
   };
 
   return (
@@ -43,22 +42,22 @@ const CategoryDropdown: React.FC<CategoryDropdownProps> = ({ onSelectCategory })
       <h2 className="category-title">Search by category</h2>
       {isMenuOpen && (
         <div className="menu">
-          <Link to="#" className="menu-item" onClick={toggleMenu}>
+          <Link to="#" className="menu-item" onClick={() => handleCategoryClick('All')}>
             All
           </Link>
-          <Link to="#" className="menu-item" onClick={toggleMenu}>
+          <Link to="#" className="menu-item" onClick={() => handleCategoryClick('tech')}>
             tech
           </Link>
-          <Link to="#" className="menu-item" onClick={toggleMenu}>
+          <Link to="#" className="menu-item" onClick={() => handleCategoryClick('work')}>
             work
           </Link>
-          <Link to="#" className="menu-item" onClick={toggleMenu}>
+          <Link to="#" className="menu-item" onClick={() => handleCategoryClick('database')}>
             database
           </Link>
-          <Link to="#" className="menu-item" onClick={toggleMenu}>
+          <Link to="#" className="menu-item" onClick={() => handleCategoryClick('Web Development')}>
             Web Development
           </Link>
-          <Link to="#" className="menu-item" onClick={toggleMenu}>
+          <Link to="#" className="menu-item" onClick={() => handleCategoryClick('Backend Developer')}>
             Backend Developer
           </Link>
         </div>
@@ -82,7 +81,7 @@ const CategoryDropdown: React.FC<CategoryDropdownProps> = ({ onSelectCategory })
           </select>
         </div>
         <div className="selected-categories">
-          {selectedCategory && (
+          {selectedCategory && selectedCategory !== 'select' && (
             <span key={selectedCategory} className="category-tag">
               {selectedCategory}
               <button className="clear-btn" onClick={clearSelection}>X</button>
