@@ -45,7 +45,6 @@ function MarketplaceTaskDetail() {
   if (!jobDetail) {
     return <div>Job not found</div>
   }
-  console.log(jobDetail)
   return (
     <div className="task__detail">
       <div className="task__detail-header">
@@ -73,33 +72,12 @@ function MarketplaceTaskDetail() {
           <ProjectCardModal
             isProjectCardModalOpen={isProjectCardModalOpen}
             onClose={() => setIsProjectCardModalOpen(false)}
-            taskTitle={jobDetail.name}
+            taskTitle={jobDetail.title}
             onViewMoreProjects={() => {}}
-            jobId={id}
+            questions={jobDetail.questions}
+            jobId={jobDetail.id}
           >
-            <h1 className="pcmodal__maintitle">
-              Application for {jobDetail.title}
-            </h1>
-            <h2 className="pcmodal__title">Questions</h2>
-            <form className="pcmodal__form">
-              <label
-                className="pcmodal__form--label"
-                htmlFor="yearsofexperience"
-              >
-                How many years of coding experience do you have?
-              </label>
-              <input
-                className="pcmodal__form--input"
-                placeholder="Enter your years of experience"
-                type="text"
-                name="yearsofexperience"
-              />
-              <Button
-                text="apply now"
-                onClick={() => {}}
-                colorScheme="#FFD22F"
-              />
-            </form>
+            <Button text="apply now" onClick={() => {}} colorScheme="#FFD22F" />
           </ProjectCardModal>
         </div>
       </div>

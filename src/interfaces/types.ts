@@ -84,3 +84,13 @@ export interface TaskPosterProps {
   createdDate: string
   jobOwner: string
 }
+
+export interface applyJobPropTypes {
+  isProjectCardModalOpen: boolean
+  onClose: () => void
+  onViewMoreProjects: () => void
+  jobId: string
+  taskTitle: string
+  questions: string[]
+  children?: React.ReactNode
+}
