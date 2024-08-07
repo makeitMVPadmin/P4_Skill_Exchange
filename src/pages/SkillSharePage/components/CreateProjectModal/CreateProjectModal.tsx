@@ -203,8 +203,26 @@ const CreateProjectModal: React.FC<ProjectModalProps> = ({
                   <option value="" disabled>
                     Select a category
                   </option>
-                  <option value="Development">Development</option>
-                  <option value="Design">Design</option>
+                  <option value="Copywriting">Copywriting</option>
+                  <option value="Data Analysis">Data Analysis</option>
+                  <option value="Development (Back-End)">
+                    Back-End Development
+                  </option>
+                  <option value="Development (Front-End)">
+                    Front-End Development
+                  </option>
+                  <option value="Development (Full-Stack)">
+                    Full-Stack Development
+                  </option>
+                  <option value="Editing & Proofreading">
+                    Editing & Proofreading
+                  </option>
+                  <option value="Graphic Design">Graphic Design</option>
+                  <option value="Product Management">Product Management</option>
+                  <option value="Social Media">Social Media</option>
+                  <option value="Web Development">Web Development</option>
+                  <option value="UX/UI Design">UX/UI Design</option>
+                  <option value="Other">Other</option>
                 </select>
                 <label className="project-modal__label" htmlFor="skills">
                   Add skills you're looking for
