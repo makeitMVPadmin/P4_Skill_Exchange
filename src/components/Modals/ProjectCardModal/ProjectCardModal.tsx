@@ -1,24 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import MascotImage from '@/public/icons/MVP mascot.svg'
-import { getAllTasks, getUserDataForSpecificTask } from '@/src/utils/Firebase'
-import { applyJobPropTypes } from '@/src/interfaces/types'
+import {
+  submitUserForJob,
+  getUserDataForSpecificTask
+} from '@/src/utils/Firebase'
+import { applyJobPropTypes, Answer } from '@/src/interfaces/types'
 
 // Define prop types
 
 const ProjectCardModal: React.FC<applyJobPropTypes> = ({
   isProjectCardModalOpen,
   onClose,
-  onViewMoreProjects,
   questions,
   jobId,
+  userId,
   taskTitle
 }) => {
-  const [answers, setAnswers] = useState<any[]>([
-    { id: 1, answerOne: 'Sample answer one', answerTwo: 'Sample answer two' }
-  ])
-  const [answerOne, setAnswerOne] = useState<string>('')
-  const [answerTwo, setAnswerTwo] = useState<string>('')
+  const [answers, setAnswers] = useState<Answer[]>([])
+  const [currentAnswers, setCurrentAnswers] = useState<{
+    [key: number]: string
+  }>({})
   const [isReviewMode, setIsReviewMode] = useState<boolean>(false)
   const [submissionComplete, setSubmissionComplete] = useState<boolean>(false)
 
@@ -30,71 +32,58 @@ const ProjectCardModal: React.FC<applyJobPropTypes> = ({
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (!answerOne || !answerTwo) {
+    const areAllQuestionsAnswered = questions.every(
+      (_, index) =>
+        currentAnswers[index] !== undefined && currentAnswers[index] !== ''
+    )
+
+    if (!areAllQuestionsAnswered) {
       alert('Please answer all the questions.')
       return
     }
     setIsReviewMode(true)
   }
 
-  const handleFinalSubmit = () => {
-    const item = {
-      id: Math.floor(Math.random() * 1000),
-      answerOne,
-      answerTwo
-    }
-
+  const handleFinalSubmit = async () => {
     try {
-      setAnswers(oldList => {
-        const answers = [...oldList, item]
-        localStorage.setItem('answers', JSON.stringify(answers))
-        return answers
-      })
-      setAnswerOne('')
-      setAnswerTwo('')
+      // Assume userId is available from context or props
+      await submitUserForJob(userId, jobId, Object.values(currentAnswers))
+
+      // Update local state
+      setAnswers(prevAnswers => [
+        ...prevAnswers,
+        {
+          id: Math.floor(Math.random() * 1000),
+          ...currentAnswers
+        }
+      ])
+      setCurrentAnswers({})
       setIsReviewMode(false)
       setSubmissionComplete(true)
     } catch (error) {
-      console.error('Error saving to localStorage:', error)
+      console.error('Error submitting to Firestore:', error)
     }
   }
 
-  useEffect(() => {
-    const itemsFromLocalStorage = localStorage.getItem('answers')
-    if (itemsFromLocalStorage) {
-      const parsedItemsFromLocalStorage = JSON.parse(itemsFromLocalStorage)
-      setAnswers(parsedItemsFromLocalStorage)
-    }
-  }, [])
-
   const renderForm = () => (
     <form className="space-y-4" onSubmit={handleSubmit}>
-      {questions.map((question, index) => (
+      {questions?.map((question, index) => (
         <div key={index}>
-          <label className="block text-gray-700" htmlFor={index}>
-            {question}{' '}
+          <label className="block text-gray-700" htmlFor={`question${index}`}>
+            {question}
           </label>
           <input
             className="w-full px-3 py-2 border-2 border-black rounded shadow-sm shadow-gray-500 text-sm font-light"
             type="text"
-            name={index}
-            value={answerOne}
-            onChange={e => setAnswerOne(e.target.value)}
+            name={`question${index}`}
+            id={`question-${index}`}
+            value={currentAnswers[index] || ''}
+            onChange={e =>
+              setCurrentAnswers(prev => ({ ...prev, [index]: e.target.value }))
+            }
           />
         </div>
       ))}
-      {/* <div>
-        <label className="block text-gray-700" htmlFor="question2">
-          Question 2
-        </label>
-        <input
-          className="w-full px-3 py-2 border-2 border-black rounded shadow-sm shadow-gray-500"
-          type="text"
-          name="question2"
-          value={answerTwo}
-          onChange={e => setAnswerTwo(e.target.value)}
-        />
-      </div> */}
       <div className="flex justify-end space-x-4">
         <button
           className="px-4 py-2 bg-blue-900 text-white rounded hover:bg-blue-700"
@@ -108,17 +97,16 @@ const ProjectCardModal: React.FC<applyJobPropTypes> = ({
 
   const renderReview = () => (
     <div>
-      {questions.map((question, index) => (
-        <div className="mb-4">
-          <label className="block text-gray-700" htmlFor={index}>
-            {question}{' '}
+      {questions?.map((question, index) => (
+        <div className="mb-4" key={index}>
+          <label className="block text-gray-700" htmlFor={`question${index}`}>
+            {question}
           </label>
           <p className="w-full px-3 py-2 border border-transparent rounded bg-white">
-            {answerOne}
+            {currentAnswers[index] || ''}
           </p>
         </div>
       ))}
-
       <div className="flex justify-end space-x-4">
         <button
           className="px-4 py-2 bg-white text-gray-700 border border-black rounded hover:bg-gray-100"

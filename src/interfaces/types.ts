@@ -91,6 +91,11 @@ export interface applyJobPropTypes {
   onViewMoreProjects: () => void
   jobId: string
   taskTitle: string
+  userId: string
   questions: string[]
   children?: React.ReactNode
+}
+export interface Answer {
+  id: number
+  [key: number]: string
 }

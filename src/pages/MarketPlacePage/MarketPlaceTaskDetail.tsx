@@ -75,6 +75,7 @@ function MarketplaceTaskDetail() {
             taskTitle={jobDetail.title}
             onViewMoreProjects={() => {}}
             questions={jobDetail.questions}
+            userId={jobDetail.usedID}
             jobId={jobDetail.id}
           >
             <Button text="apply now" onClick={() => {}} colorScheme="#FFD22F" />
