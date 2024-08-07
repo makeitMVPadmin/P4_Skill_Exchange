@@ -5,7 +5,7 @@ import {
   submitUserForJob,
   getUserDataForSpecificTask
 } from '@/src/utils/Firebase'
-import { applyJobPropTypes, Answer } from '@/src/interfaces/types'
+import { applyJobPropTypes } from '@/src/interfaces/types'
 
 // Define prop types
 
@@ -17,7 +17,6 @@ const ProjectCardModal: React.FC<applyJobPropTypes> = ({
   userId,
   taskTitle
 }) => {
-  const [answers, setAnswers] = useState<Answer[]>([])
   const [currentAnswers, setCurrentAnswers] = useState<{
     [key: number]: string
   }>({})
@@ -46,17 +45,15 @@ const ProjectCardModal: React.FC<applyJobPropTypes> = ({
 
   const handleFinalSubmit = async () => {
     try {
-      // Assume userId is available from context or props
-      await submitUserForJob(userId, jobId, Object.values(currentAnswers))
+      // Create an array of objects where each object has the question as a key and answer as the value
+      const formattedAnswers = questions.map((question, index) => ({
+        [question]: currentAnswers[index] || ''
+      }))
+
+      // Submit the formatted answers to the backend
+      await submitUserForJob(userId, jobId, formattedAnswers)
 
       // Update local state
-      setAnswers(prevAnswers => [
-        ...prevAnswers,
-        {
-          id: Math.floor(Math.random() * 1000),
-          ...currentAnswers
-        }
-      ])
       setCurrentAnswers({})
       setIsReviewMode(false)
       setSubmissionComplete(true)
