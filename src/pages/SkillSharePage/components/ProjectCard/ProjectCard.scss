@@ -1,0 +1,103 @@
+@use '../../../../styles/partials/global' as *;
+@use '../../../../styles/partials/variables' as *;
+@use '../../../../styles/partials/typography' as *;
+@use '../../../../styles/partials/mixins' as *;
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  height: 30rem;
+  width: 22.2rem;
+  @include component-border;
+  overflow: hidden;
+  //   margin-bottom: 1rem;
+  //   transition: box-shadow 0.3s ease-in-out;
+  background-color: $MVP-white;
+
+  &__thumbnail {
+    width: 100%;
+    height: 10rem;
+    overflow: hidden;
+  }
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__content {
+    padding: 1rem;
+  }
+  &__title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: $MVP-dark-blue;
+  }
+
+  &__description {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: $MVP-dark-gray;
+  }
+
+  &__category {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    padding: 0.3rem 0.6rem;
+    background-color: $MVP-yellow;
+    color: $MVP-black;
+    border-radius: 4px;
+    display: inline-block;
+  }
+
+  &__skills {
+    font-size: 0.9rem;
+    color: $MVP-dark-gray;
+
+    strong {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+  }
+  &__skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  &__skill-tag {
+    background-color: $MVP-light-gray;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    color: $MVP-black;
+  }
+
+  &__stage {
+    margin-top: 1rem;
+
+    strong {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+  }
+  &__stage-status {
+    padding: 0.5rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    text-align: center;
+    background-color: green($color: #000000);
+    color: $MVP-white;
+
+    &.complete {
+      background-color: green;
+    }
+
+    &.in-progress {
+      background-color: $MVP-yellow;
+    }
+
+    &.pending {
+      background-color: $MVP-red;
+    }
+  }
+}

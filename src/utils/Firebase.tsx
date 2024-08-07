@@ -314,3 +314,19 @@ export async function getAllProjectsByUserID(userID: string) {
     return []
   }
 }
+
+// Get jobs posted by a specific user
+
+export async function getUserCreatedJobs(userId: string): Promise<any[]> {
+  try {
+    const jobsRef = collection(db, 'Jobs')
+    const userJobsQuery = query(jobsRef, where('userID', '==', userId))
+    const querySnapshot = await getDocs(userJobsQuery)
+
+    const jobs = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+    return jobs
+  } catch (error) {
+    console.error('Error fetching user created jobs:', error)
+    throw error
+  }
+}

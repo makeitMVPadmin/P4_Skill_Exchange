@@ -1,4 +1,10 @@
+@use '../../styles/partials/global' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/typography' as *;
+@use '../../styles/partials/mixins' as *;
+
 .c_skillshare {
+  background-color: $MVP-cream;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -15,8 +21,8 @@
     &__buttons {
       display: flex;
       border-radius: 12px;
-      background: #FFFFFF;
-      color: #6B6B6B;
+      background: #ffffff;
+      color: #6b6b6b;
       border: 2px solid #000;
       overflow: hidden;
 
@@ -26,16 +32,15 @@
 
       .provider-active {
         font-size: 1rem;
-        background-color: #0954B0;
+        background-color: #0954b0;
         color: #fff;
       }
 
       .seeker-active {
         font-size: 1rem;
-        background-color: #0954B0;
+        background-color: #0954b0;
         color: #fff;
       }
-
     }
   }
 
@@ -58,5 +63,10 @@
         letter-spacing: -0.22px;
       }
     }
+  }
+  &-projects-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
   }
 }
