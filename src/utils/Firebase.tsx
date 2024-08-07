@@ -51,6 +51,27 @@ export async function getAllTasks() {
   return tasks
 }
 
+//get job details based on a job id
+
+export async function getJobDetailsByJobId(jobId: string) {
+  try {
+    // Reference to the specific job document
+    const jobRef = doc(db, 'Jobs', jobId)
+    const jobDoc = await getDoc(jobRef)
+    // Check if the job document exists
+    if (!jobDoc.exists()) {
+      console.error(`Job with ID ${jobId} not found`)
+      return null
+    }
+    // Extract job data
+    const jobData = { id: jobDoc.id, ...jobDoc.data() }
+    return jobData
+  } catch (error) {
+    console.error('Error fetching job details:', error)
+    throw error // Rethrow the error after logging it
+  }
+}
+
 // Get user info for the user who created a job given the job ID
 export async function getUserDataForSpecificTask(jobID: string) {
   const jobRef = doc(db, 'Jobs', jobID)

@@ -24,6 +24,24 @@ export interface UserData {
   skills: Skill[]
 }
 
+export interface Job {
+  id: string
+  usedID: string
+  categories: string[]
+  title: string
+  header: string
+  about: string
+  description: string
+  thumbnail: string
+  assignedUser: string
+  status: number
+  createdAt: number
+  updatedAt: number
+  jobDuration: number
+  jobSkills: string[]
+  questions: number
+}
+
 export interface UpdatedData {
   id: string
   firstName: string
@@ -60,4 +78,9 @@ export interface ProjectDetails {
 export interface Skill {
   skillName: string
   yearsExperience: number
+}
+
+export interface TaskPosterProps {
+  createdDate: string
+  jobOwner: string
 }

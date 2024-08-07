@@ -2,24 +2,7 @@ import { useState, useEffect } from 'react'
 import JobCard from '../../components/JobCard/JobCard'
 import CategoryDropdown from '../../components/CategoryDropdown/CategoryDropdown'
 import { getAllTasks } from '@/src/utils/Firebase'
-
-interface Job {
-  id: string
-  usedId: string
-  categories: string[]
-  title: string
-  header: string
-  about: string
-  description: string
-  thumbnail: string
-  assignedUser: string
-  status: number
-  createdAt: number
-  updatedAt: number
-  jobDuration: number
-  jobSkills: string[]
-  questions: number
-}
+import { Job } from '@/src/interfaces/types'
 
 const MarketPlace = () => {
   const [jobs, setJobs] = useState<Job[]>([])
@@ -59,7 +42,6 @@ const MarketPlace = () => {
     setSelectedCategory(category)
   }
 
-  console.log(jobs)
   return (
     <div className="mx-auto p-4 w-full">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
