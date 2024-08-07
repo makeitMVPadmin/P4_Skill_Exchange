@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import JobCard from '../../components/JobCard/JobCard';
 import CategoryDropdown from '../../components/CategoryDropdown/CategoryDropdown';
 import { getAllTasks } from '@/src/utils/Firebase';
+import { Job } from '@/src/interfaces/types'
 import './MarketPlace.scss';
 
 interface Job {
