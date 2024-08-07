@@ -6,6 +6,7 @@ import './Header.scss';
 import Logo from '../../assets/images/Community Logo.svg';
 import DropDownIcon from '../../assets/Icons/Dropdown.svg';
 import NotificationsIcon from '../../assets/Icons/Notifications.svg';
+import Home from '../../assets/Icons/modified icons/Home.svg';
 import { UserData } from '@/src/interfaces/types';
 import { getUserData, getAllProjectsByUserID } from '@/src/utils/Firebase';
 import { toast, ToastContainer } from 'react-toastify';
