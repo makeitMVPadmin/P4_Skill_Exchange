@@ -6,7 +6,7 @@
 .skills-card {
   padding: 1rem;
   background-color: $MVP-white;
-  @include component-border;
+  @include component-border-light;
   margin-bottom: 1rem;
 
   &__title {
@@ -14,20 +14,20 @@
     font-weight: bold;
     margin-bottom: 0.5rem;
   }
-
   &__list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-rows: repeat(4, auto);
+    grid-auto-flow: column;
     gap: 0.5rem;
   }
-
   &__skill {
-    background-color: $MVP-light-gray;
-    padding: 0.5rem 1rem;
-
-    border: 0.1rem solid black;
-    border-radius: 0.5rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  &__name,
+  &__years {
+    display: flex;
+    width: 7rem;
   }
 }

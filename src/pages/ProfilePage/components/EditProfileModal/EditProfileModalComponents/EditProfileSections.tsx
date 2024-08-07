@@ -303,14 +303,14 @@ export const EditProject = (props: {
       <div className="edit-modal__buttons">
         <button
           type="button"
-          className="edit-modal__button"
+          className="edit-modal__save-project-button"
           onClick={onSaveClick}
         >
           Save
         </button>
         <button
           type="button"
-          className="edit-modal__button"
+          className="edit-modal__cancel-project-button"
           onClick={handleCancelEdit}
         >
           Cancel
@@ -396,14 +396,14 @@ export const AddProject = (props: {
         <div className="edit-modal__buttons">
           <button
             type="button"
-            className="edit-modal__button"
+            className="edit-modal__save-project-button"
             onClick={handleSubmitProject}
           >
             Add Project
           </button>
           <button
             type="button"
-            className="edit-modal__button"
+            className="edit-modal__cancel-project-button"
             onClick={handleCancelEdit}
           >
             Cancel

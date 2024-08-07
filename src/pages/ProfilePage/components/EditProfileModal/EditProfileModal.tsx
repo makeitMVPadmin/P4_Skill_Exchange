@@ -210,97 +210,102 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
     <div className="edit-modal">
       <div className="edit-modal__overlay" onClick={onClose}></div>
       <div className="edit-modal__content">
-        <button className="edit-modal__close-button" onClick={onClose}>
-          Close
-        </button>
-        <h2 className="edit-modal__title">Update Your Profile Details</h2>
-        <div className="edit-modal__tabs">
-          <button
-            className={`edit-modal__tab ${
-              activeTab === 'basicInfo' ? 'active' : ''
-            }`}
-            onClick={() => setActiveTab('basicInfo')}
-          >
-            Basic Info
+        <div className="edit-modal__header">
+          <button className="edit-modal__close-button" onClick={onClose}>
+            Close
           </button>
-          <button
-            className={`edit-modal__tab ${
-              activeTab === 'skills' ? 'active' : ''
-            }`}
-            onClick={() => setActiveTab('skills')}
-          >
-            Skills
-          </button>
-          <button
-            className={`edit-modal__tab ${
-              activeTab === 'portfolio' ? 'active' : ''
-            }`}
-            onClick={() => setActiveTab('portfolio')}
-          >
-            Portfolio
-          </button>
+          <h2 className="edit-modal__title">Update Your Profile Details</h2>
+          <div className="edit-modal__tabs">
+            <button
+              className={`edit-modal__tab ${
+                activeTab === 'basicInfo' ? 'active' : ''
+              }`}
+              onClick={() => setActiveTab('basicInfo')}
+            >
+              Basic Info
+            </button>
+            <button
+              className={`edit-modal__tab ${
+                activeTab === 'skills' ? 'active' : ''
+              }`}
+              onClick={() => setActiveTab('skills')}
+            >
+              Skills
+            </button>
+            <button
+              className={`edit-modal__tab ${
+                activeTab === 'portfolio' ? 'active' : ''
+              }`}
+              onClick={() => setActiveTab('portfolio')}
+            >
+              Portfolio
+            </button>
+          </div>
         </div>
 
         <form className="edit-modal__form" onSubmit={handleSubmit}>
-          {activeTab === 'basicInfo' &&
-            showBasicInfo({
-              firstName,
-              setFirstName,
-              lastName,
-              setLastName,
-              tagline,
-              setTagline,
-              title,
-              setTitle,
-              bio,
-              setBio,
-              github,
-              setGithub,
-              linkedin,
-              setLinkedin,
-              portfolioLink,
-              setPortfolioLink
-            })}
-          {activeTab === 'skills' &&
-            showSkills({
-              ownSkills: ownSkills || [],
-              setOwnSkills,
-              newSkill,
-              setNewSkill,
-              handleAddSkill,
-              handleDeleteSkill,
-              yearsExperience,
-              setYearsExperience,
-              yearsOptions
-            })}
-          {activeTab === 'portfolio' &&
-            !editingProject &&
-            !isAddingProject &&
-            showPortfolio({
-              projects,
-              handleEditProject,
-              handleAddProject
-            })}
-          {activeTab === 'portfolio' && editingProject && (
-            <EditProject
-              // userId={userData.id}
-              project={editingProject}
-              setProject={setEditingProject}
-              handleUpdateProject={updatedProject}
-              handleCancelEdit={cancelEdit}
-            />
-          )}
-          {activeTab === 'portfolio' && isAddingProject && (
-            <AddProject
-              userId={userData.id}
-              handleAddProject={addProject}
-              handleCancelEdit={cancelEdit}
-            />
-          )}
-
-          <button type="submit" className="edit-modal__submit-button">
-            Update
-          </button>
+          <div className="edit-modal__body">
+            {activeTab === 'basicInfo' &&
+              showBasicInfo({
+                firstName,
+                setFirstName,
+                lastName,
+                setLastName,
+                tagline,
+                setTagline,
+                title,
+                setTitle,
+                bio,
+                setBio,
+                github,
+                setGithub,
+                linkedin,
+                setLinkedin,
+                portfolioLink,
+                setPortfolioLink
+              })}
+            {activeTab === 'skills' &&
+              showSkills({
+                ownSkills: ownSkills || [],
+                setOwnSkills,
+                newSkill,
+                setNewSkill,
+                handleAddSkill,
+                handleDeleteSkill,
+                yearsExperience,
+                setYearsExperience,
+                yearsOptions
+              })}
+            {activeTab === 'portfolio' &&
+              !editingProject &&
+              !isAddingProject &&
+              showPortfolio({
+                projects,
+                handleEditProject,
+                handleAddProject
+              })}
+            {activeTab === 'portfolio' && editingProject && (
+              <EditProject
+                // userId={userData.id}
+                project={editingProject}
+                setProject={setEditingProject}
+                handleUpdateProject={updatedProject}
+                handleCancelEdit={cancelEdit}
+              />
+            )}
+            {activeTab === 'portfolio' && isAddingProject && (
+              <AddProject
+                userId={userData.id}
+                handleAddProject={addProject}
+                handleCancelEdit={cancelEdit}
+              />
+            )}
+          </div>
+          <div className="edit-modal__footer">
+            <button type="submit" className="edit-modal__submit-button">
+              Update
+            </button>
+          </div>
         </form>
       </div>
     </div>

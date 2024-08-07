@@ -16,7 +16,10 @@ const SkillsCard: React.FC<SkillsCardProps> = ({ skills }) => {
       <ul className="skills-card__list">
         {skills.map((skill, index) => (
           <li key={index} className="skills-card__skill">
-            {skill.skillName} ({skill.yearsExperience} years)
+            <div className="skills-card__name">{skill.skillName}</div>
+            <div className="skills-card__years">
+              {skill.yearsExperience} years
+            </div>
           </li>
         ))}
       </ul>
