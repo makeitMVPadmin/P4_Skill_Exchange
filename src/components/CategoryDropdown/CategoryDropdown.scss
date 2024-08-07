@@ -1,0 +1,104 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/_global" as *;
+
+.category-dropdown {
+  position: relative;
+  padding-left: 1.5rem;
+
+  .category-title {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+  }
+
+  .menu {
+    position: absolute;
+    margin-top: 0.5rem;
+    width: 14rem;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 0.25rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+
+    .menu-item {
+      display: block;
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+      color: #4a5568;
+      text-decoration: none;
+
+      &:hover {
+        background-color: #f7fafc;
+        color: #2d3748;
+      }
+    }
+  }
+
+  .dropdown {
+    margin-top: 0.5rem;
+    &__parent {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .dropdown-select {
+      font-size: 1.25rem;
+      // font-family: "Poppins", sans-serif;
+      // font-weight: 400;
+      width: 24rem;
+      padding: 0.5rem;
+      @include input-border;
+      border-radius: 0.5rem;
+      margin-right: 1rem;
+
+      option {
+        font-size: 1.25rem;
+      }
+    }
+  }
+
+  .selected-categories {
+    margin-top: 0.5rem;
+
+    .category-tag {
+      background-color: $MVP-light-blue;
+      color: black;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 1rem;
+      font-family: "Poppins", sans-serif;
+      font-weight: 400;
+      margin-right: 0.25rem;
+      margin-top: 0.25rem;
+      display: inline-block;
+    }
+  }
+}
+
+.selected-categories {
+  .category-tag {
+    display: flex;
+    align-items: center;
+    background-color: #e0e0e0;
+    padding: 5px 10px;
+    border-radius: 12px;
+    margin: 5px;
+    font-size: 14px;
+    position: relative;
+
+    .clear-btn {
+      border: none;
+      background: none;
+      color: black;
+      font-size: 14px;
+      cursor: pointer;
+      margin-left: 8px;
+      padding: 0;
+    }
+  }
+}

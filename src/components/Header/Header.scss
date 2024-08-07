@@ -4,6 +4,7 @@
 @use "../../styles/partials/_global" as *;
 
 .header {
+  font-family: "Poppins", sans-serif;
   background-color: white;
   border-bottom: 0.0625rem solid black;
   height: 15vh;
@@ -12,7 +13,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-left: 1rem;
+    // padding-left: 5rem;
     max-width: 75rem;
     margin: 0 auto;
   }
@@ -56,8 +57,8 @@
 
     .nav-list {
       display: flex;
-      gap: 1.5rem;
-      margin-top: 1rem;
+      gap: 2rem;
+      margin-top: 1.5rem;
 
       @media (max-width: 768px) {
         display: none;
@@ -71,13 +72,15 @@
       }
     }
     .nav-item {
+      width: auto;
       &--img {
         width: 2.5rem;
       }
 
       &--title {
-        font-family: "Corben";
+        font-family: "Poppins", sans-serif;
         font-size: 1rem;
+        font-weight: 700;
       }
 
       color: #000000;
@@ -99,8 +102,7 @@
 
     .dropdown {
       position: relative;
-      padding-left: 25vw;
-      padding-top: 1rem;
+      padding-left: 24.25rem;
 
       .dropdown-toggle {
         display: flex;
@@ -110,10 +112,9 @@
         .smallicon {
           width: 2rem;
         }
-
-        .avatar {
-          height: 2.5rem;
-          width: 2.5rem;
+        .avatar-img {
+          height: 3.5rem;
+          width: 3.5rem;
           background-color: #e0e0e0;
           border-radius: 50%;
         }
@@ -140,10 +141,10 @@
         border-radius: 0.5rem;
         box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.1);
 
-        .dropdown-item {
-          padding: 0.25rem 1rem;
+        .headerdropdown-item {
+          padding: 0 1rem;
           color: #4a4a4a;
-          font-family: 'Corben';
+          font-family: "Poppins", sans-serif;
           &:hover {
             background-color: #f0f0f0;
           }

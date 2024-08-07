@@ -1,99 +1,96 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import '@/src/styles/index.scss'
-import DropdownIcon from '../../styles/assets/icons/icons8-dropdown-50.png'
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import './CategoryDropdown.scss';
 
 interface CategoryDropdownProps {
-  onSelectCategory: (category: string) => void
+  onSelectCategory: (category: string) => void;
 }
 
-const CategoryDropdown: React.FC<CategoryDropdownProps> = ({
-  onSelectCategory
-}) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
+const CategoryDropdown: React.FC<CategoryDropdownProps> = ({ onSelectCategory }) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen)
-  }
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   const closeMenu = () => {
-    setIsMenuOpen(false)
-  }
+    setIsMenuOpen(false);
+  };
 
   const handleCategoryClick = (category: string) => {
-    setSelectedCategory(category)
-    onSelectCategory(category)
-    closeMenu()
-  }
-  const handleCategoryAll = () => {
-    setJobs(Jobs)
-    closeMenu()
-  }
-  // const handleCategoryAll = (category: )  => {}
+    setSelectedCategory(category);
+    onSelectCategory(category);
+    closeMenu();
+  };
+
+  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const category = event.target.value;
+    if (category !== 'select') {
+      setSelectedCategory(category);
+      onSelectCategory(category);
+    }
+  };
+
+  const clearSelection = () => {
+    setSelectedCategory(null);
+    onSelectCategory('All');
+  };
 
   return (
-    <div className="relative">
-      <button onClick={toggleMenu} className="flex items-center space-x-2">
-        <h2 className="text-xl font-bold mb-2">Categories</h2>
-        <img src={DropdownIcon} alt="Dropdown Icon" className="w-4 h-4 mt-1" />
-      </button>
+    <div className="category-dropdown">
+      <h2 className="category-title">Search by category</h2>
       {isMenuOpen && (
-        <div className="absolute mt-2 w-56 bg-white shadow-lg rounded-md py-1 ring-1 ring-black ring-opacity-5">
-          <Link
-            to="#"
-            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-            onClick={() => handleCategoryAll()}
-          >
+        <div className="menu">
+          <Link to="#" className="menu-item" onClick={() => handleCategoryClick('All')}>
             All
           </Link>
-          <Link
-            to="#"
-            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-            onClick={() => handleCategoryClick('tech')}
-          >
+          <Link to="#" className="menu-item" onClick={() => handleCategoryClick('tech')}>
             tech
           </Link>
-          <Link
-            to="#"
-            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-            onClick={() => handleCategoryClick('work')}
-          >
+          <Link to="#" className="menu-item" onClick={() => handleCategoryClick('work')}>
             work
           </Link>
-          <Link
-            to="#"
-            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-            onClick={() => handleCategoryClick('database')}
-          >
+          <Link to="#" className="menu-item" onClick={() => handleCategoryClick('database')}>
             database
           </Link>
-          <Link
-            to="#"
-            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-            onClick={() => handleCategoryClick('Web Development')}
-          >
+          <Link to="#" className="menu-item" onClick={() => handleCategoryClick('Web Development')}>
             Web Development
           </Link>
-          <Link
-            to="#"
-            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-            onClick={() => handleCategoryClick('Backend Developer')}
-          >
+          <Link to="#" className="menu-item" onClick={() => handleCategoryClick('Backend Developer')}>
             Backend Developer
           </Link>
         </div>
       )}
-      {/* Display the selected category as a bubble tag */}
-      {selectedCategory && (
-        <div className="mt-2">
-          <span className="bg-gray-500 text-white px-3 py-1 rounded-full text-sm">
-            {selectedCategory}
-          </span>
+      <div className="dropdown__parent">
+        <div className="dropdown">
+          <select
+            value="select" 
+            onChange={handleSelectChange}
+            className="dropdown-select"
+          >
+            <option className="dropdown" value="select" disabled>
+              Select
+            </option>
+            <option value="All">All</option>
+            <option value="tech">tech</option>
+            <option value="work">work</option>
+            <option value="database">database</option>
+            <option value="Web Development">Web Development</option>
+            <option value="Backend Developer">Backend Developer</option>
+          </select>
         </div>
-      )}
+        <div className="selected-categories">
+          {selectedCategory && selectedCategory !== 'All' && (
+            <span key={selectedCategory} className="category-tag">
+              {selectedCategory}
+              <button className="clear-btn" onClick={clearSelection}>X</button>
+            </span>
+          )}
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default CategoryDropdown
+export default CategoryDropdown;

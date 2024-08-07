@@ -1,0 +1,37 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/_global" as *;
+
+.marketplace-container {
+  margin: 0 auto;
+  padding: 4rem;
+  width: 100%;
+  background-color: $MVP-cream;
+  font-family: "Poppins", sans-serif;
+}
+
+.marketplace-content {
+  background-color: $MVP-cream;
+  padding: 1.5rem;
+  grid-column: span 3;
+  font-family: "Poppins", sans-serif;
+}
+
+.marketplace-title {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 1.5625rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  margin-bottom: 1.5625rem;
+}
+
+.job-cards-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  width: 100%;
+  font-family: 'Corben', sans-serif;
+}

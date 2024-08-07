@@ -1,28 +1,53 @@
-import { useState } from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
-import '../../styles/index.scss'
-import '../../styles/partials/_global.scss'
-import './Header.scss'
-import Logo from '../../assets/images/Community Logo.svg'
-import DropDownIcon from '../../assets/Icons/Dropdown.svg'
-import NotificationsIcon from '../../assets/Icons/Notifications.svg'
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import '../../styles/index.scss';
+import '../../styles/partials/_global.scss';
+import './Header.scss';
+import Logo from '../../assets/images/Community Logo.svg';
+import DropDownIcon from '../../assets/Icons/Dropdown.svg';
+import NotificationsIcon from '../../assets/Icons/Notifications.svg';
+import Home from '../../assets/Icons/modified icons/Home.svg';
+import { UserData } from '@/src/interfaces/types';
+import { getUserData, getAllProjectsByUserID } from '@/src/utils/Firebase';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-  const [activeTab, setActiveTab] = useState('provider')
-  const navigate = useNavigate()
-  const location = useLocation()
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [userData, setUserData] = useState<UserData | null>(null);
+  const [avatarLoaded, setAvatarLoaded] = useState(false);
+  const [avatarError, setAvatarError] = useState(false);
+  const location = useLocation();
+
+  const userID = 'UID99993230';
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getUserData(userID);
+        if (data !== undefined && data !== null) {
+          setUserData(data as UserData);
+        } else {
+          toast.error('User not found');
+        }
+      } catch (err) {
+        console.error('Error fetching user data:', err);
+        toast.error(`Failed to fetch user data: ${(err as Error).message}`);
+      }
+    };
+    fetchData();
+  }, [userID]);
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen)
-  }
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen)
-  }
+    setIsDropdownOpen(!isDropdownOpen);
+  };
 
-  const isActive = (path) => location.pathname === path
+  const isActive = (path) => location.pathname === path;
 
   return (
     <header className="header">
@@ -94,18 +119,29 @@ function Header() {
             <li className="dropdown">
               <div onClick={toggleDropdown} className="dropdown-toggle">
                 <img className="smallicon" src={NotificationsIcon} alt="notifications icon" />
-                <div className="avatar"></div>
+                <div className="avatar">
+                  <img
+                    className="avatar-img"
+                    src={userData?.profilePhoto || ''}
+                    alt="User Avatar"
+                    onLoad={() => setAvatarLoaded(true)}
+                    onError={() => {
+                      setAvatarError(true);
+                      setAvatarLoaded(true);
+                    }}
+                  />
+                </div>
                 <img className="smallicon" src={DropDownIcon} alt="dropdpwn icon" />
               </div>
               {isDropdownOpen && (
                 <ul className="dropdown-menu">
                   <li>
-                    <a href="/profile" className={`dropdown-item ${isActive('/profile') ? 'active' : ''}`}>
+                    <a href="/profile" className={`headerdropdown-item ${isActive('/profile') ? 'active' : ''}`}>
                       View Profile
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="dropdown-item">
+                    <a href="#" className="headerdropdown-item">
                       Sign Out
                     </a>
                   </li>
