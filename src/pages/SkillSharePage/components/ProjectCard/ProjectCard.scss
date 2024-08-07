@@ -9,6 +9,7 @@
   height: 30rem;
   width: 22.2rem;
   @include component-border;
+  padding: 1rem;
   overflow: hidden;
   //   margin-bottom: 1rem;
   //   transition: box-shadow 0.3s ease-in-out;
@@ -25,9 +26,9 @@
     object-fit: cover;
   }
 
-  &__content {
-    padding: 1rem;
-  }
+  //   &__content {
+  //     // padding: 1rem;
+  //   }
   &__title {
     font-size: 1.25rem;
     margin-bottom: 0.5rem;
@@ -46,7 +47,10 @@
     padding: 0.3rem 0.6rem;
     background-color: $MVP-yellow;
     color: $MVP-black;
-    border-radius: 4px;
+    border-top-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
     display: inline-block;
   }
 
@@ -65,9 +69,12 @@
     gap: 0.5rem;
   }
   &__skill-tag {
-    background-color: $MVP-light-gray;
+    background-color: $MVP-light-blue;
     padding: 0.3rem 0.6rem;
-    border-radius: 4px;
+    border-top-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
     font-size: 0.85rem;
     color: $MVP-black;
   }
