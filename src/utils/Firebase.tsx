@@ -12,7 +12,8 @@ import {
   where,
   addDoc,
   setDoc,
-  Timestamp
+  Timestamp,
+  deleteDoc
 } from 'firebase/firestore'
 
 // Set up our config for Firebase
@@ -370,5 +371,28 @@ export async function setJobToCompleted(jobID: string) {
   } catch (error) {
     console.error('Error updating job status:', error)
     throw error
+  }
+}
+
+export async function deleteJobById(jobId: string) {
+  try {
+    // Fetch job details to get the title
+    const jobRef = doc(db, 'Jobs', jobId);
+    const jobDoc = await getDoc(jobRef);
+
+    if (!jobDoc.exists()) {
+      throw new Error('Job not found');
+    }
+
+    const jobData = jobDoc.data();
+    const jobTitle = jobData.title;
+
+    // Proceed with deletion
+    await deleteDoc(jobRef);
+
+    return jobTitle; // Return the deleted job's title
+  } catch (error) {
+    console.error('Error deleting job:', error);
+    throw error; // Rethrow the error for handling at the call site
   }
 }
