@@ -374,9 +374,11 @@ export async function setJobToCompleted(jobID: string) {
   }
 }
 
+// Delete a specific job by its id
+// This function is used to delete a job by its job id 
+// and the deleted job will not be visible on jobs page and database.
 export async function deleteJobById(jobId: string) {
   try {
-    // Fetch job details to get the title
     const jobRef = doc(db, 'Jobs', jobId);
     const jobDoc = await getDoc(jobRef);
 
@@ -387,12 +389,11 @@ export async function deleteJobById(jobId: string) {
     const jobData = jobDoc.data();
     const jobTitle = jobData.title;
 
-    // Proceed with deletion
     await deleteDoc(jobRef);
 
-    return jobTitle; // Return the deleted job's title
+    return jobTitle;
   } catch (error) {
     console.error('Error deleting job:', error);
-    throw error; // Rethrow the error for handling at the call site
+    throw error;
   }
 }
