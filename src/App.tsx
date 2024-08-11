@@ -15,7 +15,6 @@ function App() {
         <Route path="/skillshare" element={<SkillShare />} />
         <Route path="/marketplace/:id" element={<MarketplaceTaskDetail />} />
       </Routes>
-      <Footer />
     </>
   )
 }

@@ -74,17 +74,17 @@ function MarketplaceTaskDetail() {
                 <button onClick={() => setIsProjectCardModalOpen(true)}>
                   Apply Now
                 </button>
-                <ProjectCardModal
-                  isProjectCardModalOpen={isProjectCardModalOpen}
-                  onClose={() => setIsProjectCardModalOpen(false)}
-                  taskTitle={jobDetail.title}
-                  onViewMoreProjects={() => {}}
-                  questions={jobDetail.questions}
-                  userId={jobDetail.usedID}
-                  jobId={jobDetail.id}
-                >
-                  {/* <Button text="apply now" onClick={() => {}} /> */}
-                </ProjectCardModal>
+                {isProjectCardModalOpen && (
+                  <ProjectCardModal
+                    isProjectCardModalOpen={isProjectCardModalOpen}
+                    onClose={() => setIsProjectCardModalOpen(false)}
+                    taskTitle={jobDetail.title}
+                    onViewMoreProjects={() => {}}
+                    questions={jobDetail.questions}
+                    userId={jobDetail.usedID}
+                    jobId={jobDetail.id}
+                  />
+                )}
               </div>
             </div>
           </div>

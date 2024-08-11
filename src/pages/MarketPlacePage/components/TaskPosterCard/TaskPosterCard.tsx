@@ -88,7 +88,7 @@ function TaskPosterCard({ createdDate, jobDetails }: TaskPosterProps) {
         <div className="task__poster-duration">
           <h3 className="task__poster-duration__title">Project Duration</h3>
           <p className="task__poster-duration__text">
-            {jobDetails.jobDuration}
+            {`${jobDetails.jobDuration} weeks`}
           </p>
         </div>
       </div>
