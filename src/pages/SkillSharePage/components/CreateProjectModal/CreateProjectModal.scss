@@ -304,6 +304,20 @@
     @include component-border;
   }
 
+  &__skill-add-button {
+    padding: 10px 20px;
+    background-color: $MVP-light-blue;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: $MVP-light-blue;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+    }
+  }
+
   &__cover-image-selection {
     display: flex;
     flex-direction: column;

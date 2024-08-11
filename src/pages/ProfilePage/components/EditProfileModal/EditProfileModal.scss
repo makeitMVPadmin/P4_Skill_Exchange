@@ -134,8 +134,11 @@
   }
 
   &__label {
-    font-size: 1rem;
+    font-size: 0.75rem;
+    padding: 2px 0;
+    font-weight: bold;
     display: block;
+    font-family: poppins;
   }
 
   &__input,

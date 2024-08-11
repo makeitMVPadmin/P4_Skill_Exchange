@@ -465,19 +465,19 @@ const CreateProjectModal: React.FC<ProjectModalProps> = ({
                   </h2>
                   <h3 className="project-modal__review-review">
                     <strong>Headline:</strong>
-                    <br /> {title}
+                    {title}
                   </h3>
                   <p className="project-modal__review-category">
                     <strong>Category: </strong>
-                    <br /> {categories.join(', ')}
+                    {categories.join(', ')}
                   </p>
                   <p className="project-modal__review-description">
                     <strong>Description: </strong>
-                    <br /> {description}
+                    {description}
                   </p>
                   <p className="project-modal__review-skills">
                     <strong>Skills: </strong>
-                    <br /> {jobSkills.join(', ')}
+                    {jobSkills.join(', ')}
                   </p>
                   {selectedCoverImage && (
                     <img

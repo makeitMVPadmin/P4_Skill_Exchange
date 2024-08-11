@@ -31,25 +31,35 @@ function SkillShare() {
     }
 
     fetchUserProjects()
-  }, [])
+  }, [userCreatedProjects])
 
   const handleModalSubmit = async (project: any) => {
     const userID = 'UID99993230'
-    const newJobId = await createNewJob(
-      userID,
-      project.title,
-      project.description,
-      project.jobSkills,
-      project.header,
-      project.thumbnail,
-      project.jobDuration,
-      [],
-      project.categories
-    )
 
-    if (newJobId) {
-      setProjects([...projects, { id: newJobId, ...project }])
-      setIsModalOpen(false)
+    try {
+      const newJobId = await createNewJob(
+        userID,
+        project.title,
+        project.description,
+        project.jobSkills,
+        project.header,
+        project.thumbnail,
+        project.jobDuration,
+        [],
+        project.categories
+      )
+
+      if (newJobId) {
+        const newProject = {
+          id: newJobId,
+          ...project
+        }
+        setUserCreatedProjects(prevProjects => [...prevProjects, newProject])
+
+        setIsModalOpen(false)
+      }
+    } catch (error) {
+      console.error('Error creating new project:', error)
     }
   }
 
