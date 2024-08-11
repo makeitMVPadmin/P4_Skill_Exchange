@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react'
 import './index.scss'
-import { createNewJob, getUserCreatedJobs } from '@/src/utils/Firebase'
+import {
+  createNewJob,
+  getUserCreatedJobs,
+  deleteJobById
+} from '@/src/utils/Firebase'
 import CreateProjectModal from './components/CreateProjectModal/CreateProjectModal'
 import ProjectCard from './components/ProjectCard/ProjectCard'
 import SearchCard from '@/src/components/Search/Search'
@@ -49,6 +53,17 @@ function SkillShare() {
     }
   }
 
+  const handleDelete = async (jobId: string) => {
+    try {
+      await deleteJobById(jobId)
+      setUserCreatedProjects(prevProjects =>
+        prevProjects.filter(project => project.id !== jobId)
+      )
+    } catch (error) {
+      console.error('Error deleting job:', error)
+    }
+  }
+
   return (
     <div className="c_skillshare">
       <div className="c_skillshare-header">
@@ -81,7 +96,11 @@ function SkillShare() {
 
               {userCreatedProjects.length > 0 ? (
                 userCreatedProjects.map(project => (
-                  <ProjectCard key={project.id} project={project} />
+                  <ProjectCard
+                    key={project.id}
+                    project={project}
+                    onDelete={handleDelete}
+                  />
                 ))
               ) : (
                 <p>No projects found. Start by creating a new project!</p>

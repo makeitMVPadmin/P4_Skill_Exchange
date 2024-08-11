@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { setJobToInProgress } from '@/src/utils/Firebase'
+import { setJobToInProgress, deleteJobById } from '@/src/utils/Firebase'
 import './ProjectCard.scss'
 
 interface Project {
@@ -15,36 +15,34 @@ interface Project {
 
 interface ProjectCardProps {
   project: Project
+  onDelete: (jobId: string) => void
 }
 6
-const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
-  const [status, setStatus] = useState(project.status)
+const ProjectCard: React.FC<ProjectCardProps> = ({ project, onDelete }) => {
+  const [status, setStatus] = useState(
+    project.status !== undefined ? project.status.toString() : '0'
+  )
 
   const handleStatusChange = async (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
-    const newStatus = parseInt(event.target.value)
+    const newStatus = event.target.value
+
     try {
-      if (newStatus === 1) {
+      if (newStatus === '1' && status !== '1') {
         await setJobToInProgress(project.id)
+        setStatus('1')
+      } else if (newStatus === 'delete') {
+        const jobTitle = await deleteJobById(project.id)
+        console.log(`Job "${jobTitle}" deleted`)
+        onDelete(project.id)
+      } else {
+        setStatus(newStatus)
       }
-      setStatus(newStatus)
     } catch (error) {
-      console.error('Error updating status:', error)
+      console.error('Error updating status or deleting job:', error)
     }
   }
-
-  //   const handleStatusClick = () => {
-  //     let newStatus
-  //     if (status === 0) {
-  //       newStatus = 1 // Move from Open to In Progress
-  //     } else if (status === 1) {
-  //       newStatus = 2 // Move from In Progress to Completed
-  //     } else {
-  //       newStatus = 0 // Reset to Open
-  //     }
-  //     updateStatus(newStatus)
-  //   }
 
   const getStatusLabel = (status: number) => {
     switch (status) {
@@ -94,6 +92,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             <option value={0}>Open</option>
             <option value={1}>In Progress</option>
             <option value={2}>Completed</option>
+            <option value="delete">Delete</option>
           </select>
         </div>
       </div>
