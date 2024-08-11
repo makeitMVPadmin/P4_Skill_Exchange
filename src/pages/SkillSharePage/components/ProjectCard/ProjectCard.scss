@@ -10,35 +10,48 @@
   width: 22.2rem;
   @include component-border;
   padding: 1rem;
+  font-family: 'Poppins', sans-serif;
   //   overflow: hidden;
   //   margin-bottom: 1rem;
   //   transition: box-shadow 0.3s ease-in-out;
   background-color: $MVP-white;
 
   &__thumbnail {
-    width: 100%;
-    height: 7rem;
+    // width: 100%;
+    // height: 7rem;
     @include component-border-light;
   }
   &__image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 24.6875rem;
+    height: 10rem;
+    @include component-border;
+    border-radius: 2px;
   }
 
   //   &__content {
   //     // padding: 1rem;
   //   }
   &__title {
-    height: 5rem;
+    // height: 5rem;
+    font-weight: 700;
     font-size: 1.25rem;
     margin-bottom: 0.5rem;
     color: $MVP-dark-gray;
   }
 
   &__description {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
     font-size: 1rem;
-    margin-bottom: 1rem;
+    margin-top: 1rem;
+    color: black;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.5;
+    height: calc(1.5em * 3);
     color: $MVP-dark-gray;
   }
 
@@ -58,6 +71,9 @@
   &__skills {
     font-size: 0.9rem;
     color: $MVP-dark-gray;
+    border-top: 1px solid $MVP-medium-gray;
+    border-bottom: 1px solid $MVP-medium-gray;
+    padding: 1rem 0;
 
     strong {
       display: block;
@@ -88,24 +104,44 @@
       margin-bottom: 0.5rem;
     }
   }
+
   &__stage-status {
     padding: 0.5rem;
     border-radius: 4px;
     font-size: 0.85rem;
+    width: 80%;
     text-align: center;
-    background-color: green($color: #000000);
+    cursor: pointer;
+    background-color: $MVP-dark-gray;
     color: $MVP-white;
 
-    &.complete {
-      background-color: green;
+    // Dropdown styling
+    select {
+      padding: 0.5rem;
+
+      border-radius: 4px;
+      font-size: 0.85rem;
+      background-color: inherit;
+      color: inherit;
+      border: none;
+      appearance: none;
+      text-align: center;
+
+      &:focus {
+        outline: none;
+      }
     }
 
-    &.in-progress {
+    &.status-0 {
+      background-color: $MVP-light-blue;
+    }
+
+    &.status-1 {
       background-color: $MVP-yellow;
     }
 
-    &.pending {
-      background-color: $MVP-red;
+    &.status-2 {
+      background-color: green;
     }
   }
 }
