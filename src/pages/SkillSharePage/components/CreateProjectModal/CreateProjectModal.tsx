@@ -461,19 +461,23 @@ const CreateProjectModal: React.FC<ProjectModalProps> = ({
               <div className="project-modal__answer">
                 <div className="project-modal__review">
                   <h2 className="project-modal__review-title">
-                    Take one last look before you go-go!
+                    <strong>Take one last look before you go-go!</strong>
                   </h2>
                   <h3 className="project-modal__review-review">
-                    Headline: {title}
+                    <strong>Headline:</strong>
+                    {title}
                   </h3>
                   <p className="project-modal__review-category">
-                    Category: {categories.join(', ')}
+                    <strong>Category: </strong>
+                    {categories.join(', ')}
                   </p>
                   <p className="project-modal__review-description">
-                    Description: {description}
+                    <strong>Description: </strong>
+                    {description}
                   </p>
                   <p className="project-modal__review-skills">
-                    Skills: {jobSkills.join(', ')}
+                    <strong>Skills: </strong>
+                    {jobSkills.join(', ')}
                   </p>
                   {selectedCoverImage && (
                     <img

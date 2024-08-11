@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react'
 import './index.scss'
-import { createNewJob, getUserCreatedJobs } from '@/src/utils/Firebase'
+import {
+  createNewJob,
+  getUserCreatedJobs,
+  deleteJobById
+} from '@/src/utils/Firebase'
 import CreateProjectModal from './components/CreateProjectModal/CreateProjectModal'
 import ProjectCard from './components/ProjectCard/ProjectCard'
 import SearchCard from '@/src/components/Search/Search'
@@ -27,25 +31,46 @@ function SkillShare() {
     }
 
     fetchUserProjects()
-  }, [])
+  }, [userCreatedProjects])
 
   const handleModalSubmit = async (project: any) => {
     const userID = 'UID99993230'
-    const newJobId = await createNewJob(
-      userID,
-      project.title,
-      project.description,
-      project.jobSkills,
-      project.header,
-      project.thumbnail,
-      project.jobDuration,
-      [],
-      project.categories
-    )
 
-    if (newJobId) {
-      setProjects([...projects, { id: newJobId, ...project }])
-      setIsModalOpen(false)
+    try {
+      const newJobId = await createNewJob(
+        userID,
+        project.title,
+        project.description,
+        project.jobSkills,
+        project.header,
+        project.thumbnail,
+        project.jobDuration,
+        [],
+        project.categories
+      )
+
+      if (newJobId) {
+        const newProject = {
+          id: newJobId,
+          ...project
+        }
+        setUserCreatedProjects(prevProjects => [...prevProjects, newProject])
+
+        setIsModalOpen(false)
+      }
+    } catch (error) {
+      console.error('Error creating new project:', error)
+    }
+  }
+
+  const handleDelete = async (jobId: string) => {
+    try {
+      await deleteJobById(jobId)
+      setUserCreatedProjects(prevProjects =>
+        prevProjects.filter(project => project.id !== jobId)
+      )
+    } catch (error) {
+      console.error('Error deleting job:', error)
     }
   }
 
@@ -81,7 +106,11 @@ function SkillShare() {
 
               {userCreatedProjects.length > 0 ? (
                 userCreatedProjects.map(project => (
-                  <ProjectCard key={project.id} project={project} />
+                  <ProjectCard
+                    key={project.id}
+                    project={project}
+                    onDelete={handleDelete}
+                  />
                 ))
               ) : (
                 <p>No projects found. Start by creating a new project!</p>
