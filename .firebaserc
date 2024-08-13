@@ -7,7 +7,7 @@
         "memberdatap3": {
             "hosting": {
                 "library": [
-                    "communiti-accountabuddy"
+                    "memberdatap3"
                 ]
             }
         }
