@@ -1,0 +1,17 @@
+{
+    "projects": {
+        "default": "memberdatap3",
+        "library": "memberdatap3"
+    },
+    "targets": {
+        "memberdatap3": {
+            "hosting": {
+                "library": [
+                    "communiti-accountabuddy"
+                ]
+            }
+        }
+    },
+    "etags": {},
+    "dataconnectEmulatorConfig": {}
+}
